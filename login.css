@@ -1,0 +1,147 @@
+ 
+	 	*{
+	 		padding: 0;
+	 		margin: 0;
+	 	}
+
+	 	body{
+	 		/*background-image: url(../img/login.png);
+	 		background-repeat: no-repeat;
+	 		background-size: cover;*/
+	 		/*display: block;*/
+    		overflow-x: hidden;
+			width: 100%;
+			height: 100%;
+			font-size: 13px;
+	 	}
+	 
+	 	.bg img{
+	 		height:100%;
+	 		width: 100%;
+	 		position:fixed;
+	 		overflow-y: auto;
+
+	 	}
+		/* 整个表单的样式*/
+	 	.login_form{
+	 		border-width: 0px;
+	 		width: 419px;
+	 		height: 268px;
+			left: 50%;
+			top: 50%;		 		
+	 		/*border: 1px solid red;*/
+	 		position: absolute;
+	 		margin-left: -209.5px;
+	 		margin-top:-134px;
+			/*background-image: url(../img/u987.png);*/
+
+	 		
+	 	}
+		/* 整个表单的样式*/
+
+
+		/* 头部*/
+	 	.form_header{
+	 		/*border:1px solid red;*/
+	 		width: 419px;
+			height: 47px;
+			color: red;
+			left: 370px;
+			top: 208px;
+			background: inherit;
+			background-color: rgba(255,255,255,0);
+			color: #ffffff;
+	 	}
+	 	/* 头部*/
+		
+		/*文字Login的样式*/
+		.form_header span{
+			display: block;
+			text-align: center;
+			font-family: 'Arial Negreta', 'Arial Normal', 'Arial';
+			font-size: 33px;
+			color: #C1D82F;
+
+		}
+		/*文字Login的样式*/
+
+
+	/*输入和密码框样式*/
+	.username {
+		height: 40px;
+		width: 370px;
+		margin-left: 20px;
+		margin-top: 20px;
+		background-color: rgba(164, 172, 176, .2980392156862745);
+		/*padding-left: 24px;*/
+	}
+	.password{
+		height: 40px;
+		width: 370px;
+		margin-top: 20px;
+		margin-left: 20px;
+		background-color: rgba(164, 172, 176, .2980392156862745);
+	}
+
+	/*输入和密码框样式*/
+
+
+	/*登录按钮框样式*/
+	.input_login_button{
+		width: 140px;
+		height: 25px;
+		margin-top: 40px;
+		margin-left: 60px;
+		font-size: 13px;
+		font-family: 'Arial Negreta', 'Arial Normal', 'Arial';
+		font-weight:700; 
+		border-width: 0px; /* 边框宽度 */
+		border-radius: 3px; /* 边框半径 */
+		background: #1E90FF; /* 背景颜色 */
+		cursor: pointer; /* 鼠标移入按钮范围时出现手势 */
+		outline: none; /* 不显示轮廓线 */
+		color: white; /* 字体颜色 */
+
+	}
+
+	.input_login_button:hover { /* 鼠标移入按钮范围时改变颜色 */
+
+	background: #5599FF;
+
+	}
+
+
+	/*登录按钮框样式*/
+
+	 /*记住密码框样式*/
+	.float_1{
+		display: inline;
+		margin: 0px;
+		margin-left: 50px;
+		color: rgba(60, 41, 41, .6588235294117647);
+		
+	}
+	 /*记住密码框样式*/
+
+	/*忘记密码  样式*/
+	.forgot{
+		display: block;
+		text-align: center;
+		margin-top: 25px;
+		font-family: 'Arial Negreta', 'Arial Normal', 'Arial';
+		color: #818C93;
+		padding-top: 5px;
+	}
+	/*忘记密码  样式*/
+
+	/*click here 样式 ： 去下划线*/
+	.forgot_pwd{
+		text-decoration: none;
+		color:rgba(0,0,255,0.7);
+
+	}
+	.forgot_pwd:hover{
+		color: skyblue;
+	}
+	/*click here 样式 ： 去下划线*/
+	 
