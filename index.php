@@ -24,6 +24,17 @@
     </style>  
 </head>
 <body>
+    <?php 
+        session_start();
+        if (isset($_SESSION["admin"])){
+            //echo "admin";
+            //echo $_SESSION["admin"];
+            //echo "login successful";
+        } else {
+            //echo "failed";
+            header("location:login.php");
+        }
+    ?> 
 
     <!-- layout admin -->
     <div class="layui-layout layui-layout-admin"> <!-- 添加skin-1类可手动修改主题为纯白，添加skin-2类可手动修改主题为蓝白 -->
@@ -130,24 +141,5 @@
 
 <script type="text/javascript" src="frame/layui/layui.js"></script>
 <script type="text/javascript" src="./frame/static/js/vip_comm.js"></script>
-<script type="text/javascript">
- 
-// layui.use(['layer','vip_nav'], function () {
-
-//     // 操作对象
-//     var layer       = layui.layer
-//         ,vipNav     = layui.vip_nav
-//         ,$          = layui.jquery;
-
-//     // 顶部左侧菜单生成 [请求地址,过滤ID,是否展开,携带参数]
-//     vipNav.top_left('./json/nav_top_left.json','side-top-left',false);
-//     // 主体菜单生成 [请求地址,过滤ID,是否展开,携带参数]
-//     vipNav.main('./json/nav_main.json','side-main',true);
-
-//     // you code ...
-
-
-// });
-</script>
 </body>
 </html>

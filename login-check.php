@@ -23,6 +23,10 @@
 	$res = mysqli_query($conn, $sql);
 
 	if (mysqli_num_rows($res) == 1){
+		// 
+		session_start();
+		$_SESSION["admin"] = true;
+
 		$row = mysqli_fetch_assoc($res);
 		if ($row['password'] == $login_password){
 			// get projects info
@@ -36,7 +40,7 @@
 			file_put_contents('json/projects.json', json_encode($data));
 
 			// redirect to index page
-			header("location:index.html");
+			header("location:index.php");
 		} else {
 			header("location:login.php?valid=false");
 		}

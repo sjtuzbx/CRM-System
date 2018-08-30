@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+<?php
+	unset($_SESSION['admin']);
+	session_destroy();
+?>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
