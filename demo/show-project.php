@@ -11,71 +11,78 @@
     <link rel="icon" href="../frame/static/image/code.png">
 </head>
 <body class="body">
-    <form class="layui-form" action="../add-project.php" method="post">
+
+<?php
+    //echo "Hello3", "<br>";
+    if (isset($_GET["data"])){
+        $json = $_GET["data"];
+        $row = json_decode($json, true);
+        $pid = $row["id"];
+        $pname = $row["pname"];
+        $status = $row["status"];
+        
+        $catogery = $row['catogery'];
+        $catogery_map = array("Category1", "Category2", "Category3");
+        $catogery_name = $catogery_map[$catogery];
+        //echo $catogery, "<br>", $catogery_name, $catogery_map[$catogery];
+
+        $duedate = $row['duedate'];
+        $responsiveid = $row["responsiveid"];
+        $responsive_map = array("Lisa", "Jenny", "Ponny");
+        $responsive_name = $responsive_map[$responsiveid];
+
+        $tags = $row["tags"];
+        $tags_map = array("aa", "cc", "dd");
+        $tags_name = $tags_map[$tags];
+
+        $description = $row["description"];
+        $customized = $row["customized"];
+    }
+?>
+
+    <form class="layui-form" action="">
         PROJECT DETAILS<hr />
         <div class="layui-form-item">
             <label class="layui-form-label"  style="width: 120px; padding: 10px;">Project Name</label>
             <div class="layui-input-block" style="margin-left: 155px;">
-                <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="" class="layui-input"> 
+                <label class="layui-input"> <?php echo $pname ?> </label>
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label" style="width: 120px; padding: 10px;">Status</label>
             <div class="layui-input-inline" style="margin-left: 15px;">
-                <select name="status" lay-filter="aihao">
-                   <!--  <option value=""></option> -->
-                   <option value="0">Not Started</option>
-                   <option value="1" selected="">In Progress</option>
-                   <option value="2">Completed</option>
-                   <option value="3">Deferred</option>
-                   <option value="4">Cancelled</option>
-               </select>
+                <label class="layui-input"> <?php echo $status ?> </label>
            </div>
        </div>
        <div class="layui-form-item">
         <label class="layui-form-label" style="width: 120px; padding: 10px;">Category</label>
         <div class="layui-input-inline" style="margin-left: 15px;">
-            <select name="catogery" lay-verify="essential" lay-search="">
-                <option value="">Please Choose</option>
-                <option value="1">Category1</option>
-                <option value="2">Category2</option>
-                <option value="3">Category3</option>
-            </select>
+            <label class="layui-input"> <?php echo $catogery_name ?> </label>
         </div>
     </div>
 
     <div class="layui-form-item" style="display:block;">
         <label class="layui-form-label" style="width: 120px; padding: 10px;">Date Due</label>
         <div class="layui-input-inline" style="margin-left: 15px;">
-            <input type="text" name="date" id="date" lay-verify="valid_date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+            <label class="layui-input"> <?php echo $duedate ?> </label>
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label" style="width: 120px; padding: 10px;">Responsible User</label>
         <div class="layui-input-inline" style="margin-left: 15px;">
-            <select name="responsiveid" lay-verify="essential" lay-search="">
-                <option value="">Choose</option>
-                <option value="1">Lisa</option>
-                <option value="2">Jenny</option>
-                <option value="3">Ponny</option>
-            </select>
+            <label class="layui-input"> <?php echo $responsive_name ?> </label>
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label" style="width: 120px; padding: 10px;">Tags</label>
         <div class="layui-input-inline" style="margin-left: 15px;">
-            <select name="tags" lay-verify="essential" lay-search="">
-                <option value="">Please Choose</option>
-                <option value="1">aa</option>
-                <option value="2">cc</option>
-                <option value="3">dd</option>
-            </select>
+            <label class="layui-input"> <?php echo $tags_name ?> </label>
         </div>
     </div>
     <div class="layui-form-item layui-form-text">
         <label class="layui-form-label" style="width: 120px; padding: 10px;">Description</label>
         <div class="layui-input-block" style="margin-left: 155px;">
-            <textarea name="description" placeholder="Please Input Content" class="layui-textarea"></textarea>
+            <label class="layui-textarea"><?php echo $description ?>  </label>
         </div>
     </div>
 
@@ -85,14 +92,13 @@
     <div class="layui-form-item layui-form-text">
         <!-- <label class="layui-form-label" style="width: 120px; padding: 10px;">Customized Information</label> -->
         <div class="layui-input-block" style="margin: 0px 30px;">
-            <textarea class="layui-textarea layui-hide" name="customized" lay-verify="content" id="LAY_demo_editor"></textarea>
+            <label class="layui-textarea layui-hide" name="customized"> <?php echo $customized ?>  </label>
         </div>
     </div>
 
     <div class="layui-form-item">
         <div class="layui-input-block" style="margin-left: 255px;">
-            <button class="layui-btn" lay-submit="" lay-filter="demo1">Save</button>
-            <button type="reset" class="layui-btn layui-btn-primary">Reset</button>
+            <button class="layui-btn" lay-submit="" lay-filter="demo1">Confirm</button>
         </div>
     </div>
 </form>
@@ -142,7 +148,7 @@
             // layer.alert(JSON.stringify(data.field), {
             //     title: '最终的提交信息'
             // });
-            //return false;
+            return false;
         });
 
 

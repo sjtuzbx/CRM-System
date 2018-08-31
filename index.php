@@ -44,7 +44,7 @@
             </div></a>
             <ul class="layui-nav layui-layout-left">
               <li class="layui-nav-item"><a href="home.html"><span style="font-family: 'imooc-icon';"></span><span> Home</span></a></li>
-              <li class="layui-nav-item"><a href="index.html"><span style="font-family: 'imooc-icon';"></span><span> Projects</span></a></li>
+              <li class="layui-nav-item"><a href="index.php"><span style="font-family: 'imooc-icon';"></span><span> Projects</span></a></li>
               <li class="layui-nav-item"><a href="task.html"><span style="font-family: 'imooc-icon';"></span><span> Tasks</span></a></li>
               <li class="layui-nav-item"><a href="lead.html"><span style="font-family: 'imooc-icon';"></span><span> Leads</span></a></li>
               <li class="layui-nav-item"><a href="client.html"><span style="font-family: 'imooc-icon';"></span><span> Clients</span></a></li>

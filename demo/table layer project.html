@@ -144,7 +144,7 @@
         title:"Project",
         area: ['700px', '550px'],
                 shadeClose: true, //点击遮罩关闭
-                content:  '../demo/show project.html',
+                content:  '../demo/show-project.php?data=' + escape(JSON.stringify(data)),
                 // btn:["Save""Cancle"],
               });
     } else if(obj.event === 'del'){
@@ -170,7 +170,7 @@
         title:"Project",
         area: ['700px', '550px'],
                 shadeClose: true, //点击遮罩关闭
-                content:  '../demo/edit-project.html',
+                content:  '../demo/edit project page.php?data=' + escape(JSON.stringify(data)),
                 // btn:["Save""Cancle"],
               });
       }

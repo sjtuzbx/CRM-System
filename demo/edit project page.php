@@ -11,12 +11,41 @@
     <link rel="icon" href="../frame/static/image/code.png">
 </head>
 <body class="body">
-    <form class="layui-form" action="../add-project.php" method="post">
+
+<?php
+    //echo "Hello3", "<br>";
+    if (isset($_GET["data"])){
+        $json = $_GET["data"];
+        $row = json_decode($json, true);
+        $pid = $row["id"];
+        $pname = $row["pname"];
+        $status = $row["status"];
+        
+        $catogery = $row['catogery'];
+        $catogery_map = array("Category1", "Category2", "Category3");
+        $catogery_name = $catogery_map[$catogery];
+        //echo $catogery, "<br>", $catogery_name, $catogery_map[$catogery];
+
+        $duedate = $row['duedate'];
+        $responsiveid = $row["responsiveid"];
+        $responsive_map = array("Lisa", "Jenny", "Ponny");
+        $responsive_name = $responsive_map[$responsiveid];
+
+        $tags = $row["tags"];
+        $tags_map = array("aa", "cc", "dd");
+        $tags_name = $tags_map[$tags];
+
+        $description = $row["description"];
+        $customized = $row["customized"];
+    }
+?>
+
+    <form class="layui-form" action="../edit-project.php?id=<?php echo $pid ?>" method="post">
         PROJECT DETAILS<hr />
         <div class="layui-form-item">
             <label class="layui-form-label"  style="width: 120px; padding: 10px;">Project Name</label>
             <div class="layui-input-block" style="margin-left: 155px;">
-                <input type="text" name="title" lay-filter="project-name" lay-verify="title" autocomplete="off" placeholder="" class="layui-input"> 
+                <input type="text" name="title" lay-filter="project-name" lay-verify="title" autocomplete="off" placeholder="<?php echo $pname ?>" class="layui-input"> 
             </div>
         </div>
         <div class="layui-form-item">
@@ -47,7 +76,7 @@
     <div class="layui-form-item" style="display:block;">
         <label class="layui-form-label" style="width: 120px; padding: 10px;">Date Due</label>
         <div class="layui-input-inline" style="margin-left: 15px;">
-            <input type="text" name="date" id="date" lay-verify="valid_date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+            <input type="text" name="date" placeholder="<?php echo $duedate ?>" id="date" lay-verify="valid_date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
@@ -75,7 +104,7 @@
     <div class="layui-form-item layui-form-text">
         <label class="layui-form-label" style="width: 120px; padding: 10px;">Description</label>
         <div class="layui-input-block" style="margin-left: 155px;">
-            <textarea name="description" placeholder="Please Input Content" class="layui-textarea"></textarea>
+            <textarea name="description" placeholder="<?php echo $description ?>" class="layui-textarea"></textarea>
         </div>
     </div>
 
@@ -85,7 +114,7 @@
     <div class="layui-form-item layui-form-text">
         <!-- <label class="layui-form-label" style="width: 120px; padding: 10px;">Customized Information</label> -->
         <div class="layui-input-block" style="margin: 0px 30px;">
-            <textarea class="layui-textarea layui-hide" name="customized" lay-verify="content" id="LAY_demo_editor"></textarea>
+            <textarea class="layui-textarea layui-hide" placeholder="<?php echo $customized ?>" name="customized" lay-verify="content" id="LAY_demo_editor"></textarea>
         </div>
     </div>
 
