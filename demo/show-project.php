@@ -12,7 +12,7 @@
 </head>
 <body class="body">
 
-<?php
+<?php 
     //echo "Hello3", "<br>";
     if (isset($_GET["data"])){
         $json = $_GET["data"];
