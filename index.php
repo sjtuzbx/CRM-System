@@ -43,7 +43,7 @@
             <a href="https://www.grantsplusconsulting.com.au/"><div class="layui-logo">CRM Alimama
             </div></a>
             <ul class="layui-nav layui-layout-left">
-              <li class="layui-nav-item"><a href="home.html"><span style="font-family: 'imooc-icon';"></span><span> Home</span></a></li>
+              <li class="layui-nav-item"><a href="home.php"><span style="font-family: 'imooc-icon';"></span><span> Home</span></a></li>
               <li class="layui-nav-item"><a href="index.php"><span style="font-family: 'imooc-icon';"></span><span> Projects</span></a></li>
               <li class="layui-nav-item"><a href="task.html"><span style="font-family: 'imooc-icon';"></span><span> Tasks</span></a></li>
               <li class="layui-nav-item"><a href="lead.html"><span style="font-family: 'imooc-icon';"></span><span> Leads</span></a></li>
@@ -70,76 +70,50 @@
         <li class="layui-nav-item">
             <a title="setting" href="#" style="font-family:'imooc-icon';"></a>
         </li>
-    </ul>
-</div>
-<!-- side -->
-<div class="layui-side my-side">
-    <div class="layui-side-scroll">
-        <!-- 左侧主菜单添加选项卡监听 -->
-        <ul class="layui-nav layui-nav-tree" lay-filter="side-main">
-           <li class="layui-nav-item  layui-nav-itemed">
-            <a href="javascript:;"><i class="layui-icon">&#xe620;</i>Projects</a>
-            <dl class="layui-nav-child">
-                <dd><a href="javascript:;" href-url="demo/table layer project.html"><i class="layui-icon">&#xe621;</i>All Projects</a></dd>
-                <dd><a href="javascript:;" href-url="demo/table layer project.html"><i class="layui-icon">&#xe621;</i>Recent Projects</a></dd>
-                <dd><a href="javascript:;" href-url="demo/table.html"><i class="layui-icon">&#xe621;</i>My projects</a></dd>
-                
-            </dl>
-        </li>
-        <li class="layui-nav-item">
-            <a href="javascript:;"><i class="layui-icon">&#xe628;</i>More</a>
-            <dl class="layui-nav-child">
-                <dd><a href="javascript:;" href-url="demo/login.php"><i class="layui-icon">&#xe621;</i>Lisa</a></dd>
-<!--                         <dd><a href="javascript:;" href-url="demo/register.html"><i class="layui-icon">&#xe621;</i>注册页</a></dd>
--->                       
-</dl>
-</li>
-
-</ul>
-
-</div>
-</div>
-<!-- body -->
-<div class="layui-body my-body">
-    <div class="layui-tab layui-tab-card my-tab" lay-filter="card" lay-allowClose="true">
-        <ul class="layui-tab-title">
-            <li class="layui-this" lay-id="1"><span><i class="layui-icon">&#xe638;</i>All Projects</span></li>
         </ul>
-        <div class="layui-tab-content">
-            <div class="layui-tab-item layui-show">
-                <iframe id="iframe" src="demo/table layer project.html" frameborder="0"></iframe>
+    </div>
+<!-- side -->
+    <div class="layui-side my-side">
+        <div class="layui-side-scroll">
+            <!-- 左侧主菜单添加选项卡监听 -->
+            <ul class="layui-nav layui-nav-tree" lay-filter="side-main">
+               <li class="layui-nav-item  layui-nav-itemed">
+                <a href="javascript:;"><i class="layui-icon">&#xe620;</i>Projects</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="javascript:;" href-url="demo/table layer project.html"><i class="layui-icon">&#xe621;</i>All Projects</a></dd>
+                    <dd><a href="javascript:;" href-url="demo/table layer project.html"><i class="layui-icon">&#xe621;</i>Recent Projects</a></dd>
+                    <dd><a href="javascript:;" href-url="demo/table.html"><i class="layui-icon">&#xe621;</i>My Projects</a></dd>
+                    
+                </dl>
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;"><i class="layui-icon">&#xe628;</i>More</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="javascript:;" href-url="demo/login.php"><i class="layui-icon">&#xe621;</i>Lisa</a></dd>                 
+                </dl>
+            </li>
+
+            </ul>
+        </div>
+    </div>
+
+    <!-- body -->
+    <div class="layui-body my-body">
+        <div class="layui-tab layui-tab-card my-tab" lay-filter="card" lay-allowClose="true">
+            <ul class="layui-tab-title">
+                <li class="layui-this" lay-id="1"><span><i class="layui-icon">&#xe638;</i>All Projects</span></li>
+            </ul>
+            <div class="layui-tab-content">
+                <div class="layui-tab-item layui-show">
+                    <iframe id="iframe" src="demo/table layer project.html" frameborder="0"></iframe>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<!-- footer -->
-  <!--   <div class="layui-footer my-footer">
-        
     </div>
---></div>
-
-<!-- pay -->
-<!-- <div class="my-pay-box none">
-    <div><img src="./frame/static/image/zfb.png" alt="支付宝"><p>支付宝</p></div>
-    <div><img src="./frame/static/image/wx.png" alt="微信"><p>微信</p></div>
-</div -->
-
-<!-- 右键菜单 -->
-<!-- <div class="my-dblclick-box none">
-    <table class="layui-tab dblclick-tab">
-        <tr class="card-refresh">
-            <td><i class="layui-icon">&#x1002;</i>刷新当前标签</td>
-        </tr>
-        <tr class="card-close">
-            <td><i class="layui-icon">&#x1006;</i>关闭当前标签</td>
-        </tr>
-        <tr class="card-close-all">
-            <td><i class="layui-icon">&#x1006;</i>关闭所有标签</td>
-        </tr>
-    </table>
-</div> -->
 
 <script type="text/javascript" src="frame/layui/layui.js"></script>
 <script type="text/javascript" src="./frame/static/js/vip_comm.js"></script>
+
 </body>
 </html>
