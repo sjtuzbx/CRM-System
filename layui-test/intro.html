@@ -1,167 +1,18 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<meta charset="utf-8">
-	<title>开始使用layui</title>
-	<link rel="stylesheet" href="intro.css">
-</head>
-<body>
-	<div class="title"> Dashboard</div>
-	<div class="bg">
-		<div class="dashboard-row">
-			<div id="project" class="item">
-				<div class="title-sub"> Project</div>
-				<div class="item-sub"> 
-					<div class="item-row">
-						<div class="item-bg"> 1 </div>
-						<div class="name"> Project name 1</div>
-					</div>
-					<div class="demo_line_01"></div>
-				</div>
-				<div class="item-sub"> 
-					<div class="item-row">
-						<div class="item-bg"> 2 </div>
-						<div class="name"> Project name 2</div>
-					</div>
-					<div class="demo_line_01"></div>
-				</div>
-				<div class="item-sub"> 
-					<div>
-						<div class="item-bg"> 3 </div>
-						<div class="name"> Project name 3</div>
-					</div>
-					<div class="demo_line_01"></div>
-				</div>
-			</div>
-			
-			<div id="client" class="item">
-				<div class="title-sub"> Clients</div>
-				<div class="item-sub"> 
-					<div class="item-row">
-						<div class="item-bg"> 1 </div>
-						<div class="name"> Client 1</div>
-					</div>
-					<div class="demo_line_01"></div>
-				</div>
-				<div class="item-sub"> 
-					<div class="item-row">
-						<div class="item-bg"> 2 </div>
-						<div class="name"> Client 2</div>
-					</div>
-					<div class="demo_line_01"></div>
-				</div>
-				<div class="item-sub"> 
-					<div>
-						<div class="item-bg"> 3 </div>
-						<div class="name"> Client 3</div>
-					</div>
-					<div class="demo_line_01"></div>
-				</div>
-			</div>
-
-			<div id="client" class="item">
-				<div class="title-sub"> Leads</div>
-				<div class="item-sub"> 
-					<div class="item-row">
-						<div class="item-bg"> 1 </div>
-						<div class="name"> Lead 1</div>
-					</div>
-					<div class="demo_line_01"></div>
-				</div>
-				<div class="item-sub"> 
-					<div class="item-row">
-						<div class="item-bg"> 2 </div>
-						<div class="name"> Lead 2</div>
-					</div>
-					<div class="demo_line_01"></div>
-				</div>
-				<div class="item-sub"> 
-					<div>
-						<div class="item-bg"> 3 </div>
-						<div class="name"> Lead 3</div>
-					</div>
-					<div class="demo_line_01"></div>
-				</div>
-			</div>
-		</div>
-
-		<div class="dashboard-row">
-			<div id="project" class="item">
-				<div class="title-sub"> Tasks</div>
-				<div class="item-sub"> 
-					<div class="item-row">
-						<div class="item-bg"> 1 </div>
-						<div class="name"> Task 1</div>
-					</div>
-					<div class="demo_line_01"></div>
-				</div>
-				<div class="item-sub"> 
-					<div class="item-row">
-						<div class="item-bg"> 2 </div>
-						<div class="name"> Task 2</div>
-					</div>
-					<div class="demo_line_01"></div>
-				</div>
-				<div class="item-sub"> 
-					<div>
-						<div class="item-bg"> 3 </div>
-						<div class="name"> Task 3</div>
-					</div>
-					<div class="demo_line_01"></div>
-				</div>
-			</div>
-			
-			<div id="client" class="item">
-				<div class="title-sub"> Contacts</div>
-				<div class="item-sub"> 
-					<div class="item-row">
-						<div class="item-bg"> 1 </div>
-						<div class="name"> Contact 1</div>
-					</div>
-					<div class="demo_line_01"></div>
-				</div>
-				<div class="item-sub"> 
-					<div class="item-row">
-						<div class="item-bg"> 2 </div>
-						<div class="name"> Contact 2</div>
-					</div>
-					<div class="demo_line_01"></div>
-				</div>
-				<div class="item-sub"> 
-					<div>
-						<div class="item-bg"> 3 </div>
-						<div class="name"> Contact 3</div>
-					</div>
-					<div class="demo_line_01"></div>
-				</div>
-			</div>
-
-			<div id="client" class="item">
-				<div class="title-sub"> E-mail</div>
-				<div class="item-sub"> 
-					<div class="item-row">
-						<div class="item-bg"> 1 </div>
-						<div class="name"> E-mail 1</div>
-					</div>
-					<div class="demo_line_01"></div>
-				</div>
-				<div class="item-sub"> 
-					<div class="item-row">
-						<div class="item-bg"> 2 </div>
-						<div class="name"> E-mail 2</div>
-					</div>
-					<div class="demo_line_01"></div>
-				</div>
-				<div class="item-sub"> 
-					<div>
-						<div class="item-bg"> 3 </div>
-						<div class="name"> E-mail 3</div>
-					</div>
-					<div class="demo_line_01"></div>
-				</div>
-			</div>
-		</div>
-
-	</div>
-</body>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<title>开始使用layui</title>
+		<link rel="stylesheet" href="../frame/layui/css/layui.css">
+	</head>
+	<body>
+		<script src="../frame/layui/layui.js"></script>
+		<script>
+			layui.use(['layer', 'form'], function(){
+				var layer = layui.layer, form = layui.form;
+				layer.msg('Hello World');
+			})
+		</script>
+	</body>
 </html>

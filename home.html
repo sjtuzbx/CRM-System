@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Home</title>
+    <link rel="stylesheet" href="frame/layui/css/layui.css">
+    <link rel="stylesheet" href="./frame/static/css/home-style.css">
+    <link rel="icon" href="./frame/static/image/code.png">
+    <link rel="stylesheet" href="project.css">
+  <style>
+    @font-face{
+        font-family: "imooc-icon";
+        src: url("icomoon/fonts/icomoon.eot?7kkyc2"); 
+        src: url("icomoon /fonts/icomoon.eot?#iefix") format("embedded-opentype")
+             ,url("icomoon /fonts/icomoon.woff") format("woff")
+             ,url("icomoon/fonts/icomoon.ttf") format("truetype")
+             ,url("icomoon/fonts/icomoon.svg") format("svg");
+        font-weight: normal;
+        font-style: normal;
+    } 
+  </style>  
+</head>
+<body>
+
+<!-- layout admin -->
+<div class="layui-layout layui-layout-admin"> <!-- 添加skin-1类可手动修改主题为纯白，添加skin-2类可手动修改主题为蓝白 -->
+    <!-- header -->
+    <div class="layui-header my-header">
+        <a href="https://www.grantsplusconsulting.com.au/"><div class="layui-logo">CRM Alimama
+        </div></a>
+    <ul class="layui-nav layui-layout-left">
+      <li class="layui-nav-item"><a href="home.html"><span style="font-family: 'imooc-icon';"></span><span> Home</span></a></li>
+      <li class="layui-nav-item"><a href="index.php"><span style="font-family: 'imooc-icon';"></span><span> projects</span></a></li>
+      <li class="layui-nav-item"><a href=""><span style="font-family: 'imooc-icon';"></span><span> Tasks</span></a></li>
+      <li class="layui-nav-item"><a href=""><span style="font-family: 'imooc-icon';"></span><span> Leads</span></a></li>
+      <li class="layui-nav-item"><a href=""><span style="font-family: 'imooc-icon';"></span><span> Clients</span></a></li>
+      <li class="layui-nav-item"><a href=""><span style="font-family: 'imooc-icon';"></span><span> E-mails</span></a></li>
+      <li class="layui-nav-item"><a href=""><span style="font-family: 'imooc-icon';"></span><span> Contacts</span></a></li>
+    
+
+      <li class="layui-nav-item">
+        <a href="javascript:;">More</a>
+        <dl class="layui-nav-child">
+          <dd><a href="">Recent Activity</a></dd>
+          <dd><a href="">Calendar</a></dd>
+        </dl>
+      </li>
+    </ul>
+    <ul class="layui-nav layui-layout-right" >
+        <li class="layui-nav-item ">
+            <a title="personal centre" href="#" style="font-family:'imooc-icon';"></a>
+        </li>
+        <li class="layui-nav-item">
+            <a title="log out" href="login.php" style="font-family:'imooc-icon';"></a>
+        </li>
+        <li class="layui-nav-item">
+            <a title="setting" href="#" style="font-family:'imooc-icon';"></a>
+        </li>
+    </ul>
+</div>
+</div>            
+    <!-- body -->
+
+
+ <!--    <div class="layui-body my-body">
+        <div class="layui-tab layui-tab-card my-tab" lay-filter="card" lay-allowClose="true">
+            <ul class="layui-tab-title">
+                <li class="layui-this" lay-id="1"><span><i class="layui-icon">&#xe638;</i>Projects</span></li>
+            </ul>
+            <div class="layui-tab-content">
+                <div class="layui-tab-item layui-show">
+                    <iframe id="iframe" src="demo/table layer.html" frameborder="0"></iframe>
+                </div>
+            </div>
+        </div>
+    </div> -->
+    <!-- footer -->
+  <!--   <div class="layui-footer my-footer">
+        
+    </div>
+ -->
+
+<!-- pay -->
+<!-- <div class="my-pay-box none">
+    <div><img src="./frame/static/image/zfb.png" alt="支付宝"><p>支付宝</p></div>
+    <div><img src="./frame/static/image/wx.png" alt="微信"><p>微信</p></div>
+</div -->
+
+<!-- 右键菜单 -->
+<!-- <div class="my-dblclick-box none">
+    <table class="layui-tab dblclick-tab">
+        <tr class="card-refresh">
+            <td><i class="layui-icon">&#x1002;</i>刷新当前标签</td>
+        </tr>
+        <tr class="card-close">
+            <td><i class="layui-icon">&#x1006;</i>关闭当前标签</td>
+        </tr>
+        <tr class="card-close-all">
+            <td><i class="layui-icon">&#x1006;</i>关闭所有标签</td>
+        </tr>
+    </table>
+</div> -->
+
+<script type="text/javascript" src="frame/layui/layui.js"></script>
+<script type="text/javascript" src="./frame/static/js/vip_comm.js"></script>
+<script type="text/javascript">
+
+// layui.use(['layer','vip_nav'], function () {
+
+//     // 操作对象
+//     var layer       = layui.layer
+//         ,vipNav     = layui.vip_nav
+//         ,$          = layui.jquery;
+
+//     // 顶部左侧菜单生成 [请求地址,过滤ID,是否展开,携带参数]
+//     vipNav.top_left('./json/nav_top_left.json','side-top-left',false);
+//     // 主体菜单生成 [请求地址,过滤ID,是否展开,携带参数]
+//     vipNav.main('./json/nav_main.json','side-main',true);
+
+//     // you code ...
+
+
+// });
+</script>
+</body>
+</html>

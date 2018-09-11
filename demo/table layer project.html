@@ -146,7 +146,9 @@
                 // btn:["Save""Cancle"],
               });
     } else if(obj.event === 'del'){
-      layer.confirm('Confirm to delete ?', function(index){
+      layer.confirm('Confirm to delete ?', {
+			title: 'Delete Project',
+            btn: ['Comfirm', 'Cancel']}, function(index){
         //layer.alert('view'+ JSON.stringify(data));
         $.ajax({
           type: "POST",

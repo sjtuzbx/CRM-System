@@ -18,7 +18,7 @@ layui.define(['layer', 'element'], function (exports) {
             } else {
                 layer.confirm('确认删除选中数据?', {
                     title: '删除',
-                    btn: ['确认', '取消'] // 按钮
+                    btn: ['Comfirm', 'Cancel'] // 按钮
                 }, function (index, layero) {
                     // 确认
                     $.post(url, {ids: ids}, function (res) {

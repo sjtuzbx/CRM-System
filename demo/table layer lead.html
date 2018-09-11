@@ -147,7 +147,9 @@
                 content:  '../demo/table form new lead.html',
             })
     } else if(obj.event === 'del'){
-      layer.confirm('Confirm to delete ?', function(index){
+      layer.confirm('Confirm to delete ?',{
+			title: 'Delete Lead',
+            btn: ['Comfirm', 'Cancel']}, function(index){
         obj.del();
         layer.close(index);
       });

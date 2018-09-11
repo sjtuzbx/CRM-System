@@ -6,8 +6,9 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Document</title>
+	<title>Login</title>
 	<link href="login.css" rel="stylesheet" type="text/css" />
+	<link rel="icon" href="./img/grade_a.png">
 </head>
 <body >
 	<div class="bg">

@@ -139,7 +139,9 @@
 
             })
     } else if(obj.event === 'del'){
-      layer.confirm('真的删除行么', function(index){
+      layer.confirm('Comfirm to delete ?',{
+			title: 'Delete Email',
+            btn: ['Comfirm', 'Cancel']}, function(index){
         obj.del();
         layer.close(index);
       });

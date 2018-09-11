@@ -148,7 +148,9 @@
 
             })
     } else if(obj.event === 'del'){
-      layer.confirm('Confirm to delete ?', function(index){
+      layer.confirm('Confirm to delete ?',{
+			title: 'Delete Contact',
+            btn: ['Comfirm', 'Cancel']}, function(index){
         obj.del();
         layer.close(index);
       });
