@@ -71,17 +71,17 @@
             , height: vipTable.getFullHeight()    //容器高度
             , cols: [[                  //标题栏
                 {checkbox: true, sort: true, fixed: true, space: true}
-                , {field: 'account', title: 'Task Name' ,width: 120}
-                , {field: 'auth_group_name', title: 'Start Date', width: 120}
-                , {field: 'last_login_time', title: 'Date Due', width: 100}
-                , {field: 'last_login_ip', title: 'Responsible User', width: 160}
-                , {field: 'create_time', title: 'Task Owner', width: 120}
-                , {field: 'status', title: 'Status', width: 70}
-                 , {field: 'id', title: 'Percent Complete Indicator', width: 240}
-                , {fixed: 'right', title: 'Function', width: 180, align: 'center', toolbar: '#barOption'} //这里的toolbar值是模板元素的选择器
+                , {field: 'tname', title: 'Task Name' ,width: 120}
+                , {field: 'startdate', title: 'Start Date', width: 120}
+                , {field: 'duedate', title: 'Date Due', width: 100}
+                , {field: 'tresponsiveid', title: 'Responsible User', width: 160}
+                , {field: 'username', title: 'Task Owner', width: 120}
+                , {field: 'status', title: 'Status', width: 160}
+                 , {field: 'progress', title: 'Percent Complete Indicator', width: 140}
+                , {fixed: 'right', title: 'Function', width: 160, align: 'center', toolbar: '#barOption'} //这里的toolbar值是模板元素的选择器
             ]]
             , id: 'dataCheck'
-            , url: './../json/data_table.json'
+            , url: '../json/task.json'
             , method: 'get'
             , page: true
             , limits: [30, 60, 90, 150, 300]
@@ -117,13 +117,17 @@
 
          $("#btn-add").on('click',function(){
           layer.open({
-            type: 1,
+            type: 2,
             title:" New Task",
             area: ['700px', '550px'],
             shadeClose: true, //点击遮罩关闭
-            content:  '\<\div class="add_new" ><iframe frameborder="0" width="100%" height="91%" scrolling="auto" src="../demo/table form new task.html"></iframe>\<div class="layui-form-item"><div class="layui-input-block" style="margin-left: 530px;"><button class="layui-btn" lay-submit="" lay-filter="demo1">Save</button><button type="reset" class="layui-btn layui-btn-primary">Reset</button></div> </div><\/div>', 
-            // btn:["Save""Cancle"],
-// <div id="cancle" style="padding:20px; float:right;"><button class="layui-btn layui-btn-normal">cancel</button></div><div class="save" style="padding:20px; float:right;"><button class="layui-btn layui-btn-warm">save</button></div>
+            content:  '../demo/table form new task.html', 
+            cancel: function(index, layero){ 
+              if(confirm('确定要关闭么')){ //只有当点击confirm框的确定时，该层才会关闭
+                layer.close(index)
+              }
+              return false; 
+            }   
           })
         });
        //  $("#cancle").on("click",function(){
@@ -144,7 +148,7 @@
                 title:"Task",
                 area: ['700px', '550px'],
                 shadeClose: true, //点击遮罩关闭
-                content:  '../demo/table form new task.html',
+                content:  'table form new task.html',
                 // btn:["Save""Cancle"],
 
             })

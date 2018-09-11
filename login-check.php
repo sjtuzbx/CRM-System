@@ -39,6 +39,22 @@
 			$data=array("code"=>0,"msg"=>"","count"=>count($arr), "data"=>$arr);
 			file_put_contents('json/projects.json', json_encode($data));
 
+			// get tasks info
+			$sql_task = "select * from task a INNER JOIN user b ON a.towner=b.uid";
+			$task_res = mysqli_query($conn, $sql_task);
+			$arr = array();
+			while ($task_row = mysqli_fetch_assoc($task_res)){
+				$responsivename = $task_row['tresponsiveid'];
+				$sql_id = "select username from user where user.uid=$responsivename";
+				$tmp_res = mysqli_query($conn, $sql_id);
+				$name = mysqli_fetch_assoc($tmp_res);
+				$task_row['tresponsiveid'] = $name['username'];
+				array_push($arr,$task_row);
+			}
+
+			$data=array("code"=>0,"msg"=>"","count"=>count($arr), "data"=>$arr);
+			file_put_contents('json/task.json', json_encode($data));
+
 			// redirect to index page
 			header("location:index.php");
 		} else {

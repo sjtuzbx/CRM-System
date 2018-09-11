@@ -121,6 +121,10 @@
             area: ['700px', '550px'],
       			shadeClose: true, //点击遮罩关闭
       			content:  '../demo/table form new project.html', 
+            cancel: function(index, layero){        
+              layer.close(index);
+              tableIns.reload();
+            }, 
       		})
         });
 
