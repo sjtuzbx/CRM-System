@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="renderer" content="webkit">
@@ -10,16 +11,18 @@
     <link rel="stylesheet" href="../frame/static/css/style.css">
     <link rel="icon" href="../frame/static/image/code.png">
 </head>
+
 <body class="body">
-<form class="layui-form" action="../add-task.php" method="post">
-   TASK DETAILS<hr/>
-    <div class="layui-form-item">
-        <label class="layui-form-label"  style="width: 120px; padding: 10px;">Task Name</label>
-        <div class="layui-input-block" style="margin-left: 155px;">
-            <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="" class="layui-input">
+    <form class="layui-form" action="../add-task.php" method="post">
+        TASK DETAILS
+        <hr />
+        <div class="layui-form-item">
+            <label class="layui-form-label" style="width: 120px; padding: 10px;">Task Name</label>
+            <div class="layui-input-block" style="margin-left: 155px;">
+                <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="" class="layui-input">
+            </div>
         </div>
-    </div>
-         <div class="layui-form-item">
+        <div class="layui-form-item">
             <label class="layui-form-label" style="width: 120px; padding: 10px;">Category</label>
             <div class="layui-input-inline" style="margin-left: 15px;">
                 <select name="catogery" lay-verify="required" lay-search="">
@@ -33,46 +36,50 @@
                 </select>
             </div>
         </div>
-         <div class="layui-form-item" style="display:block;">
+        <div class="layui-form-item" style="display:block;">
             <label class="layui-form-label" style="width: 120px; padding: 10px;">Date Started</label>
             <div class="layui-input-inline" style="margin-left: 15px;">
-                <input type="text" name="startdate" id="date" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+                <input type="text" name="startdate" id="date" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off"
+                    class="layui-input">
             </div>
         </div>
         <div class="layui-form-item" style="display:block;">
             <label class="layui-form-label" style="width: 120px; padding: 10px;">Date Due</label>
             <div class="layui-input-inline" style="margin-left: 15px;">
-                <input type="text" name="duedate" id="date" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+                <input type="text" name="duedate" id="date" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off"
+                    class="layui-input">
             </div>
         </div>
-        <br/>
-         ADDITIONAL INFORMATION<hr/>
-             <div class="layui-form-item" style="display:block;">
+        <br />
+        ADDITIONAL INFORMATION
+        <hr />
+        <div class="layui-form-item" style="display:block;">
             <label class="layui-form-label" style="width: 120px; padding: 10px;">Reminder</label>
             <div class="layui-input-inline" style="margin-left: 15px;">
-                <input type="text" name="reminddate" id="date" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input"><br/><input type="time" class="layui-input" id="test4" placeholder="HH:mm:ss">
+                <input type="text" name="reminddate" id="date" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off"
+                    class="layui-input"><br /><input type="time" class="layui-input" id="test4" placeholder="HH:mm:ss">
             </div>
         </div>
 
 
-    <div class="layui-form-item" style="margin-bottom: 8px;">
+        <div class="layui-form-item" style="margin-bottom: 8px;">
             <label class="layui-form-label" style="width: 120px; padding: 10px;">Progress</label>
             <div class="layui-input-inline" style="margin-left: 15px;">
                 <input type="text" name="progress" lay-verify="required" autocomplete="off" placeholder="" class="layui-input">
             </div>
-       <!--  <div class="layui-progress layui-progress-big" lay-showpercent="true" lay-filter="progress" style="margin-left: 155px"> 
+            <!--  <div class="layui-progress layui-progress-big" lay-showpercent="true" lay-filter="progress" style="margin-left: 155px"> 
             <div class="layui-progress-bar layui-bg-red" lay-percent="0%"></div>    
         </div>
         <div class="site-demo-button" style="margin-top: 10px; margin-left: 155px;">
             <button class="layui-btn site-demo-active" data-type="setPercent" id="set-progress" style="height: 30px; line-height: 30px;">set 50%</button>
         </div> -->
-    </div>
+        </div>
 
         <div class="layui-form-item">
             <label class="layui-form-label" style="width: 120px; padding: 10px;">Status</label>
             <div class="layui-input-inline" style="margin-left: 15px;">
                 <select name="status" lay-filter="aihao">
-                   <!--  <option value=""></option> -->
+                    <!--  <option value=""></option> -->
                     <option value="0">Not Started</option>
                     <option value="1" selected="">In Progress</option>
                     <option value="2">Completed</option>
@@ -86,120 +93,122 @@
             <label class="layui-form-label" style="width: 120px; padding: 10px;">Priority</label>
             <div class="layui-input-inline" style="margin-left: 15px;">
                 <select name="priority" lay-filter="aihao">
-                   <!--  <option value=""></option> -->
+                    <!--  <option value=""></option> -->
                     <option value="0">Medium</option>
                     <option value="1" selected="">Low</option>
-                    <option value="2">High</option>   
+                    <option value="2">High</option>
                 </select>
             </div>
         </div>
-          <br/>
-        RELATED TO<hr/>
-         <div class="layui-form-item">
+        <br />
+        RELATED TO
+        <hr />
+        <div class="layui-form-item">
             <label class="layui-form-label" style="width: 120px; padding: 10px;">Related To</label>
             <div class="layui-input-inline" style="margin-left: 15px;">
-                <select name="modules" lay-verify="required">
-                    <option value="">(Project Name)</option>
+                <select name="modules" id="project" lay-verify="required">
                     <option value="0">Project 1</option>
-                    <option value="1">Project 2</option>
+                    <option value="1" selected="">Project 2</option>
                 </select>
             </div>
         </div>
-   
- <br/>
-        DESCRIPTION INFORMATION<hr/>
-       
-           <div class="layui-form-item layui-form-text">
-        <label class="layui-form-label" style="width: 120px; padding: 10px;">Description</label>
-        <div class="layui-input-block" style="margin-left: 155px;">
-            <textarea name="description" placeholder="Please Input Content" class="layui-textarea"></textarea>
+
+        <br />
+        DESCRIPTION INFORMATION
+        <hr />
+
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label" style="width: 120px; padding: 10px;">Description</label>
+            <div class="layui-input-block" style="margin-left: 155px;">
+                <textarea name="description" placeholder="Please Input Content" class="layui-textarea"></textarea>
+            </div>
         </div>
-    </div>
 
 
- <br/>
-       PERMISSIONS<hr/>
-          <div class="layui-form-item">
+        <br />
+        PERMISSIONS
+        <hr />
+        <div class="layui-form-item">
             <label class="layui-form-label" style="width: 120px; padding: 10px;">Task Visibility</label>
             <div class="layui-input-inline" style="margin-left: 15px;">
                 <select name="permission" lay-filter="aihao">
-                   <!--  <option value=""></option> -->
+                    <!--  <option value=""></option> -->
                     <option value="0">Public Task</option>
-                    <option value="1" selected="">Private Task</option>                    
+                    <option value="1" selected="">Private Task</option>
                 </select>
             </div>
         </div>
 
-   <div class="layui-form-item">
-        <div class="layui-input-block" style="margin-left: 255px;">
-            <button class="layui-btn" lay-submit="" lay-filter="demo1">Save</button>
-            <button type="reset" class="layui-btn layui-btn-primary">Reset</button>
+        <div class="layui-form-item">
+            <div class="layui-input-block" style="margin-left: 255px;">
+                <button class="layui-btn" lay-submit="" lay-filter="demo1">Save</button>
+                <button type="reset" class="layui-btn layui-btn-primary">Reset</button>
+            </div>
         </div>
-    </div>
-</form>
+    </form>
 
-
-<script type="text/javascript" src="../frame/layui/layui.js"></script>
-<script type="text/javascript">
-    layui.use('element', function () {
-        var element = layui.element
+    <script type="text/javascript" src="../frame/layui/layui.js"></script>
+    <script type="text/javascript">
+        layui.use('element', function () {
+            var element = layui.element
                 , $ = layui.jquery;
 
-        //触发事件
-        $(document).on('click','#set-progress',function(){
-            progress("progress", "50")     
-        });
-    });
-     layui.use(['form', 'layedit', 'laydate'], function(){
-        var form = layui.form
-                ,layer = layui.layer
-                ,layedit = layui.layedit
-                ,laydate = layui.laydate;
-
-        //日期
-        laydate.render({
-            elem: '#date'
-            ,lang:'en'
-        });
-        laydate.render({
-            elem: '#date1'
-            ,lang:'en'
-        });
-
-        //创建一个编辑器
-        var editIndex = layedit.build('LAY_demo_editor');
-
-        //自定义验证规则
-        form.verify({
-            title: function(value){
-                if(value.length < 5){
-                    return 'Project name must be filled';
-                }
-            }
-            ,pass: [/(.+){6,12}$/, '密码必须6到12位']
-            ,content: function(value){
-                layedit.sync(editIndex);
-            }
-        });
-
-        //监听指定开关
-        form.on('switch(switchTest)', function(data){
-            layer.msg('开关checked：'+ (this.checked ? 'true' : 'false'), {
-                offset: '6px'
+            //触发事件
+            $(document).on('click', '#set-progress', function () {
+                progress("progress", "50")
             });
-            layer.tips('温馨提示：请注意开关状态的文字可以随意定义，而不仅仅是ON|OFF', data.othis)
+        });
+        layui.use(['form', 'layedit', 'laydate'], function () {
+            var form = layui.form
+                , layer = layui.layer
+                , layedit = layui.layedit
+                , laydate = layui.laydate;
+
+            //日期
+            laydate.render({
+                elem: '#date'
+                , lang: 'en'
+            });
+            laydate.render({
+                elem: '#date1'
+                , lang: 'en'
+            });
+
+            //创建一个编辑器
+            var editIndex = layedit.build('LAY_demo_editor');
+
+            //自定义验证规则
+            form.verify({
+                title: function (value) {
+                    if (value.length < 5) {
+                        return 'Project name must be filled';
+                    }
+                }
+                , pass: [/(.+){6,12}$/, '密码必须6到12位']
+                , content: function (value) {
+                    layedit.sync(editIndex);
+                }
+            });
+
+            //监听指定开关
+            form.on('switch(switchTest)', function (data) {
+                layer.msg('开关checked：' + (this.checked ? 'true' : 'false'), {
+                    offset: '6px'
+                });
+                layer.tips('温馨提示：请注意开关状态的文字可以随意定义，而不仅仅是ON|OFF', data.othis)
+            });
+
+            form.on('submit(demo1)', function (data) {
+                // layer.alert(JSON.stringify(data.field), {
+                //     title: '最终的提交信息'
+                // });
+            });
+
+
+
         });
 
-        //监听提交
-        form.on('submit(demo1)', function(data){
-            // layer.alert(JSON.stringify(data.field), {
-            //     title: '最终的提交信息'
-            // });
-        });
-
-
-    });
-
-</script>
+    </script>
 </body>
+
 </html>

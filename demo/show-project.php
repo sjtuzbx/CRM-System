@@ -13,7 +13,6 @@
 <body class="body">
 
 <?php 
-    //echo "Hello3", "<br>";
     if (isset($_GET["data"])){
         $json = $_GET["data"];
         $row = json_decode($json, true);
