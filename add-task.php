@@ -15,7 +15,7 @@
 	if (!$conn) {
 	    die("Connection failed: " . mysqli_connect_error());
 	}
-	echo "连接成功";
+	//echo "连接成功";
 
 	//echo $_POST["title"], "<br>", $_POST["startdate"], "<br>", $_POST["catogery"];
 	//echo "<br>", $_POST["duedate"], "<br>", $_POST["reminddate"];

@@ -132,41 +132,105 @@
             });
             // 暂停和中止按钮功能
             var table = layui.table;
-            //监听表格复选框选择
-            table.on('checkbox(demo)', function (obj) {
-                console.log(obj)
-            });
-            //监听工具条
-            table.on('tool(demo)', function (obj) {
-                var data = obj.data;
-                if (obj.event === 'detail') {
-                    //layer.alert('view'+ JSON.stringify(data));
-                    layer.open({
-                        type: 2,
-                        title: "Task",
-                        area: ['700px', '550px'],
-                        shadeClose: true, //点击遮罩关闭
-                        content: 'show-task.php?data=' + escape(JSON.stringify(data)),
-                    })
-                } else if (obj.event === 'del') {
-                    layer.confirm('Confirm to delete ?', {
-                        title: 'Delete Task',
-                        btn: ['Comfirm', 'Cancel']
-                    }
-                        , function (index) {
-                            obj.del();
-                            layer.close(index);
-                        });
-                } else if (obj.event === 'edit') {
-                    layer.alert('edit' + JSON.stringify(data))
+           
+        // 获取选中行
+        table.on('checkbox(dataCheck)', function (obj) {
+            layer.msg('123');
+            console.log(obj.checked); //当前是否选中状态
+            console.log(obj.data); //选中行的相关数据
+            console.log(obj.type); //如果触发的是全选，则为：all，如果触发的是单选，则为：one
+        });
+		
+		$('#btn-delete-all').on('click', function () {
+          var checkStatus = table.checkStatus('dataCheck');
+          for ($i=0; $i<checkStatus.data.length; $i=$i+1){
+              $row = checkStatus.data[$i];
+              //console.log(JSON.stringify($row));
+              $.ajax({
+                type: "POST",
+                url:"../delete-task.php",    
+                data: {data: JSON.stringify($row)},
+                error: function(request) {
+                    alert("Connection error");
+                },
+                success: function(data) {                                       
+                    //alert("Success");
+                    tableIns.reload();
+                    layer.close($i);
                 }
-            });
-
-
+              });
+          }
+        });
+		
+        // 刷新
+        $('#btn-refresh').on('click', function () {
+            tableIns.reload();
         });
 
-    </script>
-    <script type="text/html" id="barOption">
+    
+         $("#btn-add").on('click',function(){
+          layer.open({
+            type: 2,
+            title:" New Task",
+            area: ['700px', '550px'],
+            shadeClose: true, //点击遮罩关闭
+            content:  '../demo/table form new task.html', 
+            cancel: function(index, layero){ 
+              //layer.close(index);
+              tableIns.reload();
+            }   
+          })
+        });
+       //  $("#cancle").on("click",function(){
+
+          // 暂停和中止按钮功能
+          var table = layui.table;
+  //监听表格复选框选择
+    table.on('checkbox(demo)', function(obj){
+    console.log(obj)
+  });
+  //监听工具条
+  table.on('tool(demo)', function(obj){
+    var data = obj.data;
+    if(obj.event === 'detail'){
+      //layer.alert('view'+ JSON.stringify(data));
+      layer.open({
+          type: 2,
+          title: "Task",
+          area: ['700px', '550px'],
+          shadeClose: true, //点击遮罩关闭
+          content: 'show-task.php?data=' + escape(JSON.stringify(data)),
+      })
+    } else if(obj.event === 'del'){
+      layer.confirm('Confirm to delete ?',{
+			title: 'Delete Task',
+            btn: ['Comfirm', 'Cancel']}
+		, function(index){$.ajax({
+		type:"POST",
+		url:"../delete-task.php",
+		data:{data:JSON.stringify(data)},
+		error:function(request){
+		alert("Connection error");
+		},
+		success: function(data){
+		alert("Success");
+        obj.del();
+        layer.close(index);
+		}
+		});
+      });
+    } else if(obj.event === 'edit'){
+      layer.alert('edit'+ JSON.stringify(data))
+    }
+  });
+ 
+        
+   });
+
+</script>
+<!-- 表格操作按钮集 -->
+<script type="text/html" id="barOption">
+
     <a class="layui-btn layui-btn-mini" lay-event="detail">View</a>
     <a class="layui-btn layui-btn-mini layui-btn-normal" lay-event="edit">Edit</a>
     <a class="layui-btn layui-btn-mini layui-btn-danger" lay-event="del">Delete</a>
