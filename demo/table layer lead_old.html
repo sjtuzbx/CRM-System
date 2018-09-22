@@ -106,29 +106,6 @@
             console.log(obj.data); //选中行的相关数据
             console.log(obj.type); //如果触发的是全选，则为：all，如果触发的是单选，则为：one
         });
-		
-		$('#btn-delete-all').on('click', function () {
-          var checkStatus = table.checkStatus('dataCheck');
-          //console.log("bulk delete");
-          //console.log(checkStatus.data);
-          for ($i=0; $i<checkStatus.data.length; $i=$i+1){
-              $row = checkStatus.data[$i];
-              //console.log(JSON.stringify($row));
-              $.ajax({
-                type: "POST",
-                url:"../delete-lead.php",    
-                data: {data: JSON.stringify($row)},
-                error: function(request) {
-                    alert("Connection error");
-                },
-                success: function(data) {                                       
-                    //alert("Success");
-                    tableIns.reload();
-                    layer.close($i);
-                }
-              });
-          }
-        });
 
         // 刷新
         $('#btn-refresh').on('click', function () {

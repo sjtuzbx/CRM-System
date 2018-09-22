@@ -14,7 +14,7 @@
     	.add_new{
     		height: 100%;
     	}
-          @font-face{
+             @font-face{
         font-family: "imooc-icon";
         src: url("../icomoon/fonts/icomoon.eoteot?7kkyc2"); 
         src: url("../icomoon /fonts/icomoon.eot?#iefix") format("embedded-opentype")
@@ -33,7 +33,7 @@
 <div class="my-btn-box">
     <span class="fl">
         <a class="layui-btn layui-btn-danger radius btn-delect" id="btn-delete-all">Bulk Delete</a>
-        <a class="layui-btn btn-add btn-default" id="btn-add">Add New Lead</a>
+        <a class="layui-btn btn-add btn-default" id="btn-add">Add New Contact</a>
         <a class="layui-btn btn-add btn-default" id="btn-refresh"><i class="layui-icon">&#x1002;</i></a>
     </span>
     <span class="fr">
@@ -70,17 +70,17 @@
             , height: vipTable.getFullHeight()    //容器高度
             , cols: [[                  //标题栏
                 {checkbox: true, sort: true, fixed: true, space: true}
-                // , {field: 'id', title: '', width: 80}
-                , {field: 'lname', title: 'Name' ,width: 180}
-                , {field: 'phonenumber', title: 'Contact Number(Phone)', width: 210}
-                , {field: 'email', title: 'Email Address', width: 180}
-                , {field: 'lstatus', title: 'Status', width: 180}
-                , {field: 'ldatecreated', title: 'Date Created', width: 180}
+                , {field: 'firstname', title: 'First Name', width: 130}
+                , {field: 'lastname', title: ' Last Name' ,width: 130}
+                , {field: 'ctphone', title: 'Contact Number(Phone)', width: 210}
+                , {field: 'ctemail', title: 'Email Address', width: 180}
+                , {field: 'organisation', title: 'Organisation', width: 180}
+                , {field: 'ctdatecreated', title: 'Date Created', width: 180}
                 // , {field: 'status', title: 'Date Due', width: 70}
                 , {fixed: 'right', title: 'Function', width: 180, align: 'center', toolbar: '#barOption'} //这里的toolbar值是模板元素的选择器
             ]]
             , id: 'dataCheck'
-            , url: '../json/lead.json'
+            , url: '../json/contact.json'
             , method: 'get'
             , page: true
             , limits: [30, 60, 90, 150, 300]
@@ -106,29 +106,6 @@
             console.log(obj.data); //选中行的相关数据
             console.log(obj.type); //如果触发的是全选，则为：all，如果触发的是单选，则为：one
         });
-		
-		$('#btn-delete-all').on('click', function () {
-          var checkStatus = table.checkStatus('dataCheck');
-          //console.log("bulk delete");
-          //console.log(checkStatus.data);
-          for ($i=0; $i<checkStatus.data.length; $i=$i+1){
-              $row = checkStatus.data[$i];
-              //console.log(JSON.stringify($row));
-              $.ajax({
-                type: "POST",
-                url:"../delete-lead.php",    
-                data: {data: JSON.stringify($row)},
-                error: function(request) {
-                    alert("Connection error");
-                },
-                success: function(data) {                                       
-                    //alert("Success");
-                    tableIns.reload();
-                    layer.close($i);
-                }
-              });
-          }
-        });
 
         // 刷新
         $('#btn-refresh').on('click', function () {
@@ -138,23 +115,22 @@
        
 
         $("#btn-add").on('click',function(){
-        	layer.open({
-        		type: 2,
-        		title:" New Lead",
-      			area: ['700px', '550px'],
-      			shadeClose: true, //点击遮罩关闭
-      			content:  'table form new lead.html',
+          layer.open({
+            type: 2,
+            title:" New Project",
+            area: ['700px', '550px'],
+            shadeClose: true, //点击遮罩关闭
+            content:  'table form new contact.html', 
             cancel: function(index, layero){        
-              //layer.close(index);
               tableIns.reload();
             }, 
-        	})
+          })
         });
 
        //  $("#cancle").on("click",function(){
 
-        	// 暂停和中止按钮功能
-      		var table = layui.table;
+          // 暂停和中止按钮功能
+          var table = layui.table;
   //监听表格复选框选择
     table.on('checkbox(demo)', function(obj){
     console.log(obj)
@@ -166,18 +142,19 @@
       // layer.msg('ID：'+ data.id + ' 的查看操作');
       layer.open({
                   type: 2,
-                title:"Lead",
+                title:"Contact",
                 area: ['700px', '550px'],
                 shadeClose: true, //点击遮罩关闭
-                content:  '../demo/table form new lead.html',
+                content:  '../demo/table form new contact.html',
+
             })
-    } else if(obj.event === 'del'){      
+    } else if(obj.event === 'del'){     
 	layer.confirm('Confirm to delete ?',{
-			title: 'Delete Lead',
+			title: 'Delete Contact',
             btn: ['Comfirm', 'Cancel']}
 		, function(index){$.ajax({
 		type:"POST",
-		url:"../delete-lead.php",
+		url:"../delete-contact.php",
 		data:{data:JSON.stringify(data)},
 		error:function(request){
 		alert("Connection error");
@@ -196,6 +173,38 @@
  
         
    });
+  // var $ = layui.$, active = {
+  //   reload: function(){
+  //     var demoReload = $('#search_bar');
+      
+  //     //执行重载
+  //     table.reload('dataCheck', {
+  //       page: {
+  //         curr: 1 //重新从第 1 页开始
+  //       }
+  //       ,where: {
+  //         key: {
+  //           id: demoReload.val()
+  //         }
+  //       }
+  //     });
+  //   }
+  // };
+
+    
+
+ /* $('.fr .layui-btn').on('click', function(){
+    var type = $(this).data('type');
+    active[type] ? active[type].call(this) : '';
+  });
+
+     		// });
+        // you code ...
+  
+
+});*/
+
+
 </script>
 <!-- 表格操作按钮集 -->
 <script type="text/html" id="barOption">
@@ -203,5 +212,11 @@
     <a class="layui-btn layui-btn-mini layui-btn-normal" lay-event="edit">Edit</a>
     <a class="layui-btn layui-btn-mini layui-btn-danger" lay-event="del">Delete</a>
 </script>
+<!-- <script>
+    layui.use('table', function(){
+     
+});
+</script> -->
+
 </body>
 </html>

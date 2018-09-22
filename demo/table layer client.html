@@ -108,6 +108,29 @@
             console.log(obj.data); //选中行的相关数据
             console.log(obj.type); //如果触发的是全选，则为：all，如果触发的是单选，则为：one
         });
+		
+		$('#btn-delete-all').on('click', function () {
+          var checkStatus = table.checkStatus('dataCheck');
+          //console.log("bulk delete");
+          //console.log(checkStatus.data);
+          for ($i=0; $i<checkStatus.data.length; $i=$i+1){
+              $row = checkStatus.data[$i];
+              //console.log(JSON.stringify($row));
+              $.ajax({
+                type: "POST",
+                url:"../delete-client.php",    
+                data: {data: JSON.stringify($row)},
+                error: function(request) {
+                    alert("Connection error");
+                },
+                success: function(data) {                                       
+                    //alert("Success");
+                    tableIns.reload();
+                    layer.close($i);
+                }
+              });
+          }
+        });
 
         // 刷新
         $('#btn-refresh').on('click', function () {
@@ -150,21 +173,30 @@
                 content:  '../demo/table form new client.html',
 
             })
-    } else if(obj.event === 'del'){
-      layer.confirm('Confirm to delete ?',{
-			title: 'Delete Client Information',
-            btn: ['Comfirm', 'Cancel']}, function(index){
+    } else if(obj.event === 'del'){     
+	layer.confirm('Confirm to delete ?',{
+			title: 'Delete Client',
+            btn: ['Comfirm', 'Cancel']}
+		, function(index){$.ajax({
+		type:"POST",
+		url:"../delete-client.php",
+		data:{data:JSON.stringify(data)},
+		error:function(request){
+		alert("Connection error");
+		},
+		success: function(data){
+		alert("Success");
         obj.del();
         layer.close(index);
+		}
+		});
       });
     } else if(obj.event === 'edit'){
-      layer.alert('编辑行：<br>'+ JSON.stringify(data))
+      layer.alert('edit：<br>'+ JSON.stringify(data))
     }
   });
- 
-        
+       
    });
-
 </script>
 <!-- 表格操作按钮集 -->
 <script type="text/html" id="barOption">
