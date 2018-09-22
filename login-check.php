@@ -55,6 +55,36 @@
 			$data=array("code"=>0,"msg"=>"","count"=>count($arr), "data"=>$arr);
 			file_put_contents('json/task.json', json_encode($data));
 
+			// get lead info
+			$sql_lead = "select * from lead";
+			$lead_res = mysqli_query($conn, $sql_lead);
+			$arr = array();
+			while ($lead_row = mysqli_fetch_assoc($lead_res)){
+				array_push($arr, $lead_row);
+			}
+			$data=array("code"=>0,"msg"=>"","count"=>count($arr), "data"=>$arr);
+			file_put_contents('json/lead.json', json_encode($data));
+
+			// get client info
+			$sql_client = "select * from client";
+			$client_res = mysqli_query($conn, $sql_client);
+			$arr = array();
+			while ($client_row = mysqli_fetch_assoc($client_res)){
+				array_push($arr, $client_row);
+			}
+			$data=array("code"=>0,"msg"=>"","count"=>count($arr), "data"=>$arr);
+			file_put_contents('json/client.json', json_encode($data));
+
+			// get contact info
+			$sql_contact = "select * from contact";
+			$contact_res = mysqli_query($conn, $sql_contact);
+			$arr = array();
+			while ($contact_row = mysqli_fetch_assoc($contact_res)){
+				array_push($arr, $contact_row);
+			}
+			$data=array("code"=>0,"msg"=>"","count"=>count($arr), "data"=>$arr);
+			file_put_contents('json/contact.json', json_encode($data));
+
 			// redirect to index page
 			header("location:index.php");
 		} else {

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Data-Table lead</title>
+    <link rel="stylesheet" href="../frame/layui/css/layui.css">
+    <!--<link rel="stylesheet" href="http://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">-->
+    <link rel="stylesheet" href="../frame/static/css/style.css">
+    <link rel="icon" href="../frame/static/image/code.png">
+    <style>
+    	.add_new{
+    		height: 100%;
+    	}
+             @font-face{
+        font-family: "imooc-icon";
+        src: url("../icomoon/fonts/icomoon.eoteot?7kkyc2"); 
+        src: url("../icomoon /fonts/icomoon.eot?#iefix") format("embedded-opentype")
+             ,url("../icomoon /fonts/icomoon.woff") format("woff")
+             ,url("../icomoon/fonts/icomoon.ttf") format("truetype")
+             ,url("../icomoon/fonts/icomoon.svg") format("svg");
+        font-weight: normal;
+        font-style: normal;
+    } 
+    	
+    </style>
+</head>
+<body class="body">
+
+<!-- 工具集 -->
+<div class="my-btn-box">
+    <span class="fl">
+        <a class="layui-btn layui-btn-danger radius btn-delect" id="btn-delete-all">Bulk Delete</a>
+        <a class="layui-btn btn-add btn-default" id="btn-add">Add New Contact</a>
+        <a class="layui-btn btn-add btn-default" id="btn-refresh"><i class="layui-icon">&#x1002;</i></a>
+    </span>
+    <span class="fr">
+        <span class="layui-form-label">Search For</span>
+        <div class="layui-input-inline">
+            <input type="text" autocomplete="off" placeholder="keywords: name...etc" class="layui-input" id="search_bar" name="id">
+        </div>
+        <button class="layui-btn mgl-20" id="btn-s" data-type="reload" lay-submit="" >Searching</button>
+    </span>
+</div>
+
+<!-- 表格 -->
+<!-- <div id="dateTable"></div> -->
+<table id="dateTable" class="layui-hide" lay-filter="demo"></table>
+
+<script type="text/javascript" src="../frame/layui/layui.js"></script>
+<script type="text/javascript" src="../js/index.js"></script>
+<!-- <script src="../layui/layui.js"></script> -->
+<script type="text/javascript">
+
+    // layui方法
+    layui.use(['table', 'form', 'layer', 'vip_table'], function () {
+        var table = layui.table;
+        // 操作对象
+        var form = layui.form
+                , table = layui.table
+                , layer = layui.layer
+                , vipTable = layui.vip_table
+                , $ = layui.jquery;
+
+        // 表格渲染
+        var tableIns = table.render({
+            elem: '#dateTable'                  //指定原始表格元素选择器（推荐id选择器）
+            , height: vipTable.getFullHeight()    //容器高度
+            , cols: [[                  //标题栏
+                {checkbox: true, sort: true, fixed: true, space: true}
+                , {field: 'firstname', title: 'First Name', width: 130}
+                , {field: 'lastname', title: ' Last Name' ,width: 130}
+                , {field: 'ctphone', title: 'Contact Number(Phone)', width: 210}
+                , {field: 'ctemail', title: 'Email Address', width: 180}
+                , {field: 'organisation', title: 'Organisation', width: 180}
+                , {field: 'ctdatecreated', title: 'Date Created', width: 180}
+                // , {field: 'status', title: 'Date Due', width: 70}
+                , {fixed: 'right', title: 'Function', width: 180, align: 'center', toolbar: '#barOption'} //这里的toolbar值是模板元素的选择器
+            ]]
+            , id: 'dataCheck'
+            , url: '../json/contact.json'
+            , method: 'get'
+            , page: true
+            , limits: [30, 60, 90, 150, 300]
+            , limit: 30 //默认采用30
+            , loading: false
+            , done: function (res, curr, count) {
+                //如果是异步请求数据方式，res即为你接口返回的信息。
+                //如果是直接赋值的方式，res即为：{data: [], count: 99} data为当前页数据、count为数据总长度
+                console.log(res);
+
+                //得到当前页码
+                console.log(curr);
+
+                //得到数据总量
+                console.log(count);
+            }
+        });
+
+        // 获取选中行
+        table.on('checkbox(dataCheck)', function (obj) {
+            layer.msg('123');
+            console.log(obj.checked); //当前是否选中状态
+            console.log(obj.data); //选中行的相关数据
+            console.log(obj.type); //如果触发的是全选，则为：all，如果触发的是单选，则为：one
+        });
+
+        // 刷新
+        $('#btn-refresh').on('click', function () {
+            tableIns.reload();
+        });
+
+       
+
+        $("#btn-add").on('click',function(){
+          layer.open({
+            type: 2,
+            title:" New Project",
+            area: ['700px', '550px'],
+            shadeClose: true, //点击遮罩关闭
+            content:  'table form new contact.html', 
+            cancel: function(index, layero){        
+              tableIns.reload();
+            }, 
+          })
+        });
+
+       //  $("#cancle").on("click",function(){
+
+          // 暂停和中止按钮功能
+          var table = layui.table;
+  //监听表格复选框选择
+    table.on('checkbox(demo)', function(obj){
+    console.log(obj)
+  });
+  //监听工具条
+  table.on('tool(demo)', function(obj){
+    var data = obj.data;
+    if(obj.event === 'detail'){
+      // layer.msg('ID：'+ data.id + ' 的查看操作');
+      layer.open({
+                  type: 2,
+                title:"Contact",
+                area: ['700px', '550px'],
+                shadeClose: true, //点击遮罩关闭
+                content:  '../demo/table form new contact.html',
+
+            })
+    } else if(obj.event === 'del'){     
+	layer.confirm('Confirm to delete ?',{
+			title: 'Delete Contact',
+            btn: ['Comfirm', 'Cancel']}
+		, function(index){$.ajax({
+		type:"POST",
+		url:"../delete-contact.php",
+		data:{data:JSON.stringify(data)},
+		error:function(request){
+		alert("Connection error");
+		},
+		success: function(data){
+		alert("Success");
+        obj.del();
+        layer.close(index);
+		}
+		});
+      });
+    } else if(obj.event === 'edit'){
+      layer.alert('edit：<br>'+ JSON.stringify(data))
+    }
+  });
+ 
+        
+   });
+  // var $ = layui.$, active = {
+  //   reload: function(){
+  //     var demoReload = $('#search_bar');
+      
+  //     //执行重载
+  //     table.reload('dataCheck', {
+  //       page: {
+  //         curr: 1 //重新从第 1 页开始
+  //       }
+  //       ,where: {
+  //         key: {
+  //           id: demoReload.val()
+  //         }
+  //       }
+  //     });
+  //   }
+  // };
+
+    
+
+ /* $('.fr .layui-btn').on('click', function(){
+    var type = $(this).data('type');
+    active[type] ? active[type].call(this) : '';
+  });
+
+     		// });
+        // you code ...
+  
+
+});*/
+
+
+</script>
+<!-- 表格操作按钮集 -->
+<script type="text/html" id="barOption">
+    <a class="layui-btn layui-btn-mini" lay-event="detail">View</a>
+    <a class="layui-btn layui-btn-mini layui-btn-normal" lay-event="edit">Edit</a>
+    <a class="layui-btn layui-btn-mini layui-btn-danger" lay-event="del">Delete</a>
+</script>
+<!-- <script>
+    layui.use('table', function(){
+     
+});
+</script> -->
+
+</body>
+</html>

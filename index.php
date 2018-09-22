@@ -57,7 +57,7 @@
           <dl class="layui-nav-child">
 		  <!--Need implement-->
             <dd><a href="">Recent Activity</a></dd>
-            <dd><a href="">Calendar</a></dd>
+            <dd><a href="wrap_calendar.html">Calendar</a></dd>
           </dl>
         </li>
       </ul>
@@ -72,194 +72,278 @@
               <a title="setting" href="#" style="font-family:'imooc-icon';"></a>
           </li>
       </ul>
-      </div>
-
-      <div class="layui-side my-side">
-        <div class="layui-side-scroll">
-            <!-- 左侧主菜单添加选项卡监听 -->
-            <ul class="layui-nav layui-nav-tree" lay-filter="side-main">
-               <li class="layui-nav-item  layui-nav-itemed">
-                <a href="javascript:;"><i class="layui-icon">&#xe620;</i>Projects</a>
-                <dl class="layui-nav-child">
-                    <dd><a href="javascript:;" href-url="demo/table layer project.html"><i class="layui-icon">&#xe621;</i>All Projects</a></dd>
-                    <dd><a href="javascript:;" href-url="demo/table layer project.html"><i class="layui-icon">&#xe621;</i>Recent Projects</a></dd>
-                    <dd><a href="javascript:;" href-url="demo/table.html"><i class="layui-icon">&#xe621;</i>My Projects</a></dd>
-                    
-                </dl>
-            </li>
-            <li class="layui-nav-item">
-                <a href="javascript:;"><i class="layui-icon">&#xe628;</i>More</a>
-                <dl class="layui-nav-child">
-                    <dd><a href="javascript:;" href-url="demo/login.php"><i class="layui-icon">&#xe621;</i>Lisa</a></dd>                 
-                </dl>
-            </li>
-
-            </ul>
-        </div>
-      </div>
-      <!-- body -->
-      <div class="layui-body my-body">
-        <div class="title"> Dashboard</div>
-  <div class="bg">
-    <div class="dashboard-row">
-      <div id="project" class="item">
-        <div class="title-sub"> Project</div>
-        <div class="item-sub"> 
-          <div class="item-row">
-            <div class="item-bg"> 1 </div>
-            <div class="name"> Project name 1</div>
-          </div>
-          <div class="demo_line_01"></div>
-        </div>
-        <div class="item-sub"> 
-          <div class="item-row">
-            <div class="item-bg"> 2 </div>
-            <div class="name"> Project name 2</div>
-          </div>
-          <div class="demo_line_01"></div>
-        </div>
-        <div class="item-sub"> 
-          <div>
-            <div class="item-bg"> 3 </div>
-            <div class="name"> Project name 3</div>
-          </div>
-          <div class="demo_line_01"></div>
-        </div>
-      </div>
-      
-      <div id="client" class="item">
-        <div class="title-sub"> Clients</div>
-        <div class="item-sub"> 
-          <div class="item-row">
-            <div class="item-bg"> 1 </div>
-            <div class="name"> Client 1</div>
-          </div>
-          <div class="demo_line_01"></div>
-        </div>
-        <div class="item-sub"> 
-          <div class="item-row">
-            <div class="item-bg"> 2 </div>
-            <div class="name"> Client 2</div>
-          </div>
-          <div class="demo_line_01"></div>
-        </div>
-        <div class="item-sub"> 
-          <div>
-            <div class="item-bg"> 3 </div>
-            <div class="name"> Client 3</div>
-          </div>
-          <div class="demo_line_01"></div>
-        </div>
-      </div>
-
-      <div id="client" class="item">
-        <div class="title-sub"> Leads</div>
-        <div class="item-sub"> 
-          <div class="item-row">
-            <div class="item-bg"> 1 </div>
-            <div class="name"> Lead 1</div>
-          </div>
-          <div class="demo_line_01"></div>
-        </div>
-        <div class="item-sub"> 
-          <div class="item-row">
-            <div class="item-bg"> 2 </div>
-            <div class="name"> Lead 2</div>
-          </div>
-          <div class="demo_line_01"></div>
-        </div>
-        <div class="item-sub"> 
-          <div>
-            <div class="item-bg"> 3 </div>
-            <div class="name"> Lead 3</div>
-          </div>
-          <div class="demo_line_01"></div>
-        </div>
-      </div>
     </div>
 
-    <div class="dashboard-row">
-      <div id="project" class="item">
-        <div class="title-sub"> Tasks</div>
-        <div class="item-sub"> 
-          <div class="item-row">
-            <div class="item-bg"> 1 </div>
-            <div class="name"> Task 1</div>
-          </div>
-          <div class="demo_line_01"></div>
-        </div>
-        <div class="item-sub"> 
-          <div class="item-row">
-            <div class="item-bg"> 2 </div>
-            <div class="name"> Task 2</div>
-          </div>
-          <div class="demo_line_01"></div>
-        </div>
-        <div class="item-sub"> 
-          <div>
-            <div class="item-bg"> 3 </div>
-            <div class="name"> Task 3</div>
-          </div>
-          <div class="demo_line_01"></div>
-        </div>
-      </div>
-      
-      <div id="client" class="item">
-        <div class="title-sub"> Contacts</div>
-        <div class="item-sub"> 
-          <div class="item-row">
-            <div class="item-bg"> 1 </div>
-            <div class="name"> Contact 1</div>
-          </div>
-          <div class="demo_line_01"></div>
-        </div>
-        <div class="item-sub"> 
-          <div class="item-row">
-            <div class="item-bg"> 2 </div>
-            <div class="name"> Contact 2</div>
-          </div>
-          <div class="demo_line_01"></div>
-        </div>
-        <div class="item-sub"> 
-          <div>
-            <div class="item-bg"> 3 </div>
-            <div class="name"> Contact 3</div>
-          </div>
-          <div class="demo_line_01"></div>
-        </div>
-      </div>
+      <!-- body -->
+    <div class="layui-form">
+    <div style="position:absolute; left:0px; width: 100%;">
+        <div class="title"> Dashboard</div>
+          <div class="bg">
+            <div class="dashboard-row">
+              <div id="project" class="item">
+                <div style="height: 25px;width: 100%;"> 
+                  <select name="dashboard1" lay-filter="dashboard1" style="width: 100%; color: #004476;">
+                     <option value="0" selected="">Projects</option>
+                     <option value="1">Clients</option>
+                     <option value="2">Leads</option>
+                     <option value="3">Tasks</option>
+                     <option value="4">Contacts</option>
+                     <option value="5">E-mails</option>
+                  </select>
+                </div>
 
-      <div id="client" class="item">
-        <div class="title-sub"> E-mail</div>
-        <div class="item-sub"> 
-          <div class="item-row">
-            <div class="item-bg"> 1 </div>
-            <div class="name"> E-mail 1</div>
-          </div>
-          <div class="demo_line_01"></div>
+                <table id="dateTable1" class="layui-hide" lay-filter="demo"></table>
+              </div>
+      
+              <div id="client" class="item">
+                <div style="height: 25px;width: 100%;"> 
+                  <select name="dashboard2" lay-filter="dashboard2" style="width: 100%; color: #004476;">
+                     <option value="0">Projects</option>
+                     <option value="1" selected="">Clients</option>
+                     <option value="2">Leads</option>
+                     <option value="3">Tasks</option>
+                     <option value="4">Contacts</option>
+                     <option value="5">E-mails</option>
+                  </select>
+                </div>
+
+                <table id="dateTable2" class="layui-hide" lay-filter="demo2"></table>
+              </div>
+
+              <div id="lead" class="item">
+                  <div style="height: 25px;width: 100%;"> 
+                  <select name="dashboard3" lay-filter="dashboard3" style="width: 100%; color: #004476;">
+                     <option value="0">Projects</option>
+                     <option value="1">Clients</option>
+                     <option value="2" selected="">Leads</option>
+                     <option value="3">Tasks</option>
+                     <option value="4">Contacts</option>
+                     <option value="5">E-mails</option>
+                  </select>
+                </div>
+                <table id="dateTable3" class="layui-hide" lay-filter="demo3"></table>
+              </div>
         </div>
-        <div class="item-sub"> 
-          <div class="item-row">
-            <div class="item-bg"> 2 </div>
-            <div class="name"> E-mail 2</div>
-          </div>
-          <div class="demo_line_01"></div>
+
+      <div class="dashboard-row">
+        <div id="task" class="item">
+            <div style="height: 25px;width: 100%;"> 
+              <select name="dashboard4" lay-filter="dashboard4" style="width: 100%; color: #004476;">
+                 <option value="0">Projects</option>
+                 <option value="1">Clients</option>
+                 <option value="2">Leads</option>
+                 <option value="3" selected="">Tasks</option>
+                 <option value="4">Contacts</option>
+                 <option value="5">E-mails</option>
+              </select>
+            </div>
+            <table id="dateTable4" class="layui-hide" lay-filter="demo4"></table>
         </div>
-        <div class="item-sub"> 
-          <div>
-            <div class="item-bg"> 3 </div>
-            <div class="name"> E-mail 3</div>
-          </div>
-          <div class="demo_line_01"></div>
+      
+        <div id="contact" class="item">
+           <div style="height: 25px;width: 100%;"> 
+              <select name="dashboard5" lay-filter="dashboard5" style="width: 100%; color: #004476;">
+                 <option value="0">Projects</option>
+                 <option value="1">Clients</option>
+                 <option value="2">Leads</option>
+                 <option value="3">Tasks</option>
+                 <option value="4" selected="">Contacts</option>
+                 <option value="5">E-mails</option>
+              </select>
+            </div>
+            <table id="dateTable5" class="layui-hide" lay-filter="demo5"></table>
         </div>
-      </div>
+
+        <div id="client" class="item">
+            <div style="height: 25px;width: 100%;"> 
+              <select name="dashboard6" lay-filter="dashboard6" style="width: 100%; color: #004476;">
+                 <option value="0">Projects</option>
+                 <option value="1">Clients</option>
+                 <option value="2">Leads</option>
+                 <option value="3">Tasks</option>
+                 <option value="4">Contacts</option>
+                 <option value="5" selected="">E-mails</option>
+              </select>
+            </div>
+            <table id="dateTable6" class="layui-hide" lay-filter="demo6"></table>
+        </div>
     </div>
   </div>
-      </div>
+</div>
 
 
-  </div>    
+  </div>   
+  </div> 
   <script type="text/javascript" src="frame/layui/layui.js"></script>
   <script type="text/javascript" src="./frame/static/js/vip_comm.js"></script>
+  <script type="text/javascript">
+    // layui方法
+    layui.use(['table', 'form', 'layer', 'vip_table'], function () {
+        var table = layui.table;
+        // 操作对象
+        var form = layui.form
+        , table = layui.table
+        , layer = layui.layer
+        , vipTable = layui.vip_table
+        , $ = layui.jquery;
+
+        var cwidth = 400;
+
+        var option0 = {
+            elem: '#dateTable1'                  //指定原始表格元素选择器（推荐id选择器）
+            , height: vipTable.getFullHeight() / 2    //容器高度
+            , width: cwidth
+            , cols: [[                  //标题栏
+            {checkbox: false, sort: true, fixed: true, space: true}
+                // , {field: 'id', title: '', width: 80}
+                , {field: 'pname', title: 'Name' ,width: 100}
+                , {field: 'status', title: 'Status', width: 100}
+                , {field: 'username', title: 'Responsible User', width: 80}
+                , {field: 'duedate', title: 'Date Due', width: 120}
+                ]]
+                , id: 'dataCheck'
+                , url: './json/projects.json'
+                , method: 'get'
+                , page: true
+          };
+
+        var option1 = {
+            elem: '#dateTable1'                  //指定原始表格元素选择器（推荐id选择器）
+            , height: vipTable.getFullHeight() / 2    //容器高度
+            , width: cwidth
+            , cols: [[                  //标题栏
+                {checkbox: false, sort: true, fixed: true, space: true}
+                // , {field: 'id', title: '', width: 80}
+                , {field: 'cname', title: 'Name' ,width: 100}
+                , {field: 'cstatus', title: 'Status', width: 100}
+                , {field: 'cphone', title: 'Phone(Office)', width: 80}
+                , {field: 'cdatecreated', title: 'Date Created', width: 120}
+            ]]
+            , id: 'dataCheck'
+            , url: './json/client.json'
+            , method: 'get'
+            , page: true
+        };
+
+        var option2 = {
+            elem: '#dateTable1'                  //指定原始表格元素选择器（推荐id选择器）
+            , height: vipTable.getFullHeight() / 2   //容器高度
+            , width: cwidth
+            , cols: [[                  //标题栏
+                {checkbox: false, sort: true, fixed: true, space: true}
+                , {field: 'lname', title: 'Name' ,width: 100}
+                , {field: 'phonenumber', title: 'Contact Number(Phone)', width: 100}
+                , {field: 'email', title: 'Email Address', width: 80}
+                , {field: 'ldatecreated', title: 'Date Created', width: 120}
+            ]]
+            , id: 'dataCheck'
+            , url: './json/lead.json'
+            , method: 'get'
+            , page: true
+        };
+
+        var option3 = {
+            elem: '#dateTable1'                  //指定原始表格元素选择器（推荐id选择器）
+            , height: vipTable.getFullHeight() / 2   //容器高度
+            , width: cwidth
+            , cols: [[                  //标题栏
+                {checkbox: false, sort: true, fixed: true, space: true}
+                , {field: 'tname', title: 'Task Name' ,width: 100}
+                , {field: 'duedate', title: 'Date Due', width: 100}
+                , {field: 'tresponsiveid', title: 'Responsible User', width: 80}
+                , {field: 'username', title: 'Task Owner', width: 120}
+            ]]
+            , id: 'dataCheck'
+            , url: './json/task.json'
+            , method: 'get'
+            , page: true
+        };
+
+        var option4 = {
+            elem: '#dateTable1'                  //指定原始表格元素选择器（推荐id选择器）
+            , height: vipTable.getFullHeight() / 2  //容器高度
+            , width: cwidth
+            , cols: [[                  //标题栏
+                {checkbox: false, sort: true, fixed: true, space: true}
+                , {field: 'firstname', title: 'First Name', width: 100}
+                , {field: 'lastname', title: ' Last Name' ,width: 100}
+                , {field: 'ctphone', title: 'Contact Number(Phone)', width: 80}
+                , {field: 'ctemail', title: 'Email Address', width: 120}
+            ]]
+            , id: 'dataCheck'
+            , url: './json/contact.json'
+            , method: 'get'
+            , page: true
+        };
+
+        var options = new Array(option0, option1, option2, option3, option4);
+        var index = new Array('#dateTable1', '#dateTable2', '#dateTable3', '#dateTable4', '#dateTable5', '#dateTable6');
+
+        form.on('select(dashboard1)', function (obj) {
+            //alert(obj.value);
+            var tmp = options[obj.value];
+            tmp["elem"] = index[0];
+            table.render(options[obj.value]);
+        });
+
+        form.on('select(dashboard2)', function (obj) {
+            //alert(obj.value);
+            var tmp = options[obj.value];
+            tmp["elem"] = index[1];
+            table.render(options[obj.value]);
+        });
+
+        form.on('select(dashboard3)', function (obj) {
+            //alert(obj.value);
+            var tmp = options[obj.value];
+            tmp["elem"] = index[2];
+            table.render(options[obj.value]);
+        });
+
+        form.on('select(dashboard4)', function (obj) {
+            //alert(obj.value);
+            var tmp = options[obj.value];
+            tmp["elem"] = index[3];
+            table.render(options[obj.value]);
+        });
+
+        form.on('select(dashboard5)', function (obj) {
+            //alert(obj.value);
+            var tmp = options[obj.value];
+            tmp["elem"] = index[4];
+            table.render(options[obj.value]);
+        });
+
+        form.on('select(dashboard6)', function (obj) {
+            //alert(obj.value);
+            var tmp = options[obj.value];
+            tmp["elem"] = index[5];
+            table.render(options[obj.value]);
+        });
+
+        // 表格渲染
+        for (var i=0;i<5;i++)
+        {
+            var tmp = options[i];
+            tmp["elem"] = index[i];
+            table.render(tmp);
+        }
+        //var tableIns = table.render(option0);
+
+        // 获取选中行
+  
+        table.on('checkbox(dataCheck)', function (obj) {
+            layer.msg('123');
+            console.log(obj.checked); //当前是否选中状态
+            console.log(obj.data); //选中行的相关数据
+            console.log(obj.type); //如果触发的是全选，则为：all，如果触发的是单选，则为：one
+          });
+          //监听表格复选框选择
+          table.on('checkbox(demo)', function(obj){
+            console.log(obj)
+          });
+      });
+  
+    </script>
 </body>
 </html>

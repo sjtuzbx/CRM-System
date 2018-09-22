@@ -107,7 +107,30 @@
             console.log(obj.data); //选中行的相关数据
             console.log(obj.type); //如果触发的是全选，则为：all，如果触发的是单选，则为：one
         });
-
+		
+		$('#btn-delete-all').on('click', function () {
+          var checkStatus = table.checkStatus('dataCheck');
+          //console.log("bulk delete");
+          //console.log(checkStatus.data);
+          for ($i=0; $i<checkStatus.data.length; $i=$i+1){
+              $row = checkStatus.data[$i];
+              //console.log(JSON.stringify($row));
+              $.ajax({
+                type: "POST",
+                url:"../delete-task.php",    
+                data: {data: JSON.stringify($row)},
+                error: function(request) {
+                    alert("Connection error");
+                },
+                success: function(data) {                                       
+                    //alert("Success");
+                    tableIns.reload();
+                    layer.close($i);
+                }
+              });
+          }
+        });
+		
         // 刷新
         $('#btn-refresh').on('click', function () {
             tableIns.reload();
@@ -123,10 +146,8 @@
             shadeClose: true, //点击遮罩关闭
             content:  '../demo/table form new task.html', 
             cancel: function(index, layero){ 
-              if(confirm('确定要关闭么')){ //只有当点击confirm框的确定时，该层才会关闭
-                layer.close(index)
-              }
-              return false; 
+              //layer.close(index);
+              tableIns.reload();
             }   
           })
         });
@@ -156,9 +177,19 @@
       layer.confirm('Confirm to delete ?',{
 			title: 'Delete Task',
             btn: ['Comfirm', 'Cancel']}
-		, function(index){
+		, function(index){$.ajax({
+		type:"POST",
+		url:"../delete-task.php",
+		data:{data:JSON.stringify(data)},
+		error:function(request){
+		alert("Connection error");
+		},
+		success: function(data){
+		alert("Success");
         obj.del();
         layer.close(index);
+		}
+		});
       });
     } else if(obj.event === 'edit'){
       layer.alert('edit'+ JSON.stringify(data))

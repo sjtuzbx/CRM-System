@@ -33,7 +33,7 @@
 <div class="my-btn-box">
     <span class="fl">
         <a class="layui-btn layui-btn-danger radius btn-delect" id="btn-delete-all">Bulk Delete</a>
-        <!-- <a class="layui-btn btn-add btn-default" id="btn-add">Add New Client</a>  -->
+        <a class="layui-btn btn-add btn-default" id="btn-add">Add New Client</a> 
         <!-- client需要直接由lead转换 -->
         <a class="layui-btn btn-add btn-default" id="btn-refresh"><i class="layui-icon">&#x1002;</i></a>
     </span>
@@ -72,17 +72,17 @@
             , cols: [[                  //标题栏
                 {checkbox: true, sort: true, fixed: true, space: true}
                 // , {field: 'id', title: '', width: 80}
-                , {field: 'account', title: 'Name' ,width: 140}
-                , {field: 'auth_group_name', title:'Client Type', width: 140}
-                , {field: 'last_login_time', title: 'Site Address', width: 180}
-                , {field: 'last_login_time', title: 'Postal Address', width: 180}
-                , {field: 'status', title: 'Status', width: 90}
-                , {field: 'id', title: 'Phone(Office)', width: 180}
-                , {field: 'create_time', title: 'Date Created', width: 120}
+                , {field: 'cname', title: 'Name' ,width: 140}
+                , {field: 'clienttype', title:'Client Type', width: 140}
+                , {field: 'siteaddress', title: 'Site Address', width: 180}
+                , {field: 'postaladdress', title: 'Postal Address', width: 180}
+                , {field: 'cstatus', title: 'Status', width: 90}
+                , {field: 'cphone', title: 'Phone(Office)', width: 180}
+                , {field: 'cdatecreated', title: 'Date Created', width: 120}
                 , {fixed: 'right', title: 'Function', width: 180, align: 'center', toolbar: '#barOption'} //这里的toolbar值是模板元素的选择器
             ]]
             , id: 'dataCheck'
-            , url: './../json/data_table.json'
+            , url: '../json/client.json'
             , method: 'get'
             , page: true
             , limits: [30, 60, 90, 150, 300]
@@ -108,6 +108,29 @@
             console.log(obj.data); //选中行的相关数据
             console.log(obj.type); //如果触发的是全选，则为：all，如果触发的是单选，则为：one
         });
+		
+		$('#btn-delete-all').on('click', function () {
+          var checkStatus = table.checkStatus('dataCheck');
+          //console.log("bulk delete");
+          //console.log(checkStatus.data);
+          for ($i=0; $i<checkStatus.data.length; $i=$i+1){
+              $row = checkStatus.data[$i];
+              //console.log(JSON.stringify($row));
+              $.ajax({
+                type: "POST",
+                url:"../delete-client.php",    
+                data: {data: JSON.stringify($row)},
+                error: function(request) {
+                    alert("Connection error");
+                },
+                success: function(data) {                                       
+                    //alert("Success");
+                    tableIns.reload();
+                    layer.close($i);
+                }
+              });
+          }
+        });
 
         // 刷新
         $('#btn-refresh').on('click', function () {
@@ -118,13 +141,14 @@
 
         $("#btn-add").on('click',function(){
           layer.open({
-            type: 1,
-            title:" New Client",
+            type: 2,
+            title:" New Client",
             area: ['700px', '550px'],
             shadeClose: true, //点击遮罩关闭
-            content:  '\<\div class="add_new" ><iframe frameborder="0" width="100%" height="91%" scrolling="auto" src="../demo/table form new client.html"></iframe>\<div class="layui-form-item"><div class="layui-input-block" style="margin-left: 530px;"><button class="layui-btn" lay-submit="" lay-filter="demo1">Save</button><button type="reset" class="layui-btn layui-btn-primary">Reset</button></div> </div><\/div>',
-            // btn:["Save""Cancle"],
-
+            content:  'table form new client.html',
+            cancel: function(index, layero){        
+              tableIns.reload();
+            }, 
           })
         });
 
@@ -149,51 +173,30 @@
                 content:  '../demo/table form new client.html',
 
             })
-    } else if(obj.event === 'del'){
-      layer.confirm('Confirm to delete ?',{
-			title: 'Delete Client Information',
-            btn: ['Comfirm', 'Cancel']}, function(index){
+    } else if(obj.event === 'del'){     
+	layer.confirm('Confirm to delete ?',{
+			title: 'Delete Client',
+            btn: ['Comfirm', 'Cancel']}
+		, function(index){$.ajax({
+		type:"POST",
+		url:"../delete-client.php",
+		data:{data:JSON.stringify(data)},
+		error:function(request){
+		alert("Connection error");
+		},
+		success: function(data){
+		alert("Success");
         obj.del();
         layer.close(index);
+		}
+		});
       });
     } else if(obj.event === 'edit'){
-      layer.alert('编辑行：<br>'+ JSON.stringify(data))
+      layer.alert('edit：<br>'+ JSON.stringify(data))
     }
   });
  
-        
-   });
-  // var $ = layui.$, active = {
-  //   reload: function(){
-  //     var demoReload = $('#search_bar');
-      
-  //     //执行重载
-  //     table.reload('dataCheck', {
-  //       page: {
-  //         curr: 1 //重新从第 1 页开始
-  //       }
-  //       ,where: {
-  //         key: {
-  //           id: demoReload.val()
-  //         }
-  //       }
-  //     });
-  //   }
-  // };
-
-    
-
- /* $('.fr .layui-btn').on('click', function(){
-    var type = $(this).data('type');
-    active[type] ? active[type].call(this) : '';
-  });
-
-     		// });
-        // you code ...
-  
-
-});*/
-
+ });
 
 </script>
 <!-- 表格操作按钮集 -->
@@ -202,11 +205,6 @@
     <a class="layui-btn layui-btn-mini layui-btn-normal" lay-event="edit">Edit</a>
     <a class="layui-btn layui-btn-mini layui-btn-danger" lay-event="del">Delete</a>
 </script>
-<!-- <script>
-    layui.use('table', function(){
-     
-});
-</script> -->
 
 </body>
 </html>

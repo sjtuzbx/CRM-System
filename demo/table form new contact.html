@@ -11,128 +11,53 @@
     <link rel="icon" href="../frame/static/image/code.png">
 </head>
 <body class="body">
-
-
-
-    
-
-
-<form class="layui-form" action="">
-    PROJECT DETAILS contacts<hr />
+<form class="layui-form" action="../add-contact.php" method="post">
+    CONTACT DETAILS<hr />
     <div class="layui-form-item">
-        <label class="layui-form-label"  style="width: 120px; padding: 10px;">Project Name</label>
-        <div class="layui-input-block" style="margin-left: 155px;">
-            <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="" class="layui-input">
+        <label class="layui-form-label"  style="width: 120px; padding: 10px;">First Name</label>
+        <div class="layui-input-inline" style="margin-left: 15px;">
+            <input type="text" name="firstname" lay-verify="required" autocomplete="off" placeholder="" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label"  style="width: 120px; padding: 10px;">Last Name</label>
+        <div class="layui-input-inline" style="margin-left: 15px;">
+            <input type="text" name="lastname" lay-verify="required" autocomplete="off" placeholder="" class="layui-input">
         </div>
     </div>
   
-  <!--   <div class="layui-form-item">
-        <label class="layui-form-label">Status</label>
-        <div class="layui-input-block">
-            <input type="text" name="username" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
-        </div>
-    </div> -->
-        <div class="layui-form-item">
+    <div class="layui-form-item">
         <label class="layui-form-label" style="width: 120px; padding: 10px;">Status</label>
         <div class="layui-input-inline" style="margin-left: 15px;">
-            <select name="interest" lay-filter="aihao">
+            <select name="status" lay-filter="aihao">
                <!--  <option value=""></option> -->
                 <option value="0">Not Started</option>
                 <option value="1" selected="">In Progress</option>
-                <option value="2">Completed</option>
-                <option value="3">Deferred</option>
-                <option value="4">Cancelled</option>
+                <option value="2">Finished</option>
             </select>
         </div>
     </div>
-      <div class="layui-form-item">
-            <label class="layui-form-label" style="width: 120px; padding: 10px;">Category</label>
-            <div class="layui-input-inline" style="margin-left: 15px;">
-                <select name="modules" lay-verify="required" lay-search="">
-                    <option value="">Please Choose</option>
-                    <option value="1">layer</option>
-                    <option value="2">form</option>
-                    <option value="3">layim</option>
-                    <option value="4">element</option>
-                    <option value="5">laytpl</option>
-                    <option value="6">upload</option>
-                    <option value="7">laydate</option>
-                    <option value="8">laypage</option>
-                    <option value="9">flow</option>
-                    <option value="10">util</option>
-                    <option value="11">code</option>
-                    <option value="12">tree</option>
-                    <option value="13">layedit</option>
-                    <option value="14">nav</option>
-                    <option value="15">tab</option>
-                    <option value="16">table</option>
-                    <option value="17">select</option>
-                    <option value="18">checkbox</option>
-                    <option value="19">switch</option>
-                    <option value="20">radio</option>
-                </select>
-            </div>
-        </div>
 
-        <div class="layui-form-item" style="display:block;">
-            <label class="layui-form-label" style="width: 120px; padding: 10px;">Date Due</label>
-            <div class="layui-input-inline" style="margin-left: 15px;">
-                <input type="text" name="date" id="date" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
-            </div>
+    <div class="layui-form-item" style="display:block;">
+        <label class="layui-form-label"  style="width: 120px; padding: 10px;">Phone</label>
+        <div class="layui-input-inline" style="margin-left: 15px;">
+            <input type="text" name="phone" lay-verify="phone" autocomplete="off" placeholder="" class="layui-input">
         </div>
-         <div class="layui-form-item">
-            <label class="layui-form-label" style="width: 120px; padding: 10px;">Responsible User</label>
-            <div class="layui-input-inline" style="margin-left: 15px;">
-                <select name="modules" lay-verify="required" lay-search="">
-                    <option value="">Choose</option>
-                    <option value="1">Lisa</option>
-                    <option value="2">Jenny</option>
-                    <option value="3">Ponny</option>
-                </select>
-            </div>
-        </div>
-              <div class="layui-form-item">
-            <label class="layui-form-label" style="width: 120px; padding: 10px;">Tags</label>
-            <div class="layui-input-inline" style="margin-left: 15px;">
-                <select name="modules" lay-verify="required" lay-search="">
-                    <option value="">Please Choose</option>
-                    <option value="1">aa</option>
-                    <option value="2">cc</option>
-                    <option value="3">dd</option>
-                    <option value="4">eff</option>
-                    <option value="5">fdsl</option>
-                    <option value="6">bbb</option>
-                    <option value="7">vvvv</option>
-                    <option value="8">gfh</option>
-                    <option value="9">fghf</option>
-                    <option value="10">util</option>
-                    <option value="11">cghfge</option>
-                    <option value="12">tree</option>
-                    <option value="13">layedit</option>
-                    <option value="14">nav</option>
-                    <option value="15">tab</option>
-                    <option value="16">table</option>
-                    <option value="17">vcbvcb</option>
-                    <option value="18">rsr</option>
-                    <option value="19">ew33rh</option>
-                    <option value="20">rrrro</option>
-                </select>
-            </div>
-        </div>
-           <div class="layui-form-item layui-form-text">
-        <label class="layui-form-label" style="width: 120px; padding: 10px;">Description</label>
-        <div class="layui-input-block" style="margin-left: 155px;">
-            <textarea placeholder="Please Input Content" class="layui-textarea"></textarea>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label"  style="width: 120px; padding: 10px;">E-mail</label>
+        <div class="layui-input-inline" style="margin-left: 15px;">
+            <input type="text" name="email" lay-verify="email" autocomplete="off" placeholder="" class="layui-input">
         </div>
     </div>
 
-
-   CUSTOMIZED INFORMATION<hr/>
+   Notes<hr/>
 
     <div class="layui-form-item layui-form-text">
         <!-- <label class="layui-form-label" style="width: 120px; padding: 10px;">Customized Information</label> -->
         <div class="layui-input-block" style="margin: 0px 30px;">
-            <textarea class="layui-textarea layui-hide" name="content" lay-verify="content" id="LAY_demo_editor"></textarea>
+            <textarea class="layui-textarea layui-hide" name="note" lay-verify="content" id="LAY_demo_editor"></textarea>
         </div>
     </div>
 
