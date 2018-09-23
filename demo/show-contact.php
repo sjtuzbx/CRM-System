@@ -11,44 +11,63 @@
     <link rel="icon" href="../frame/static/image/code.png">
 </head>
 <body class="body">
-<form class="layui-form" action="../add-contact.php" method="post">
+
+<?php 
+    if (isset($_GET["data"])){
+        $json = $_GET["data"];
+        $row = json_decode($json, true);
+        $ctid = $row["ctid"];
+        $firstname = $row["firstname"];
+        $lastname = $row["lastname"];
+        $status = $row['ctstatus'];
+        $phone = $row['ctphone'];
+        $email = $row['ctemail'];
+        $notes = $row['notes'];
+    }
+?>
+
+<form class="layui-form" action="">
     CONTACT DETAILS<hr />
     <div class="layui-form-item">
         <label class="layui-form-label"  style="width: 120px; padding: 10px;">First Name</label>
         <div class="layui-input-inline" style="margin-left: 15px;">
-            <input type="text" name="firstname" lay-verify="required" autocomplete="off" placeholder="" class="layui-input">
+            <label class="layui-input"> <?php echo $firstname ?> </label>    
+        <!-- <input type="text" name="firstname" lay-verify="required" autocomplete="off" placeholder="" class="layui-input"> -->
         </div>
     </div>
 
     <div class="layui-form-item">
         <label class="layui-form-label"  style="width: 120px; padding: 10px;">Last Name</label>
         <div class="layui-input-inline" style="margin-left: 15px;">
-            <input type="text" name="lastname" lay-verify="required" autocomplete="off" placeholder="" class="layui-input">
+            <label class="layui-input"> <?php echo $lastname ?> </label>
+            <!-- <input type="text" name="lastname" lay-verify="required" autocomplete="off" placeholder="" class="layui-input"> -->
         </div>
     </div>
   
     <div class="layui-form-item">
         <label class="layui-form-label" style="width: 120px; padding: 10px;">Status</label>
         <div class="layui-input-inline" style="margin-left: 15px;">
-            <select name="status" lay-filter="aihao">
-               <!--  <option value=""></option> -->
+            <label class="layui-input"> <?php echo $status ?> </label>
+            <!-- <select name="status" lay-filter="aihao">
                 <option value="0">Not Started</option>
                 <option value="1" selected="">In Progress</option>
                 <option value="2">Finished</option>
-            </select>
+            </select> -->
         </div>
     </div>
 
     <div class="layui-form-item" style="display:block;">
         <label class="layui-form-label"  style="width: 120px; padding: 10px;">Phone</label>
         <div class="layui-input-inline" style="margin-left: 15px;">
-            <input type="text" name="phone" lay-verify="phone" autocomplete="off" placeholder="" class="layui-input">
+            <label class="layui-input"> <?php echo $phone ?> </label>
+            <!-- <input type="text" name="phone" lay-verify="phone" autocomplete="off" placeholder="" class="layui-input"> -->
         </div>
-    </div>
+    </div>;
     <div class="layui-form-item">
         <label class="layui-form-label"  style="width: 120px; padding: 10px;">E-mail</label>
         <div class="layui-input-inline" style="margin-left: 15px;">
-            <input type="text" name="email" lay-verify="email" autocomplete="off" placeholder="" class="layui-input">
+            <label class="layui-input"> <?php echo $email ?> </label>
+            <!-- <input type="text" name="email" lay-verify="email" autocomplete="off" placeholder="" class="layui-input"> -->
         </div>
     </div>
 
@@ -57,15 +76,17 @@
     <div class="layui-form-item layui-form-text">
         <!-- <label class="layui-form-label" style="width: 120px; padding: 10px;">Customized Information</label> -->
         <div class="layui-input-block" style="margin: 0px 30px;">
-            <textarea class="layui-textarea layui-hide" name="note" lay-verify="content" id="LAY_demo_editor"></textarea>
+            <label class="layui-input"> <?php echo $notes ?> </label>
+            <!-- <textarea class="layui-textarea layui-hide" name="note" lay-verify="content" id="LAY_demo_editor"></textarea> -->
         </div>
     </div>
 
  
     <div class="layui-form-item">
         <div class="layui-input-block" style="margin-left: 255px;">
-            <button class="layui-btn" lay-submit="" lay-filter="demo1">Save</button>
-            <button type="reset" class="layui-btn layui-btn-primary">Reset</button>
+            <button class="layui-btn" lay-submit="" lay-filter="demo1">Confirm</button>
+            <!-- <button class="layui-btn" lay-submit="" lay-filter="demo1">Save</button> -->
+            <!-- <button type="reset" class="layui-btn layui-btn-primary">Reset</button> -->
         </div>
     </div>
 </form>

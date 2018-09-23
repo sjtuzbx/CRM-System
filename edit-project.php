@@ -58,9 +58,6 @@
 		$data=array("code"=>0,"msg"=>"","count"=>count($arr), "data"=>$arr);
 		file_put_contents('json/projects.json', json_encode($data));
 
-		$pid['cnt'] = $pid['cnt'] + 1;
-		file_put_contents('json/projects-id.json', json_encode($pid));
-
 		echo "successfully update project";
 		//header(location:index.html);
 	} else {

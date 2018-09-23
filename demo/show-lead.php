@@ -11,58 +11,76 @@
     <link rel="icon" href="../frame/static/image/code.png">
 </head>
 <body class="body">
+    
+<?php 
+    if (isset($_GET["data"])){
+        $json = $_GET["data"];
+        $row = json_decode($json, true);
+
+        $lid = $row['lid'];
+        $lname = $row["lname"];
+        $phonenumber = $row['phonenumber'];
+        $email = $row['email'];
+        $status = $row['lstatus'];
+        $datecreated = $row['ldatecreated'];
+        $address = $row['laddress'];
+        $permission_map = array("Everyone", "Administrator", "Individual People");
+        $permission = $permission_map[$row["lpermission"]];
+    }
+?>
+
     <form class="layui-form" action="../add-lead.php" method="post">
         LEAD DETAILS<hr />
         <div class="layui-form-item">
             <label class="layui-form-label"  style="width: 120px; padding: 10px;">Lead Name</label>
             <div class="layui-input-block" style="margin-left: 155px;">
-                <input type="text" name="title" lay-verify="required" autocomplete="off" placeholder="" class="layui-input">
+                <label class="layui-input"> <?php echo $lname ?> </label>
+                <!-- <input type="text" name="title" lay-verify="required" autocomplete="off" placeholder="" class="layui-input"> -->
             </div>
         </div>
     <div class="layui-form-item">
         <label class="layui-form-label" style="width: 120px; padding: 10px;">Lead Status</label>
         <div class="layui-input-inline" style="margin-left: 15px;">
-            <select name="status" lay-filter="aihao">
-             <!--  <option value=""></option> -->
-             <option value="0">Lapsed</option>
-             <option value="1" selected="">Active</option>
-            </select>
-     </div>
- </div>
+            <label class="layui-input"> <?php echo $status ?> </label>            
+        </div>
+    </div>
  <div class="layui-form-item">
     <label class="layui-form-label"  style="width: 120px; padding: 10px;">Address</label>
     <div class="layui-input-block" style="margin-left: 155px;">
-        <input type="text" name="address" lay-verify="title" autocomplete="off" placeholder="" class="layui-input">
+        <label class="layui-input"> <?php echo $address ?> </label>            
+        <!-- <input type="text" name="address" lay-verify="title" autocomplete="off" placeholder="" class="layui-input"> -->
     </div>
 </div>
 
 <div class="layui-form-item" style="display:block;">
     <label class="layui-form-label"  style="width: 120px; padding: 10px;">Phone</label>
     <div class="layui-input-inline" style="margin-left: 15px;">
-        <input type="text" name="phone" lay-verify="phone" autocomplete="off" placeholder="" class="layui-input">
+        <label class="layui-input"> <?php echo $phonenumber ?> </label>            
+        <!-- <input type="text" name="phone" lay-verify="phone" autocomplete="off" placeholder="" class="layui-input"> -->
     </div>
 </div>
 <div class="layui-form-item">
     <label class="layui-form-label"  style="width: 120px; padding: 10px;">E-mail</label>
     <div class="layui-input-inline" style="margin-left: 15px;">
-        <input type="text" name="email" lay-verify="email" autocomplete="off" placeholder="" class="layui-input">
+        <label class="layui-input"> <?php echo $email ?> </label>            
+        <!-- <input type="text" name="email" lay-verify="email" autocomplete="off" placeholder="" class="layui-input"> -->
     </div>
 </div>
 <div class="layui-form-item">
     <label class="layui-form-label" style="width: 120px; padding: 10px;">Permission</label>
     <div class="layui-input-inline" style="margin-left: 15px;">
-        <select name="permission" lay-verify="required" lay-search="">
+        <!-- <select name="permission" lay-verify="required" lay-search="">
             <option value="">Please Choose</option>
             <option value="1">Everyone</option>
             <option value="2">Administrator</option>
             <option value="3">Individual People</option>
-        </select>
+        </select> -->
+        <label class="layui-input"> <?php echo $permission ?> </label>            
     </div>
 </div>
     <div class="layui-form-item">
         <div class="layui-input-block" style="margin-left: 255px;">
-            <button class="layui-btn" lay-submit="" lay-filter="demo1">Save</button>
-            <button type="reset" class="layui-btn layui-btn-primary">Reset</button>
+            <button class="layui-btn" lay-submit="" lay-filter="demo1">Confirm</button>
         </div>
     </div>
 </form>

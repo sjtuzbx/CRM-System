@@ -16,15 +16,9 @@
 	if (!$conn) {
 	    die("Connection failed: " . mysqli_connect_error());
 	}
-	// echo "连接成功";
+	 echo "连接成功";
 
-	// echo $_POST["title"], "<br>", $_POST["status"], "<br>", $_POST["catogery"];
-	// echo "<br>", $_POST["date"], "<br>", $_POST["responsiveid"];
-	// echo "<br>", $_POST["tags"], "<br>", $_POST["description"];
-	// echo "<br>", $_POST["customized"];
-	$json_string = file_get_contents('json/lead-id.json');   
-    $pid = json_decode($json_string, true);  
-	$id = $pid['cnt'];
+    $id = $_GET["id"];
 	//echo $id, "<br>";
 
 	$name = $_POST['title'];
@@ -36,7 +30,7 @@
 	$permission = $_POST['permission'];
 	$datecreated = date("Y-m-d");
 
-	$sql = "INSERT INTO `lead` (`lid`, `lname`, `phonenumber`, `email`, `lstatus`, `ldatecreated`, `laddress`, `lpermission`) VALUES ('$id', '$name', '$phone', '$email', '$status', '$datecreated', '$address', '$permission');";
+	$sql = "UPDATE lead SET lname='$name', phonenumber='$phone', email='$email', lstatus='$status', laddress='$address', lpermission='$permission' WHERE lead.lid='$id'";
 	//echo "<br>", $sql;
 	$res = mysqli_query($conn, $sql);
 	if ($res){
@@ -50,14 +44,9 @@
 		$data=array("code"=>0,"msg"=>"","count"=>count($arr), "data"=>$arr);
 		file_put_contents('json/lead.json', json_encode($data));
 
-		$pid['cnt'] = $pid['cnt'] + 1;
-		file_put_contents('json/lead-id.json', json_encode($pid));
-
-		echo "successfully added new lead";
-		//header(location:index.html);
+		echo "successfully edited lead";
 	} else {
 		echo "failed";
-		//header(location:'demo/table form new prop.html');
 	}		
 ?> 
 

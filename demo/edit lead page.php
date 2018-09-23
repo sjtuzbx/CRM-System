@@ -11,12 +11,29 @@
     <link rel="icon" href="../frame/static/image/code.png">
 </head>
 <body class="body">
-    <form class="layui-form" action="../add-lead.php" method="post">
+    
+<?php 
+    if (isset($_GET["data"])){
+        $json = $_GET["data"];
+        $row = json_decode($json, true);
+
+        $lid = $row['lid'];
+        $lname = $row["lname"];
+        $phonenumber = $row['phonenumber'];
+        $email = $row['email'];
+        $status = $row['lstatus'];
+        $datecreated = $row['ldatecreated'];
+        $address = $row['laddress'];
+        $permission = $row["lpermission"];
+    }
+?>
+
+    <form class="layui-form" action="../edit-lead.php?id=<?php echo $lid ?>" method="post">
         LEAD DETAILS<hr />
         <div class="layui-form-item">
             <label class="layui-form-label"  style="width: 120px; padding: 10px;">Lead Name</label>
             <div class="layui-input-block" style="margin-left: 155px;">
-                <input type="text" name="title" lay-verify="required" autocomplete="off" placeholder="" class="layui-input">
+                <input type="text" name="title" lay-verify="required" autocomplete="off" placeholder="<?php echo $lname; ?>" class="layui-input">
             </div>
         </div>
     <div class="layui-form-item">
@@ -26,26 +43,26 @@
              <!--  <option value=""></option> -->
              <option value="0">Lapsed</option>
              <option value="1" selected="">Active</option>
-            </select>
-     </div>
- </div>
+            </select>            
+        </div>
+    </div>
  <div class="layui-form-item">
     <label class="layui-form-label"  style="width: 120px; padding: 10px;">Address</label>
     <div class="layui-input-block" style="margin-left: 155px;">
-        <input type="text" name="address" lay-verify="title" autocomplete="off" placeholder="" class="layui-input">
+        <input type="text" name="address" lay-verify="title" autocomplete="off" placeholder="<?php echo $address; ?>" class="layui-input">
     </div>
 </div>
 
 <div class="layui-form-item" style="display:block;">
     <label class="layui-form-label"  style="width: 120px; padding: 10px;">Phone</label>
     <div class="layui-input-inline" style="margin-left: 15px;">
-        <input type="text" name="phone" lay-verify="phone" autocomplete="off" placeholder="" class="layui-input">
+        <input type="text" name="phone" lay-verify="phone" autocomplete="off" placeholder="<?php echo $phonenumber; ?>" class="layui-input">
     </div>
 </div>
 <div class="layui-form-item">
     <label class="layui-form-label"  style="width: 120px; padding: 10px;">E-mail</label>
     <div class="layui-input-inline" style="margin-left: 15px;">
-        <input type="text" name="email" lay-verify="email" autocomplete="off" placeholder="" class="layui-input">
+        <input type="text" name="email" lay-verify="email" autocomplete="off" placeholder="<?php echo $email; ?>" class="layui-input">
     </div>
 </div>
 <div class="layui-form-item">
@@ -57,6 +74,7 @@
             <option value="2">Administrator</option>
             <option value="3">Individual People</option>
         </select>
+                  
     </div>
 </div>
     <div class="layui-form-item">
