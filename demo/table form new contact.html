@@ -42,13 +42,13 @@
     <div class="layui-form-item" style="display:block;">
         <label class="layui-form-label"  style="width: 120px; padding: 10px;">Phone</label>
         <div class="layui-input-inline" style="margin-left: 15px;">
-            <input type="text" name="phone" lay-verify="phone" autocomplete="off" placeholder="" class="layui-input">
+            <input type="text" name="phone" lay-verify="auphone" autocomplete="off" placeholder="" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label"  style="width: 120px; padding: 10px;">E-mail</label>
         <div class="layui-input-inline" style="margin-left: 15px;">
-            <input type="text" name="email" lay-verify="email" autocomplete="off" placeholder="" class="layui-input">
+            <input type="text" name="email" lay-verify="auemail" autocomplete="off" placeholder="" class="layui-input">
         </div>
     </div>
 
@@ -96,9 +96,11 @@
         form.verify({
             title: function(value){
                 if(value.length < 5){
-                    return 'Project name must be filled';
+                    return 'Contact name must be filled';
                 }
             }
+            ,auphone: [/^\d{10}$/, 'Please input correct phone number']
+            ,auemail:[/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/,"Invalid email address."]
             ,pass: [/(.+){6,12}$/, '密码必须6到12位']
             ,content: function(value){
                 layedit.sync(editIndex);
