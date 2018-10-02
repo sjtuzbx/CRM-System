@@ -62,13 +62,13 @@
       </ul>
       <ul class="layui-nav layui-layout-right" >
           <li class="layui-nav-item ">
-              <a title="personal centre" href="#" style="font-family:'imooc-icon';"></a>
+              <a title="personal centre" href="personal center.html" style="font-family:'imooc-icon';"></a>
           </li>
           <li class="layui-nav-item">
               <a title="log out" href="login.php" style="font-family:'imooc-icon';"></a>
           </li>
           <li class="layui-nav-item">
-              <a title="setting" href="#" style="font-family:'imooc-icon';"></a>
+              <a href="setting.php" title="setting" href="#" style="font-family:'imooc-icon';"></a>
           </li>
       </ul>
       </div>

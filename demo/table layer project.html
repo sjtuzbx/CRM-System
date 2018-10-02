@@ -137,7 +137,8 @@
       });
 
       $('#btn-refresh').on('click', function () {
-        tableIns.reload();
+        //tableIns.reload();
+        table.render(tablerender);
       });
 
 
@@ -153,6 +154,40 @@
           },
         })
       });
+      
+      //搜索
+      $("#btn-s").on('click',function(){
+      	console.log('search')
+      	var inputText = document.getElementById("search_bar").value
+      	jsondata2 = jsondata.filter(function(item){
+      		return item.pname == inputText
+      	})
+      	var temp = deepClone(tablerender)
+      	tablerender.data = jsondata2
+      	tablerender.url = ''
+      	tableIns = table.render(tablerender);
+      	tablerender = deepClone(temp)
+      	/*tableIns.reload('dataCheck',{
+      		//url: '../json/projects.json'
+          where: {
+	         // key: {
+              keyword: '20180912'
+            //}
+          }
+        })*/
+      })
+
+			function deepClone(obj){
+			    let _obj = JSON.stringify(obj),
+			        objClone = JSON.parse(_obj);
+			    return objClone
+			}  
+
+			var jsondata = new Object()
+			$.getJSON("../json/projects.json",function(data){	
+				jsondata = data.data
+			})
+
 
       // 暂停和中止按钮功能
       var table = layui.table;
