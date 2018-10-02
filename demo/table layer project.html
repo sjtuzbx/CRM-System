@@ -68,19 +68,21 @@
         , $ = layui.jquery;
 
       // 表格渲染
-      var tableIns = table.render({
-        elem: '#dateTable'                  //指定原始表格元素选择器（推荐id选择器）
+      console.log(document.getElementsByClassName('body')[0].offsetWidth)
+      var wwidth = (document.getElementsByClassName('body')[0].offsetWidth-78)/7
+      var tablerender ={
+      	elem: '#dateTable'                  //指定原始表格元素选择器（推荐id选择器）
         , height: vipTable.getFullHeight()    //容器高度
         , cols: [[                  //标题栏
           { checkbox: true, sort: true, fixed: true, space: true }
           // , {field: 'id', title: '', width: 80}
-          , { field: 'pname', title: 'Name', width: 120 }
-          , { field: 'status', title: 'Status', width: 120 }
-          , { field: 'username', title: 'Responsible User', width: 180 }
-          , { field: 'cname', title: 'Client', width: 170 }
-          , { field: 'datecreated', title: 'Date Created', width: 170 }
-          , { field: 'duedate', title: 'Date Due', width: 130 }
-          , { fixed: 'right', title: 'Function', width: 200, align: 'center', toolbar: '#barOption' } //这里的toolbar值是模板元素的选择器
+          , { field: 'pname', title: 'Name', width: wwidth }
+          , { field: 'status', title: 'Status', width: wwidth }
+          , { field: 'username', title: 'Responsible User', width: wwidth }
+          , { field: 'cname', title: 'Client', width: wwidth }
+          , { field: 'datecreated', title: 'Date Created', width: wwidth }
+          , { field: 'duedate', title: 'Date Due', width: wwidth }
+          , { fixed: 'right', title: 'Function', width: wwidth, align: 'center', toolbar: '#barOption' } //这里的toolbar值是模板元素的选择器
         ]]
         , id: 'dataCheck'
         , url: '../json/projects.json'
@@ -100,7 +102,9 @@
           //得到数据总量
           console.log(count);
         }
-      });
+      }
+      
+      var tableIns = table.render(tablerender);
 
       // 获取选中行
       table.on('checkbox(dataCheck)', function (obj) {
@@ -199,7 +203,6 @@
           });
         }
       });
-
 
     });
   // var $ = layui.$, active = {

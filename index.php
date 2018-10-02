@@ -63,13 +63,13 @@
       </ul>
       <ul class="layui-nav layui-layout-right" >
           <li class="layui-nav-item ">
-              <a title="personal centre" href="#" style="font-family:'imooc-icon';"></a>
+              <a title="personal centre" href="personal center.html" style="font-family:'imooc-icon';"></a>
           </li>
           <li class="layui-nav-item">
               <a title="log out" href="login.php" style="font-family:'imooc-icon';"></a>
           </li>
           <li class="layui-nav-item">
-              <a title="setting" href="#" style="font-family:'imooc-icon';"></a>
+              <a title="setting" href="setting.php" style="font-family:'imooc-icon';"></a>
           </li>
       </ul>
     </div>
@@ -187,7 +187,22 @@
         , vipTable = layui.vip_table
         , $ = layui.jquery;
 
-        var cwidth = 400;
+        var cwidth = window.innerWidth/3-30;
+		        
+		window.onresize=function(){  
+		 	option0.width = window.innerWidth/3-30
+		 	option1.width = window.innerWidth/3-30
+		 	option2.width = window.innerWidth/3-30
+		 	option3.width = window.innerWidth/3-30
+		 	option4.width = window.innerWidth/3-30
+		 	option5.width = window.innerWidth/3-30
+		 	for (var i=0;i<6;i++)
+	        {
+	            var tmp = options[tindex[i]];
+	            tmp["elem"] = index[i];
+	            table.render(tmp);
+	        }
+		} 
 
         var option0 = {
             elem: '#dateTable1'                  //指定原始表格元素选择器（推荐id选择器）
@@ -196,10 +211,10 @@
             , cols: [[                  //标题栏
             {checkbox: false, sort: true, fixed: true, space: true}
                 // , {field: 'id', title: '', width: 80}
-                , {field: 'pname', title: 'Name' ,width: 100}
-                , {field: 'status', title: 'Status', width: 100}
-                , {field: 'username', title: 'Responsible User', width: 80}
-                , {field: 'duedate', title: 'Date Due', width: 120}
+                , {field: 'pname', title: 'Name' ,width: cwidth/4}
+                , {field: 'status', title: 'Status', width: cwidth/4}
+                , {field: 'username', title: 'Responsible User', width: cwidth/4}
+                , {field: 'duedate', title: 'Date Due', width: cwidth/4}
                 ]]
                 , id: 'dataCheck'
                 , url: './json/projects.json'
@@ -214,10 +229,10 @@
             , cols: [[                  //标题栏
                 {checkbox: false, sort: true, fixed: true, space: true}
                 // , {field: 'id', title: '', width: 80}
-                , {field: 'cname', title: 'Name' ,width: 100}
-                , {field: 'cstatus', title: 'Status', width: 100}
-                , {field: 'cphone', title: 'Phone(Office)', width: 80}
-                , {field: 'cdatecreated', title: 'Date Created', width: 120}
+                , {field: 'cname', title: 'Name' ,width: cwidth/4}
+                , {field: 'cstatus', title: 'Status', width: cwidth/4}
+                , {field: 'cphone', title: 'Phone(Office)', width: cwidth/4}
+                , {field: 'cdatecreated', title: 'Date Created', width: cwidth/4}
             ]]
             , id: 'dataCheck'
             , url: './json/client.json'
@@ -231,10 +246,10 @@
             , width: cwidth
             , cols: [[                  //标题栏
                 {checkbox: false, sort: true, fixed: true, space: true}
-                , {field: 'lname', title: 'Name' ,width: 100}
-                , {field: 'phonenumber', title: 'Contact Number(Phone)', width: 100}
-                , {field: 'email', title: 'Email Address', width: 80}
-                , {field: 'ldatecreated', title: 'Date Created', width: 120}
+                , {field: 'lname', title: 'Name' ,width: cwidth/4}
+                , {field: 'phonenumber', title: 'Contact Number(Phone)', width: cwidth/4}
+                , {field: 'email', title: 'Email Address', width: cwidth/4}
+                , {field: 'ldatecreated', title: 'Date Created', width: cwidth/4}
             ]]
             , id: 'dataCheck'
             , url: './json/lead.json'
@@ -248,10 +263,10 @@
             , width: cwidth
             , cols: [[                  //标题栏
                 {checkbox: false, sort: true, fixed: true, space: true}
-                , {field: 'tname', title: 'Task Name' ,width: 100}
-                , {field: 'duedate', title: 'Date Due', width: 100}
-                , {field: 'tresponsiveid', title: 'Responsible User', width: 80}
-                , {field: 'username', title: 'Task Owner', width: 120}
+                , {field: 'tname', title: 'Task Name' ,width: cwidth/4}
+                , {field: 'duedate', title: 'Date Due', width: cwidth/4}
+                , {field: 'tresponsiveid', title: 'Responsible User', width: cwidth/4}
+                , {field: 'username', title: 'Task Owner', width: cwidth/4}
             ]]
             , id: 'dataCheck'
             , url: './json/task.json'
@@ -265,23 +280,38 @@
             , width: cwidth
             , cols: [[                  //标题栏
                 {checkbox: false, sort: true, fixed: true, space: true}
-                , {field: 'firstname', title: 'First Name', width: 100}
-                , {field: 'lastname', title: ' Last Name' ,width: 100}
-                , {field: 'ctphone', title: 'Contact Number(Phone)', width: 80}
-                , {field: 'ctemail', title: 'Email Address', width: 120}
+                , {field: 'firstname', title: 'First Name', width: cwidth/4}
+                , {field: 'lastname', title: ' Last Name' ,width: cwidth/4}
+                , {field: 'ctphone', title: 'Contact Number(Phone)', width: cwidth/4}
+                , {field: 'ctemail', title: 'Email Address', width: cwidth/4}
             ]]
             , id: 'dataCheck'
             , url: './json/contact.json'
             , method: 'get'
             , page: true
         };
+        
+        var option5 = {
+            elem: '#dateTable1'                  //指定原始表格元素选择器（推荐id选择器）
+            , height: vipTable.getFullHeight() / 2  //容器高度
+            , width: cwidth
+            , cols: [[                  //标题栏
+                {checkbox: false, sort: true, fixed: true, space: true}
+            ]]
+            , id: 'dataCheck'
+            //, url: './json/contact.json'
+            //, method: 'get'
+            , page: true
+        };
 
-        var options = new Array(option0, option1, option2, option3, option4);
+        var options = new Array(option0, option1, option2, option3, option4, option5);
         var index = new Array('#dateTable1', '#dateTable2', '#dateTable3', '#dateTable4', '#dateTable5', '#dateTable6');
+		var tindex = [0,1,2,3,4,5];
 
         form.on('select(dashboard1)', function (obj) {
             //alert(obj.value);
             var tmp = options[obj.value];
+            tindex[0] = obj.value
             tmp["elem"] = index[0];
             table.render(options[obj.value]);
         });
@@ -289,6 +319,7 @@
         form.on('select(dashboard2)', function (obj) {
             //alert(obj.value);
             var tmp = options[obj.value];
+            tindex[1] = obj.value
             tmp["elem"] = index[1];
             table.render(options[obj.value]);
         });
@@ -296,6 +327,7 @@
         form.on('select(dashboard3)', function (obj) {
             //alert(obj.value);
             var tmp = options[obj.value];
+            tindex[2] = obj.value
             tmp["elem"] = index[2];
             table.render(options[obj.value]);
         });
@@ -303,6 +335,7 @@
         form.on('select(dashboard4)', function (obj) {
             //alert(obj.value);
             var tmp = options[obj.value];
+            tindex[3] = obj.value;
             tmp["elem"] = index[3];
             table.render(options[obj.value]);
         });
@@ -310,6 +343,7 @@
         form.on('select(dashboard5)', function (obj) {
             //alert(obj.value);
             var tmp = options[obj.value];
+            tindex[4] = obj.value;
             tmp["elem"] = index[4];
             table.render(options[obj.value]);
         });
@@ -317,12 +351,13 @@
         form.on('select(dashboard6)', function (obj) {
             //alert(obj.value);
             var tmp = options[obj.value];
+            tindex[5] = obj.value;
             tmp["elem"] = index[5];
             table.render(options[obj.value]);
         });
 
         // 表格渲染
-        for (var i=0;i<5;i++)
+        for (var i=0;i<6;i++)
         {
             var tmp = options[i];
             tmp["elem"] = index[i];
