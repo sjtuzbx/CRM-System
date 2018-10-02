@@ -1,0 +1,19 @@
+*{
+    margin: 0;
+    padding:0;
+}
+body{
+    font-size: 16px;
+}
+.firstname{
+    width: 100px; 
+    display: inline-block;
+}
+#name{
+    float: left;
+    /* width: 190px; */
+    margin-right: 10px;
+}
+#text_area{
+    width:50%;
+}
