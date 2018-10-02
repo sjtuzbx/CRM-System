@@ -38,7 +38,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label" style="width: 120px; padding: 10px;">Task Name</label>
             <div class="layui-input-block" style="margin-left: 155px;">
-                <input type="text" name="title" lay-filter="project-name" lay-verify="title" autocomplete="off" placeholder="<?php echo $tname ?>" class="layui-input"> 
+                <input type="text" name="title" lay-filter="project-name" lay-verify="title" autocomplete="off" value="<?php echo $tname ?>" class="layui-input"> 
             </div>
         </div>
         <div class="layui-form-item">
@@ -58,14 +58,14 @@
         <div class="layui-form-item" style="display:block;">
             <label class="layui-form-label" style="width: 120px; padding: 10px;">Date Started</label>
             <div class="layui-input-inline" style="margin-left: 15px;">
-            <input type="text" name="startdate" id="date" lay-verify="date" placeholder="<?php echo $startdate ?>" autocomplete="off"
+            <input type="text" name="startdate" id="date" lay-verify="date" value="<?php echo $startdate ?>" autocomplete="off"
                     class="layui-input">
             </div>
         </div>
         <div class="layui-form-item" style="display:block;">
             <label class="layui-form-label" style="width: 120px; padding: 10px;">Date Due</label>
             <div class="layui-input-inline" style="margin-left: 15px;">
-            <input type="text" name="duedate" id="date" lay-verify="date" placeholder="<?php echo $duedate ?>" autocomplete="off"
+            <input type="text" name="duedate" id="date" lay-verify="date" value="<?php echo $duedate ?>" autocomplete="off"
                     class="layui-input">
             </div>
         </div>
@@ -75,7 +75,7 @@
         <div class="layui-form-item" style="display:block;">
             <label class="layui-form-label" style="width: 120px; padding: 10px;">Reminder</label>
             <div class="layui-input-inline" style="margin-left: 15px;">
-            <input type="text" name="reminddate" id="date" lay-verify="date" placeholder="<?php echo $reminddate ?>" autocomplete="off"
+            <input type="text" name="reminddate" id="date" lay-verify="date" value="<?php echo $reminddate ?>" autocomplete="off"
                     class="layui-input"><br /><input type="time" class="layui-input" id="test4" placeholder="HH:mm:ss">            </div>
         </div>
 
@@ -83,7 +83,7 @@
         <div class="layui-form-item" style="margin-bottom: 8px;">
             <label class="layui-form-label" style="width: 120px; padding: 10px;">Progress</label>
             <div class="layui-input-inline" style="margin-left: 15px;">
-                <input type="text" name="progress" lay-verify="required" autocomplete="off" placeholder="<?php echo $progress ?>" class="layui-input">
+                <input type="text" name="progress" lay-verify="required" autocomplete="off" value="<?php echo $progress ?>" class="layui-input">
             </div>
         </div>
 
@@ -131,7 +131,7 @@
         <div class="layui-form-item layui-form-text">
             <label class="layui-form-label" style="width: 120px; padding: 10px;">Description</label>
             <div class="layui-input-block" style="margin-left: 155px;">
-                <textarea name="description" placeholder="<?php echo $description ?>" class="layui-textarea"></textarea>
+                <textarea name="description" value="<?php echo $description ?>" class="layui-textarea"></textarea>
             </div>
         </div>
 
@@ -157,7 +157,10 @@
             </div>
         </div>
     </form>
-
+<script>
+    
+    
+    </script>
 <script src="../frame/layui/layui.js" charset="utf-8"></script>
 <script>
     layui.use(['form', 'layedit', 'laydate'], function(){
@@ -208,6 +211,8 @@
 
 
     });
+	
+	
 </script>
 </body>
 </html>

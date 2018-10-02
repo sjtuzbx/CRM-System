@@ -45,7 +45,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label"  style="width: 120px; padding: 10px;">Project Name</label>
             <div class="layui-input-block" style="margin-left: 155px;">
-                <input type="text" name="title" lay-filter="project-name" lay-verify="title" autocomplete="off" placeholder="<?php echo $pname ?>" class="layui-input"> 
+                <input type="text" name="title" lay-filter="project-name" lay-verify="title" autocomplete="off" value="<?php echo $pname ?>" class="layui-input"> 
             </div>
         </div>
         <div class="layui-form-item">
@@ -66,7 +66,7 @@
         <div class="layui-input-inline" style="margin-left: 15px;">
             <select name="catogery" lay-verify="essential" lay-search="">
                 <option value="">Please Choose</option>
-                <option value="1">Category1</option>
+                <option value="1" selected="">Category1</option>
                 <option value="2">Category2</option>
                 <option value="3">Category3</option>
             </select>
@@ -76,7 +76,7 @@
     <div class="layui-form-item" style="display:block;">
         <label class="layui-form-label" style="width: 120px; padding: 10px;">Date Due</label>
         <div class="layui-input-inline" style="margin-left: 15px;">
-            <input type="text" name="date" placeholder="<?php echo $duedate ?>" id="date" lay-verify="valid_date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+            <input type="text" name="date" value="<?php echo $duedate ?>" id="date" lay-verify="valid_date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
@@ -84,7 +84,7 @@
         <div class="layui-input-inline" style="margin-left: 15px;">
             <select name="responsiveid" lay-verify="essential" lay-search="">
                 <option value="">Choose</option>
-                <option value="1">Lisa</option>
+                <option value="1" selected="">Lisa</option>
                 <option value="2">Jenny</option>
                 <option value="3">Ponny</option>
             </select>
@@ -95,7 +95,7 @@
         <div class="layui-input-inline" style="margin-left: 15px;">
             <select name="tags" lay-verify="essential" lay-search="">
                 <option value="">Please Choose</option>
-                <option value="1">aa</option>
+                <option value="1" selected="">aa</option>
                 <option value="2">cc</option>
                 <option value="3">dd</option>
             </select>
@@ -104,7 +104,7 @@
     <div class="layui-form-item layui-form-text">
         <label class="layui-form-label" style="width: 120px; padding: 10px;">Description</label>
         <div class="layui-input-block" style="margin-left: 155px;">
-            <textarea name="description" placeholder="<?php echo $description ?>" class="layui-textarea"></textarea>
+            <textarea name="description" value="<?php echo $description ?>" class="layui-textarea"></textarea>
         </div>
     </div>
 
@@ -114,7 +114,7 @@
     <div class="layui-form-item layui-form-text">
         <!-- <label class="layui-form-label" style="width: 120px; padding: 10px;">Customized Information</label> -->
         <div class="layui-input-block" style="margin: 0px 30px;">
-            <textarea class="layui-textarea layui-hide" placeholder="<?php echo $customized ?>" name="customized" lay-verify="content" id="LAY_demo_editor"></textarea>
+            <textarea class="layui-textarea layui-hide" value="<?php echo $customized ?>" name="customized" lay-verify="content" id="LAY_demo_editor"></textarea>
         </div>
     </div>
 

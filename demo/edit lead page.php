@@ -33,7 +33,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label"  style="width: 120px; padding: 10px;">Lead Name</label>
             <div class="layui-input-block" style="margin-left: 155px;">
-                <input type="text" name="title" lay-verify="required" autocomplete="off" placeholder="<?php echo $lname; ?>" class="layui-input">
+                <input type="text" name="title" lay-verify="required" autocomplete="off" value="<?php echo $lname; ?>" class="layui-input">
             </div>
         </div>
     <div class="layui-form-item">
@@ -49,20 +49,20 @@
  <div class="layui-form-item">
     <label class="layui-form-label"  style="width: 120px; padding: 10px;">Address</label>
     <div class="layui-input-block" style="margin-left: 155px;">
-        <input type="text" name="address" lay-verify="title" autocomplete="off" placeholder="<?php echo $address; ?>" class="layui-input">
+        <input type="text" name="address" lay-verify="title" autocomplete="off" value="<?php echo $address; ?>" class="layui-input">
     </div>
 </div>
 
 <div class="layui-form-item" style="display:block;">
     <label class="layui-form-label"  style="width: 120px; padding: 10px;">Phone</label>
     <div class="layui-input-inline" style="margin-left: 15px;">
-        <input type="text" name="phone" lay-verify="phone" autocomplete="off" placeholder="<?php echo $phonenumber; ?>" class="layui-input">
+        <input type="text" name="phone" lay-verify="phone" autocomplete="off" value="<?php echo $phonenumber; ?>" class="layui-input">
     </div>
 </div>
 <div class="layui-form-item">
     <label class="layui-form-label"  style="width: 120px; padding: 10px;">E-mail</label>
     <div class="layui-input-inline" style="margin-left: 15px;">
-        <input type="text" name="email" lay-verify="email" autocomplete="off" placeholder="<?php echo $email; ?>" class="layui-input">
+        <input type="text" name="email" lay-verify="email" autocomplete="off" value="<?php echo $email; ?>" class="layui-input">
     </div>
 </div>
 <div class="layui-form-item">

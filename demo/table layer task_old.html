@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<meta name=”viewport” content=”width=device-width, initial-scale=1″ />
+
 <head>
     <meta charset="UTF-8">
     <meta name="renderer" content="webkit">
@@ -80,8 +80,8 @@
                     , { field: 'tresponsiveid', title: 'Responsible User', width: 160 }
                     , { field: 'username', title: 'Task Owner', width: 120 }
                     , { field: 'status', title: 'Status', width: 160 }
-                    , { field: 'progress', title: 'Progress', width: 140 }
-                    , { fixed: 'right', title: 'Function', width: 200, align: 'center', toolbar: '#barOption' } //这里的toolbar值是模板元素的选择器
+                    , { field: 'progress', title: 'Percent Complete Indicator', width: 140 }
+                    , { fixed: 'right', title: 'Function', width: 160, align: 'center', toolbar: '#barOption' } //这里的toolbar值是模板元素的选择器
                 ]]
                 , id: 'dataCheck'
                 , url: '../json/task.json'
@@ -115,21 +115,19 @@
             $('#btn-refresh').on('click', function () {
                 tableIns.reload();
             });
-            
+
 
 
             $("#btn-add").on('click', function () {
                 layer.open({
                     type: 2,
                     title: " New Task",
-                    area: ['50%', '80%'],
+                    area: ['700px', '550px'],
                     shadeClose: true, //点击遮罩关闭
                     content: 'table form new task.html',
-                   
                     cancel: function (index, layero) {
                         tableIns.reload();
                     }
-                    
                 })
             });
             // 暂停和中止按钮功能
@@ -164,13 +162,7 @@
                 }
             });
 
-            // 刷新
-            $('#btn-refresh').on('click', function () {
-                tableIns.reload();
-            });
 
-
-//          
             var table = layui.table;
             table.on('checkbox(demo)', function (obj) {
                 console.log(obj)
@@ -183,7 +175,7 @@
                     layer.open({
                         type: 2,
                         title: "Task",
-                        area: ['50%', '80%'],
+                        area: ['700px', '550px'],
                         shadeClose: true, //点击遮罩关闭
                         content: 'show-task.php?data=' + escape(JSON.stringify(data)),
                     })
@@ -210,7 +202,7 @@
                     layer.open({
                         type: 2,
                         title: "Task",
-                        area: ['50%', '80%'],
+                        area: ['700px', '550px'],
                         shadeClose: true, //点击遮罩关闭
                         content: 'edit task page.php?data=' + escape(JSON.stringify(data)),
                         cancel: function (index, layero) {
