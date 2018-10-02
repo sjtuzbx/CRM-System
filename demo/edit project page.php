@@ -45,7 +45,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label"  style="width: 120px; padding: 10px;">Project Name</label>
             <div class="layui-input-block" style="margin-left: 155px;">
-                <input type="text" name="title" lay-filter="project-name" lay-verify="title" autocomplete="off" placeholder="<?php echo $pname ?>" class="layui-input"> 
+                <input type="text" name="title" lay-filter="project-name" lay-verify="title" autocomplete="off" value="<?php echo $pname ?>" class="layui-input"> 
             </div>
         </div>
         <div class="layui-form-item">
@@ -76,7 +76,7 @@
     <div class="layui-form-item" style="display:block;">
         <label class="layui-form-label" style="width: 120px; padding: 10px;">Date Due</label>
         <div class="layui-input-inline" style="margin-left: 15px;">
-            <input type="text" name="date" placeholder="<?php echo $duedate ?>" id="date" lay-verify="valid_date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+            <input type="text" name="date" value="<?php echo $duedate ?>" id="date" lay-verify="valid_date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">

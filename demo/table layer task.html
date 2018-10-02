@@ -68,8 +68,7 @@
                 , vipTable = layui.vip_table
                 , $ = layui.jquery;
 
-            // 表格渲染
-            var tableIns = table.render({
+            var tablerender = {
                 elem: '#dateTable'                  //指定原始表格元素选择器（推荐id选择器）
                 , height: vipTable.getFullHeight()    //容器高度
                 , cols: [[                  //标题栏
@@ -101,7 +100,9 @@
                     //得到数据总量
                     console.log(count);
                 }
-            });
+            }
+             // 表格渲染
+            var tableIns = table.render(tablerender);
 
             // 获取选中行
             table.on('checkbox(dataCheck)', function (obj) {
@@ -116,30 +117,8 @@
                 tableIns.reload();
             });
 
-
-
-            $("#btn-add").on('click', function () {
-                layer.open({
-                    type: 2,
-                    title: " New Task",
-                    area: ['700px', '550px'],
-                    shadeClose: true, //点击遮罩关闭
-                    content: 'table form new task.html',
-                    cancel: function (index, layero) {
-                        tableIns.reload();
-                    }
-                })
-            });
             // 暂停和中止按钮功能
             var table = layui.table;
-
-            // 获取选中行
-            table.on('checkbox(dataCheck)', function (obj) {
-                layer.msg('123');
-                console.log(obj.checked); //当前是否选中状态
-                console.log(obj.data); //选中行的相关数据
-                console.log(obj.type); //如果触发的是全选，则为：all，如果触发的是单选，则为：one
-            });
 
             $('#btn-delete-all').on('click', function () {
                 var checkStatus = table.checkStatus('dataCheck');
@@ -161,12 +140,6 @@
                     });
                 }
             });
-
-            // 刷新
-            $('#btn-refresh').on('click', function () {
-                tableIns.reload();
-            });
-
 
             $("#btn-add").on('click', function () {
                 layer.open({
@@ -230,7 +203,17 @@
 
                 }
             });
-        });
+       		
+       		var twidth = document.getElementsByClassName('layui-table-view')[0].offsetWidth-58
+       		tablerender.cols[0].forEach(function(n,i){
+       			if(n.width){
+       				if(i==7){n.width = twidth/8*0.8}
+       				else if(i==8){n.width = twidth/8*1.2}
+       				else{n.width = twidth/8}
+       			}
+       		})
+       		tableIns = table.render(tablerender);
+       	});
 
     </script>
     <!-- 表格操作按钮集 -->
