@@ -69,7 +69,7 @@
                 , $ = layui.jquery;
 
             // 表格渲染
-            var tableIns = table.render({
+            var tablerender = {
                 elem: '#dateTable'                  //指定原始表格元素选择器（推荐id选择器）
                 , height: vipTable.getFullHeight()    //容器高度
                 , cols: [[                  //标题栏
@@ -102,7 +102,8 @@
                     //得到数据总量
                     console.log(count);
                 }
-            });
+            };
+            var tableIns = table.render(tablerender);
 
             // 获取选中行
             table.on('checkbox(dataCheck)', function (obj) {
@@ -137,9 +138,32 @@
 
             // 刷新
             $('#btn-refresh').on('click', function () {
-                tableIns.reload();
+                tableIns = table.render(tablerender);
             });
 
+            $("#btn-s").on('click', function () {
+                console.log('search')
+                var inputText = document.getElementById("search_bar").value
+                jsondata2 = jsondata.filter(function (item) {
+                    return item.cname == inputText
+                })
+                var temp = deepClone(tablerender)
+                tablerender.data = jsondata2
+                tablerender.url = ''
+                tableIns = table.render(tablerender);
+                tablerender = deepClone(temp)
+            })
+
+            function deepClone(obj) {
+                let _obj = JSON.stringify(obj),
+                    objClone = JSON.parse(_obj);
+                return objClone
+            }
+
+            var jsondata = new Object()
+            $.getJSON("../json/client.json", function (data) {
+                jsondata = data.data
+            })
 
 
             $("#btn-add").on('click', function () {
@@ -173,9 +197,8 @@
                         title: "Client",
                         area: ['700px', '550px'],
                         shadeClose: true, //点击遮罩关闭
-                        content: '../demo/table form new client.html',
-
-                    })
+                        content: 'show-client.php?data=' + escape(JSON.stringify(data)),
+                    });
                 } else if (obj.event === 'del') {
                     layer.confirm('Confirm to delete ?', {
                         title: 'Delete Client',
