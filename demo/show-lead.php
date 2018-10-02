@@ -29,7 +29,7 @@
     }
 ?>
 
-    <form class="layui-form" action="../add-lead.php" method="post">
+    <form class="layui-form" action="">
         LEAD DETAILS<hr />
         <div class="layui-form-item">
             <label class="layui-form-label"  style="width: 120px; padding: 10px;">Lead Name</label>
