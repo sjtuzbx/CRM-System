@@ -101,7 +101,7 @@
                     console.log(count);
                 }
             }
-             // 表格渲染
+            // 表格渲染
             var tableIns = table.render(tablerender);
 
             // 获取选中行
@@ -114,7 +114,7 @@
 
             // 刷新
             $('#btn-refresh').on('click', function () {
-                tableIns.reload();
+                tableIns = table.render(tablerender);
             });
             
             $("#btn-add").on('click', function () {
@@ -131,6 +131,30 @@
                     
                 })
             });
+
+            $("#btn-s").on('click', function () {
+                console.log('search')
+                var inputText = document.getElementById("search_bar").value
+                jsondata2 = jsondata.filter(function (item) {
+                    return item.tname == inputText
+                })
+                var temp = deepClone(tablerender)
+                tablerender.data = jsondata2
+                tablerender.url = ''
+                tableIns = table.render(tablerender);
+                tablerender = deepClone(temp)
+            })
+
+            function deepClone(obj) {
+                let _obj = JSON.stringify(obj),
+                    objClone = JSON.parse(_obj);
+                return objClone
+            }
+
+            var jsondata = new Object()
+            $.getJSON("../json/task.json", function (data) {
+                jsondata = data.data
+            })
 
             // 暂停和中止按钮功能
             var table = layui.table;
@@ -205,17 +229,17 @@
 
                 }
             });
-       		
-       		var twidth = document.getElementsByClassName('layui-table-view')[0].offsetWidth-58
-       		tablerender.cols[0].forEach(function(n,i){
-       			if(n.width){
-       				if(i==7){n.width = twidth/8*0.8}
-       				else if(i==8){n.width = twidth/8*1.2}
-       				else{n.width = twidth/8}
-       			}
-       		})
-       		tableIns = table.render(tablerender);
-       	});
+
+            var twidth = document.getElementsByClassName('layui-table-view')[0].offsetWidth - 58
+            tablerender.cols[0].forEach(function (n, i) {
+                if (n.width) {
+                    if (i == 7) { n.width = twidth / 8 * 0.8 }
+                    else if (i == 8) { n.width = twidth / 8 * 1.2 }
+                    else { n.width = twidth / 8 }
+                }
+            })
+            tableIns = table.render(tablerender);
+        });
 
     </script>
     <!-- 表格操作按钮集 -->
