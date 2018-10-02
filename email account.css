@@ -1,0 +1,24 @@
+*{
+    margin: 0;
+    padding: 0;
+    
+}
+#email_address{
+    font-size: 16px;
+    display: inline-block;
+    width: 17.5%;
+}
+#email_password{
+    font-size:16px;
+    display: inline-block;
+    width: 100%;
+}
+#address_lable,#password_lable{
+    font-size: 16px !important;
+    text-align: right !important;
+}
+#emial_tips{
+    font-size:16px;
+    display: none;
+}
+

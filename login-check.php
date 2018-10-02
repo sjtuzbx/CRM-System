@@ -25,7 +25,7 @@
 	if (mysqli_num_rows($res) == 1){
 		// 
 		session_start();
-		$_SESSION["admin"] = true;
+		$_SESSION["admin"] = $login_username;
 
 		$row = mysqli_fetch_assoc($res);
 		if ($row['password'] == $login_password){
