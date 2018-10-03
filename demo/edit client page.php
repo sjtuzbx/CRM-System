@@ -17,8 +17,7 @@
 
         $cid = $row['cid'];
         $name = $row['cname'];
-        $status_map = array("Lapsed", "Active");
-        $status = $status_map[$row['status']]; 
+        $status = $row['status']; 
 
         $siteaddress = $row['siteaddress'];
         $postaladdress = $row['postaladdress'];
@@ -37,10 +36,22 @@
     <div class="layui-form-item">
         <label class="layui-form-label" style="width: 120px; padding: 10px;">Client Status</label>
         <div class="layui-input-inline" style="margin-left: 15px;">
-            <select name="status" lay-filter="aihao">
+            <select name="status" id="status" lay-filter="aihao">
              <!--  <option value=""></option> -->
-             <option value="0">Lapsed</option>
-             <option value="1" selected="">Active</option>
+             <?php 
+
+             	if ($status == "Lapsed"){
+//           		echo "Lapsed";
+             		echo '<option value="0" selected="">Lapsed</option> </br>
+             <option value="1">Active</option>';
+             	}else {
+//           		echo "$status";
+             		echo '<option value="0">Lapsed</option> </br>
+             <option value="1" selected="">Active</option>';
+             	}
+             ?>
+             <!--<option value="0">Lapsed</option>
+             <option value="1" selected="">Active</option>-->
          </select>
      </div>
  </div>
@@ -90,7 +101,8 @@
         var form = layui.form
         ,layer = layui.layer
         ,layedit = layui.layedit
-        ,laydate = layui.laydate;
+        ,laydate = layui.laydate
+        ,$ = layui.jquery;
 
         //日期
         laydate.render({
@@ -133,8 +145,8 @@
             // });
             //return false;
         });
-
-
+        
+        //console.log($status)
     });
 </script>
 </body>
