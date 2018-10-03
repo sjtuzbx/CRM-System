@@ -53,11 +53,8 @@
     <div class="layui-form-item">
         <label class="layui-form-label" style="width: 120px; padding: 10px;">Responsible User</label>
         <div class="layui-input-inline" style="margin-left: 15px;">
-            <select name="responsiveid" lay-verify="essential" lay-search="">
+            <select name="responsiveid" id="ruser" lay-verify="essential" lay-search="">
                 <option value="">Choose</option>
-                <option value="1">Lisa</option>
-                <option value="2">Jenny</option>
-                <option value="3">Ponny</option>
             </select>
         </div>
     </div>
@@ -100,7 +97,8 @@
         var form = layui.form
         ,layer = layui.layer
         ,layedit = layui.layedit
-        ,laydate = layui.laydate;
+        ,laydate = layui.laydate
+        ,$ = layui.jquery;
 
         //日期
         laydate.render({
@@ -146,6 +144,12 @@
             //return false;
         });
 
+        $.getJSON("../json/user.json", function (data) {
+            data.data.forEach(function(n){
+                $("#ruser").append("<option value='"+n.uid+"'>"+n.username+"</option>");
+            })
+            form.render('select')
+        })
 
     });
 </script>

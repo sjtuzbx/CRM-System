@@ -31,14 +31,14 @@
     <div class="layui-form-item">
         <label class="layui-form-label"  style="width: 120px; padding: 10px;">First Name</label>
         <div class="layui-input-inline" style="margin-left: 15px;">
-        <input type="text" name="firstname" lay-verify="required" autocomplete="off" placeholder="<?php echo $firstname; ?>" class="layui-input">
+        <input type="text" name="firstname" lay-verify="required" autocomplete="off" value="<?php echo $firstname; ?>" class="layui-input">
         </div>
     </div>
 
     <div class="layui-form-item">
         <label class="layui-form-label"  style="width: 120px; padding: 10px;">Last Name</label>
         <div class="layui-input-inline" style="margin-left: 15px;">
-            <input type="text" name="lastname" lay-verify="required" autocomplete="off" placeholder="<?php echo $lastname; ?>" class="layui-input">
+            <input type="text" name="lastname" lay-verify="required" autocomplete="off" value="<?php echo $lastname; ?>" class="layui-input">
         </div>
     </div>
   
@@ -56,13 +56,13 @@
     <div class="layui-form-item" style="display:block;">
         <label class="layui-form-label"  style="width: 120px; padding: 10px;">Phone</label>
         <div class="layui-input-inline" style="margin-left: 15px;">
-            <input type="text" name="phone" lay-verify="phone" autocomplete="off" placeholder="<?php echo $phone; ?>" class="layui-input">
+            <input type="text" name="phone" lay-verify="phone" autocomplete="off" value="<?php echo $phone; ?>" class="layui-input">
         </div>
     </div>;
     <div class="layui-form-item">
         <label class="layui-form-label"  style="width: 120px; padding: 10px;">E-mail</label>
         <div class="layui-input-inline" style="margin-left: 15px;">
-            <input type="text" name="email" lay-verify="email" autocomplete="off" placeholder="<?php echo $email; ?>" class="layui-input">
+            <input type="text" name="email" lay-verify="email" autocomplete="off" value="<?php echo $email; ?>" class="layui-input">
         </div>
     </div>
 
@@ -70,7 +70,7 @@
 
     <div class="layui-form-item layui-form-text">
         <div class="layui-input-block" style="margin: 0px 30px;">
-            <textarea placeholder="<?php echo $notes; ?>" class="layui-textarea layui-hide" name="note" lay-verify="content" id="LAY_demo_editor"></textarea>
+            <textarea value="<?php echo $notes; ?>" class="layui-textarea layui-hide" name="note" lay-verify="content" id="LAY_demo_editor"></textarea>
         </div>
     </div>
 

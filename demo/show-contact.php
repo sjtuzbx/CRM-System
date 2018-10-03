@@ -82,13 +82,6 @@
     </div>
 
  
-    <div class="layui-form-item">
-        <div class="layui-input-block" style="margin-left: 255px;">
-            <button class="layui-btn" lay-submit="" lay-filter="demo1">Confirm</button>
-            <!-- <button class="layui-btn" lay-submit="" lay-filter="demo1">Save</button> -->
-            <!-- <button type="reset" class="layui-btn layui-btn-primary">Reset</button> -->
-        </div>
-    </div>
 </form>
 
 <script src="../frame/layui/layui.js" charset="utf-8"></script>
@@ -134,13 +127,6 @@
             layer.tips('温馨提示：请注意开关状态的文字可以随意定义，而不仅仅是ON|OFF', data.othis)
         });
 
-        //监听提交
-        form.on('submit(demo1)', function(data){
-            // layer.alert(JSON.stringify(data.field), {
-            //     title: '最终的提交信息'
-            // });
-             return false;
-        });
 
 
     });

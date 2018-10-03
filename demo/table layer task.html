@@ -117,17 +117,21 @@
                 tableIns = table.render(tablerender);
             });
 
+			//搜索
             $("#btn-s").on('click', function () {
                 console.log('search')
                 var inputText = document.getElementById("search_bar").value
-                jsondata2 = jsondata.filter(function (item) {
-                    return item.tname == inputText
-                })
-                var temp = deepClone(tablerender)
-                tablerender.data = jsondata2
-                tablerender.url = ''
-                tableIns = table.render(tablerender);
-                tablerender = deepClone(temp)
+                if(inputText){
+                	jsondata2 = jsondata.filter(function (item) {
+	                    return item.tname == inputText
+	                })
+	                var temp = deepClone(tablerender)
+	                tablerender.data = jsondata2
+	                tablerender.url = ''
+	                tableIns = table.render(tablerender);
+	                tablerender = deepClone(temp)
+                }
+               
             })
 
             function deepClone(obj) {
@@ -193,6 +197,11 @@
                         area: ['700px', '550px'],
                         shadeClose: true, //点击遮罩关闭
                         content: 'show-task.php?data=' + escape(JSON.stringify(data)),
+                        btn: ['Confirm'],
+                        btnAlign: 'c',
+                        yes: function(index, layero){
+                            layer.close(index)
+                        }
                     })
                 } else if (obj.event === 'del') {
                     layer.confirm('Confirm to delete ?', {

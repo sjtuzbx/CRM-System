@@ -35,7 +35,7 @@
     <div class="my-btn-box">
         <span class="fl">
             <a class="layui-btn layui-btn-danger radius btn-delect" id="btn-delete-all">Bulk Delete</a>
-            <a class="layui-btn btn-add btn-default" id="btn-add">Add New Client</a>
+            <a class="layui-btn btn-add btn-default" id="btn-add" disabled>Add New Client</a>
             <!-- client需要直接由lead转换 -->
             <a class="layui-btn btn-add btn-default" id="btn-refresh"><i class="layui-icon">&#x1002;</i></a>
         </span>
@@ -198,6 +198,11 @@
                         area: ['700px', '550px'],
                         shadeClose: true, //点击遮罩关闭
                         content: 'show-client.php?data=' + escape(JSON.stringify(data)),
+                        btn: ['Confirm'],
+                        btnAlign: 'c',
+                        yes: function(index, layero){
+                            layer.close(index)
+                        }
                     });
                 } else if (obj.event === 'del') {
                     layer.confirm('Confirm to delete ?', {

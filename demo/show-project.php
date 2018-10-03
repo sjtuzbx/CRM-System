@@ -27,8 +27,23 @@
 
         $duedate = $row['duedate'];
         $responsiveid = $row["responsiveid"];
-        $responsive_map = array("Lisa", "Jenny", "Ponny");
-        $responsive_name = $responsive_map[$responsiveid];
+
+        $sql = "SELECT username FROM user WHERE `uid`='$responsiveid'";
+		$servername = "localhost";
+		$sql_username = "root";
+		$sql_password = "123456";
+		$dbname = "mylogin";
+		// 创建连接
+		$conn = mysqli_connect($servername, $sql_username, $sql_password, $dbname);
+		// 检测连接
+		if (!$conn) {
+		    die("Connection failed: " . mysqli_connect_error());
+		}
+		//echo $sql;
+		$res = mysqli_query($conn, $sql);
+		$project_row = mysqli_fetch_assoc($res);
+		//echo $prject_row;
+        $responsive_name = $project_row['username'];
 
         $tags = $row["tags"];
         $tags_map = array("aa", "cc", "dd");
@@ -94,12 +109,6 @@
             <label class="layui-textarea layui-hide" name="customized"> <?php echo $customized ?>  </label>
         </div>
     </div>
-
-    <div class="layui-form-item">
-        <div class="layui-input-block" style="margin-left: 255px;">
-            <button class="layui-btn" lay-submit="" lay-filter="demo1">Confirm</button>
-        </div>
-    </div>
 </form>
 
 <script src="../frame/layui/layui.js" charset="utf-8"></script>
@@ -140,14 +149,6 @@
                 offset: '6px'
             });
             layer.tips('the characters in switch can be any.', data.othis)
-        });
-
-        //监听提交
-        form.on('submit(demo1)', function(data){
-            // layer.alert(JSON.stringify(data.field), {
-            //     title: '最终的提交信息'
-            // });
-            return false;
         });
 
 
