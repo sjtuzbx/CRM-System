@@ -127,8 +127,7 @@
                         },
                         success: function (data) {
                             //alert("Success");
-                            tableIns.reload();
-                            layer.close($i);
+                            tableIns = table.render(tablerender);
                         }
                     });
                 }
@@ -216,6 +215,7 @@
                                     alert("Success");
                                     obj.del();
                                     layer.close(index);
+                                    tableIns = table.render(tablerender);
                                 }
                             });
                         });

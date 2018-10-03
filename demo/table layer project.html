@@ -128,8 +128,8 @@
             },
             success: function (data) {
               //alert("Success");
-              tableIns.reload();
-              layer.close($i);
+              tableIns = table.render(tablerender);
+
             }
           });
         }
@@ -167,14 +167,6 @@
       	tablerender.url = ''
       	tableIns = table.render(tablerender);
       	tablerender = deepClone(temp)
-      	/*tableIns.reload('dataCheck',{
-      		//url: '../json/projects.json'
-          where: {
-	         // key: {
-              keyword: '20180912'
-            //}
-          }
-        })*/
       })
 
 			function deepClone(obj){
@@ -229,6 +221,7 @@
                 alert("Success");
                 obj.del();
                 layer.close(index);
+                tableIns = table.render(tablerender);
               }
             });
           });
