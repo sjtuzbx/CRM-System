@@ -6,7 +6,7 @@
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>Data-Table client</title>
+    <title>Data-Table task</title>
     <link rel="stylesheet" href="../frame/layui/css/layui.css">
     <!--<link rel="stylesheet" href="http://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">-->
     <link rel="stylesheet" href="../frame/static/css/style.css">
@@ -15,7 +15,8 @@
         .add_new{
     		height: 100%;
     	}
-          @font-face{
+      
+    @font-face{
         font-family: "imooc-icon";
         src: url("../icomoon/fonts/icomoon.eoteot?7kkyc2"); 
         src: url("../icomoon /fonts/icomoon.eot?#iefix") format("embedded-opentype")
@@ -34,24 +35,15 @@
     <!-- 工具集 -->
     <div class="my-btn-box">
         <span class="fl">
-            <a class="layui-btn layui-btn-danger radius btn-delect" id="btn-delete-all">Bulk Delete</a>
-            <!-- client需要直接由lead转换 -->
+            <a class="layui-btn btn-add btn-default" id="btn-add">Add New User</a>
             <a class="layui-btn btn-add btn-default" id="btn-refresh"><i class="layui-icon">&#x1002;</i></a>
-        </span>
-        <span class="fr">
-            <span class="layui-form-label">Search For</span>
-            <div class="layui-input-inline">
-                <input type="text" autocomplete="off" placeholder="keywords: name...etc" class="layui-input" id="search_bar"
-                    name="id">
-            </div>
-            <button class="layui-btn mgl-20" id="btn-s" data-type="reload" lay-submit="">Searching</button>
         </span>
     </div>
 
     <!-- 表格 -->
     <!-- <div id="dateTable"></div> -->
     <table id="dateTable" class="layui-hide" lay-filter="demo"></table>
-
+    <script type="text/javascript" src="../frame/layui/layui.all.js"></script>
     <script type="text/javascript" src="../frame/layui/layui.js"></script>
     <script type="text/javascript" src="../js/index.js"></script>
     <!-- <script src="../layui/layui.js"></script> -->
@@ -67,24 +59,18 @@
                 , vipTable = layui.vip_table
                 , $ = layui.jquery;
 
-            // 表格渲染
             var tablerender = {
                 elem: '#dateTable'                  //指定原始表格元素选择器（推荐id选择器）
                 , height: vipTable.getFullHeight()    //容器高度
                 , cols: [[                  //标题栏
                     { checkbox: true, sort: true, fixed: true, space: true }
-                    // , {field: 'id', title: '', width: 80}
-                    , { field: 'cname', title: 'Name', width: 140 }
-                    , { field: 'clienttype', title: 'Client Type', width: 140 }
-                    , { field: 'siteaddress', title: 'Site Address', width: 180 }
-                    , { field: 'postaladdress', title: 'Postal Address', width: 180 }
-                    , { field: 'cstatus', title: 'Status', width: 90 }
-                    , { field: 'cphone', title: 'Phone(Office)', width: 180 }
-                    , { field: 'cdatecreated', title: 'Date Created', width: 120 }
-                    , { fixed: 'right', title: 'Function', width: 180, align: 'center', toolbar: '#barOption' } //这里的toolbar值是模板元素的选择器
+                    , { field: 'username', title: 'User Name', width: 120 }
+                    , { field: 'password', title: 'Password', width: 120 }
+                    , { field: 'uemail', title: 'Email', width: 100 }
+                    , { fixed: 'right', title: 'Function', width: 160, align: 'center', toolbar: '#barOption' } //这里的toolbar值是模板元素的选择器
                 ]]
                 , id: 'dataCheck'
-                , url: '../json/client.json'
+                , url: '../json/user.json'
                 , method: 'get'
                 , page: true
                 , limits: [30, 60, 90, 150, 300]
@@ -101,7 +87,8 @@
                     //得到数据总量
                     console.log(count);
                 }
-            };
+            }
+            // 表格渲染
             var tableIns = table.render(tablerender);
 
             // 获取选中行
@@ -112,16 +99,22 @@
                 console.log(obj.type); //如果触发的是全选，则为：all，如果触发的是单选，则为：one
             });
 
+            // 刷新
+            $('#btn-refresh').on('click', function () {
+                tableIns = table.render(tablerender);
+            });
+
+            // 暂停和中止按钮功能
+            var table = layui.table;
+
             $('#btn-delete-all').on('click', function () {
                 var checkStatus = table.checkStatus('dataCheck');
-                //console.log("bulk delete");
-                //console.log(checkStatus.data);
                 for ($i = 0; $i < checkStatus.data.length; $i = $i + 1) {
                     $row = checkStatus.data[$i];
                     //console.log(JSON.stringify($row));
                     $.ajax({
                         type: "POST",
-                        url: "../delete-client.php",
+                        url: "../delete-task.php",
                         data: { data: JSON.stringify($row) },
                         error: function (request) {
                             alert("Connection error");
@@ -135,105 +128,64 @@
                 }
             });
 
-            // 刷新
-            $('#btn-refresh').on('click', function () {
-                tableIns = table.render(tablerender);
-            });
-
-            $("#btn-s").on('click', function () {
-                console.log('search')
-                var inputText = document.getElementById("search_bar").value
-                jsondata2 = jsondata.filter(function (item) {
-                    return item.cname == inputText
+            $("#btn-add").on('click', function () {
+                layer.open({
+                    type: 2,
+                    title: "New User",
+                    area: ['700px', '550px'],
+                    shadeClose: true, //点击遮罩关闭
+                    content: 'table form new user.html',
+                    cancel: function (index, layero) {
+                        tableIns.reload();
+                    }
                 })
-                var temp = deepClone(tablerender)
-                tablerender.data = jsondata2
-                tablerender.url = ''
-                tableIns = table.render(tablerender);
-                tablerender = deepClone(temp)
-            })
-
-            function deepClone(obj) {
-                let _obj = JSON.stringify(obj),
-                    objClone = JSON.parse(_obj);
-                return objClone
-            }
-
-            var jsondata = new Object()
-            $.getJSON("../json/client.json", function (data) {
-                jsondata = data.data
-            })
-
-            //  $("#cancle").on("click",function(){
-
-            // 暂停和中止按钮功能
+            });
             var table = layui.table;
-            //监听表格复选框选择
             table.on('checkbox(demo)', function (obj) {
                 console.log(obj)
             });
             //监听工具条
             table.on('tool(demo)', function (obj) {
                 var data = obj.data;
-                if (obj.event === 'detail') {
-                    // layer.msg('ID：'+ data.id + ' 的查看操作');
-                    //layer.alert('edit：<br>' + JSON.stringify(data));
-                    layer.open({
-                        type: 2,
-                        title: "Client",
-                        area: ['700px', '550px'],
-                        shadeClose: true, //点击遮罩关闭
-                        content: 'show-client.php?data=' + escape(JSON.stringify(data)),
-                        btn: ['Confirm'],
-                        btnAlign: 'c',
-                        yes: function(index, layero){
-                            layer.close(index)
-                        }
-                    });
-                } else if (obj.event === 'del') {
+                if (obj.event === 'del') {
                     layer.confirm('Confirm to delete ?', {
-                        title: 'Delete Client',
+                        title: 'Delete Task',
                         btn: ['Comfirm', 'Cancel']
-                    }
-                        , function (index) {
-                            $.ajax({
-                                type: "POST",
-                                url: "../delete-client.php",
-                                data: { data: JSON.stringify(data) },
-                                error: function (request) {
-                                    alert("Connection error");
-                                },
-                                success: function (data) {
-                                    alert("Success");
-                                    obj.del();
-                                    layer.close(index);
-                                }
-                            });
+                    }, function (index) {
+                        $.ajax({
+                            type: "POST",
+                            url: "../delete-user.php",
+                            data: { data: JSON.stringify(data) },
+                            error: function (request) {
+                                alert("Connection error");
+                            },
+                            success: function (data) {
+                                alert("Success");
+                                obj.del();
+                                layer.close(index);
+                            }
                         });
-                } else if (obj.event === 'edit') {
-                    //layer.alert('edit：<br>' + JSON.stringify(data));
-                    layer.open({
-                        type: 2,
-                        title: "Lead",
-                        area: ['700px', '550px'],
-                        shadeClose: true, //点击遮罩关闭
-                        content: 'edit client page.php?data=' + escape(JSON.stringify(data)),
-                        cancel: function (index, layero) {
-                            tableIns.reload();
-                        }
                     });
-                }
+                } 
             });
 
+            var twidth = document.getElementsByClassName('layui-table-view')[0].offsetWidth - 58
+            tablerender.cols[0].forEach(function (n, i) {
+                if (n.width) {
+                    if (i == 7) { n.width = twidth / 8 * 0.8 }
+                    else if (i == 8) { n.width = twidth / 8 * 1.2 }
+                    else { n.width = twidth / 8 }
+                }
+            })
+            tableIns = table.render(tablerender);
         });
+
     </script>
     <!-- 表格操作按钮集 -->
     <script type="text/html" id="barOption">
-    <a class="layui-btn layui-btn-mini" lay-event="detail">View</a>
-    <a class="layui-btn layui-btn-mini layui-btn-normal" lay-event="edit">Edit</a>
+
     <a class="layui-btn layui-btn-mini layui-btn-danger" lay-event="del">Delete</a>
 </script>
-
 </body>
 
 </html>

@@ -18,6 +18,7 @@
         $json = $_GET["data"];
         $row = json_decode($json, true);
         $tname = $row["tname"];
+		$tcatogery = $row["tcatogery"];
         $startdate = $row["startdate"];
         $duedate = $row['duedate'];
         $status = $row["status"];
@@ -28,7 +29,25 @@
         $permission = $row["permission"];
 
         $permission_map = array("Public Task", "Private Task");
-        $permission_name = $permission_map[$catogery];
+        $permission_name = $permission_map[$permission];
+		
+		$relatedto = $row["relatedto"];
+		$sql = "SELECT pname FROM projects WHERE id='$relatedto'";
+		$servername = "localhost";
+		$sql_username = "root";
+		$sql_password = "123456";
+		$dbname = "mylogin";
+		// 创建连接
+		$conn = mysqli_connect($servername, $sql_username, $sql_password, $dbname);
+		// 检测连接
+		if (!$conn) {
+		    die("Connection failed: " . mysqli_connect_error());
+		}
+		//echo $sql;
+		$res = mysqli_query($conn, $sql);
+		$project_row = mysqli_fetch_assoc($res);
+		//echo $prject_row;
+		$pname = $project_row['pname'];
     }
 ?>
 
@@ -44,15 +63,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label" style="width: 120px; padding: 10px;">Category</label>
             <div class="layui-input-inline" style="margin-left: 15px;">
-                <select name="catogery" lay-verify="" lay-search="">
-                    <option value="">Please Choose</option>
-                    <option value="1">Email</option>
-                    <option value="2">Follow Up</option>
-                    <option value="3">Get Started</option>
-                    <option value="4">Meeting</option>
-                    <option value="5">Phone Call</option>
-                    <option value="6">TO Do</option>
-                </select>
+            	<label class="layui-input"> <?php echo $tcatogery ?> </label>
             </div>
         </div>
         <div class="layui-form-item" style="display:block;">
@@ -95,7 +106,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label" style="width: 120px; padding: 10px;">Priority</label>
             <div class="layui-input-inline" style="margin-left: 15px;">
-                <label class="layui-input"> <?php echo $priority ?> </label>
+            	<label class="layui-input"> <?php echo $priority ?> </label>
             </div>
         </div>
         <br />
@@ -104,8 +115,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label" style="width: 120px; padding: 10px;">Related To</label>
             <div class="layui-input-inline" style="margin-left: 15px;">
-                <select name="modules" id="project" lay-verify="required">
-                </select>
+            	<label class="layui-input"> <?php echo $pname ?> </label>
             </div>
         </div>
 
@@ -131,11 +141,6 @@
             </div>
         </div>
 
-        <div class="layui-form-item">
-            <div class="layui-input-block" style="margin-left: 255px;">
-                <button class="layui-btn" lay-submit="" lay-filter="demo1">Confirm</button>
-            </div>
-        </div>
     </form>
 
 <script src="../frame/layui/layui.js" charset="utf-8"></script>
@@ -177,16 +182,6 @@
             });
             layer.tips('the characters in switch can be any.', data.othis)
         });
-
-        //监听提交
-        form.on('submit(demo1)', function(data){
-            // layer.alert(JSON.stringify(data.field), {
-            //     title: '最终的提交信息'
-            // });
-            return false;
-        });
-
-
     });
 </script>
 </body>

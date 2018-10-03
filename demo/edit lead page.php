@@ -40,9 +40,16 @@
         <label class="layui-form-label" style="width: 120px; padding: 10px;">Lead Status</label>
         <div class="layui-input-inline" style="margin-left: 15px;">
             <select name="status" lay-filter="aihao">
-             <!--  <option value=""></option> -->
-             <option value="0">Lapsed</option>
-             <option value="1" selected="">Active</option>
+                <?php       
+                        $arr = array('<option value="0"', '>Lapsed</option>',
+                                        '<option value="1"', '>Active</option>');
+                        if ($status == "Lapsed") $id = 0;
+                        else if ($status == "Active") $id = 2;
+                        $arr[$id] = $arr[$id] . ' selected=""';
+                        for ($i=0; $i < count($arr); $i=$i+1){
+                            echo $arr[$i];
+                        }
+                    ?>
             </select>            
         </div>
     </div>
@@ -69,10 +76,18 @@
     <label class="layui-form-label" style="width: 120px; padding: 10px;">Permission</label>
     <div class="layui-input-inline" style="margin-left: 15px;">
         <select name="permission" lay-verify="required" lay-search="">
-            <option value="">Please Choose</option>
-            <option value="1">Everyone</option>
-            <option value="2">Administrator</option>
-            <option value="3">Individual People</option>
+                <?php       
+                        $arr = array('<option value="1"', '>Everyone</option>',
+                                    ' <option value="2"', '>Administrator</option>',
+                                '<option value="3"', '>Individual People</option>');
+                        $id =2* ($permission - 1);
+        
+                        $arr[$id] = $arr[$id] . ' selected=""';
+                        echo '<option value="">Please Choose</option>';
+                        for ($i=0; $i < count($arr); $i=$i+1){
+                            echo $arr[$i];
+                        }
+                    ?>  
         </select>
                   
     </div>

@@ -193,6 +193,11 @@
                         area: ['700px', '550px'],
                         shadeClose: true, //点击遮罩关闭
                         content: 'show-contact.php?data=' + escape(JSON.stringify(data)),
+                        btn: ['Confirm'],
+                        btnAlign: 'c',
+                        yes: function(index, layero){
+                            layer.close(index)
+                        }
                     })
                 } else if (obj.event === 'del') {
                     layer.confirm('Confirm to delete ?', {

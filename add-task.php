@@ -31,8 +31,9 @@
 
 	$name = $_POST['title'];
 	$status_map = array("Not Started", "In Progress", "Completed", "Deferred", "Cancelled");
-	$status = $status_map[$_POST['status']]; 
+	$status = $status_map[$_POST['status']];
 	$catogery = $_POST['catogery'];
+	$relatedto = $_POST['projectid'];
 
 	$startdate = $_POST["startdate"];
 	$duedate = $_POST['duedate'];
@@ -44,8 +45,8 @@
 	$description = $_POST["description"];
 	$permission = $_POST["permission"];
 
-	$sql = "INSERT INTO `task` (`tid`, `tname`, `towner`, `startdate`, `duedate`, `status`, `reminddate`, `progress`, `priority`, `tresponsiveid`, `description`, `permission`) VALUES ('$id', '$name', '0', '$startdate', '$duedate', '$status', '$reminddate', '0', '$priority', '1', '$description', '$permission');";
-
+	$sql = "INSERT INTO `task` (`tid`, `tname`, `towner`, `tcatogery`, `relatedto`, `startdate`, `duedate`, `status`, `reminddate`, `progress`, `priority`, `tresponsiveid`, `description`, `permission`) VALUES ('$id', '$name', '0', '$catogery', '$relatedto','$startdate', '$duedate', '$status', '$reminddate', '0', '$priority', '1', '$description', '$permission');";
+	//echo $sql;
 	$res = mysqli_query($conn, $sql);
 	if ($res){
 		// update json

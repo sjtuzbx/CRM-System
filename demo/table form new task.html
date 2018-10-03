@@ -27,12 +27,12 @@
             <div class="layui-input-inline" style="margin-left: 15px;">
                 <select name="catogery" lay-verify="required" lay-search="">
                     <option value="">Please Choose</option>
-                    <option value="1">Email</option>
-                    <option value="2">Follow Up</option>
-                    <option value="3">Waiting</option>
-                    <option value="4">Meeting</option>
-                    <option value="5">Phone Call</option>
-                    <option value="6">TO Do</option>
+                    <option value="Email">Email</option>
+                    <option value="Follow Up">Follow Up</option>
+                    <option value="Get Started">Get Started</option>
+                    <option value="Meeting">Meeting</option>
+                    <option value="Phone Call">Phone Call</option>
+                    <option value="TO Do">TO Do</option>
                 </select>
             </div>
         </div>
@@ -100,9 +100,8 @@
         <div class="layui-form-item">
             <label class="layui-form-label" style="width: 120px; padding: 10px;">Related To</label>
             <div class="layui-input-inline" style="margin-left: 15px;">
-                <select name="modules" id="project" lay-verify="required">
-                    <option value="0">Project 1</option>
-                    <option value="1" selected="">Project 2</option>
+                <select name="projectid" id="project" lay-verify="required">
+                    <option value="" selected="">choose a project</option>
                 </select>
             </div>
         </div>
@@ -141,6 +140,7 @@
         </div>
     </form>
 
+	<script type="text/javascript" src="../frame/layui/layui.all.js"></script>
     <script type="text/javascript" src="../frame/layui/layui.js"></script>
     <script type="text/javascript">
         layui.use('element', function () {
@@ -220,8 +220,17 @@
                 // });
             });
 
+            $.getJSON("../json/projects.json", function (data) {
+            	data.data.forEach(function(n){
+	            	$("#project").append("<option value='"+n.id+"'>"+n.pname+"</option>");
+	            })
+            	form.render('select')
+            })
             
-        })
+            
+
+        });
+
     </script>
    
 

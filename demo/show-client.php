@@ -18,12 +18,12 @@
 
         $cid = $row['cid'];
         $name = $row['cname'];
-        $status_map = array("Lapsed", "Active");
-        $status = $status_map[$row['status']]; 
+        $status = $row['cstatus']; 
 
         $siteaddress = $row['siteaddress'];
         $postaladdress = $row['postaladdress'];
         $phone = $row['cphone'];
+		$clienttype = $row['clienttype'];
     }
 ?>
 
@@ -39,10 +39,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label" style="width: 120px; padding: 10px;">Client Status</label>
         <div class="layui-input-inline" style="margin-left: 15px;">
-            <select name="status" lay-filter="aihao">
-             <!--  <option value=""></option> -->
-             <option value="0">Lapsed</option>
-             <option value="1" selected="">Active</option>
+        	<label class="layui-input"> <?php echo $status ?> </label>
          </select>
      </div>
  </div>
@@ -70,18 +67,10 @@
 <div class="layui-form-item">
     <label class="layui-form-label" style="width: 120px; padding: 10px;">Client Type</label>
     <div class="layui-input-inline" style="margin-left: 15px;">
-        <select name="type" lay-verify="required" lay-search="">
-            <option value="">Please Choose</option>
-            <option value="0" selected="">Individual</option>
-            <option value="1">Organisation</option>
-        </select>
+    	<label class="layui-input"> <?php echo $clienttype ?> </label>
     </div>
 </div>
-    <div class="layui-form-item">
-        <div class="layui-input-block" style="margin-left: 255px;">
-            <button class="layui-btn" lay-submit="" lay-filter="demo1">Confirm</button>
-        </div>
-    </div>
+ 
 </form>
 
 <script src="../frame/layui/layui.js" charset="utf-8"></script>
@@ -125,14 +114,6 @@
                 offset: '6px'
             });
             layer.tips('温馨提示：请注意开关状态的文字可以随意定义，而不仅仅是ON|OFF', data.othis)
-        });
-
-        //监听提交
-        form.on('submit(demo1)', function(data){
-            // layer.alert(JSON.stringify(data.field), {
-            //     title: '最终的提交信息'
-            // });
-             return false;
         });
 
 

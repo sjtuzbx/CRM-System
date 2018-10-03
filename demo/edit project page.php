@@ -52,12 +52,24 @@
             <label class="layui-form-label" style="width: 120px; padding: 10px;">Status</label>
             <div class="layui-input-inline" style="margin-left: 15px;">
                 <select name="status" lay-filter="aihao">
-                   <!--  <option value=""></option> -->
-                   <option value="0">Not Started</option>
-                   <option value="1" selected="">In Progress</option>
-                   <option value="2">Completed</option>
-                   <option value="3">Deferred</option>
-                   <option value="4">Cancelled</option>
+                    <?php       
+                        $arr = array('<option value="0"', '>Not Started</option>',
+                                        '<option value="1"', '>In Progress</option>',
+                                    ' <option value="2"', '>Completed</option>',
+                                '<option value="3"', '>Deferred</option>',
+                            ' <option value="4"', '>Cancelled</option>');
+                        if ($status == "Not Started") $id = 0;
+                        else if ($status == "In Progress") $id = 2;
+                        else if ($status == "Completed") $id = 4;
+                        else if ($status == "Deferred") $id = 6;
+                        else if ($status == "Cancelled") $id = 8;
+        
+                        $arr[$id] = $arr[$id] . ' selected=""';
+                        for ($i=0; $i < count($arr); $i=$i+1){
+                            echo $arr[$i];
+                        }
+                    
+                    ?>
                </select>
            </div>
        </div>
@@ -65,10 +77,17 @@
         <label class="layui-form-label" style="width: 120px; padding: 10px;">Category</label>
         <div class="layui-input-inline" style="margin-left: 15px;">
             <select name="catogery" lay-verify="essential" lay-search="">
-                <option value="">Please Choose</option>
-                <option value="1" selected="">Category1</option>
-                <option value="2">Category2</option>
-                <option value="3">Category3</option>
+
+                <?php       
+                        $arr = array('<option value="1"', '>Category1</option>',
+                                        '<option value="2"', '>Category2</option>',
+                                    ' <option value="3"', '>Category3</option>');
+        
+                        $arr[2*($catogery-1)] = $arr[2*($catogery-1)] . ' selected=""';
+                        for ($i=0; $i < count($arr); $i=$i+1){
+                            echo $arr[$i];
+                        }
+                 ?>
             </select>
         </div>
     </div>
@@ -83,10 +102,25 @@
         <label class="layui-form-label" style="width: 120px; padding: 10px;">Responsible User</label>
         <div class="layui-input-inline" style="margin-left: 15px;">
             <select name="responsiveid" lay-verify="essential" lay-search="">
-                <option value="">Choose</option>
-                <option value="1" selected="">Lisa</option>
-                <option value="2">Jenny</option>
-                <option value="3">Ponny</option>
+                <?php       
+                        $json_string = file_get_contents('../json/user.json');   
+                        $pid = json_decode($json_string, true);  
+                        $data = $pid['data'];
+                        $arr = array();
+                        foreach($data as $x) {
+                            $id = $x["uid"];
+                            $name = $x['username'];
+                            //echo $name;
+                            if ($id == $responsiveid)
+                                array_push($arr, "<option value=$id selected=''");
+                            else
+                                array_push($arr, "<option value=$id");
+                            array_push($arr, ">$name</option>");
+                        }
+                        for ($i=0; $i < count($arr); $i=$i+1){
+                            echo $arr[$i];
+                        }
+                 ?>
             </select>
         </div>
     </div>
@@ -94,10 +128,16 @@
         <label class="layui-form-label" style="width: 120px; padding: 10px;">Tags</label>
         <div class="layui-input-inline" style="margin-left: 15px;">
             <select name="tags" lay-verify="essential" lay-search="">
-                <option value="">Please Choose</option>
-                <option value="1" selected="">aa</option>
-                <option value="2">cc</option>
-                <option value="3">dd</option>
+                <?php       
+                        $arr = array('<option value="1"', '>aa</option>',
+                                        '<option value="2"', '>cc</option>',
+                                    ' <option value="3"', '>dd</option>');
+        
+                        $arr[2*($catogery-1)] = $arr[2*($catogery-1)] . ' selected=""';
+                        for ($i=0; $i < count($arr); $i=$i+1){
+                            echo $arr[$i];
+                        }
+                 ?>
             </select>
         </div>
     </div>

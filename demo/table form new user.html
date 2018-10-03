@@ -11,81 +11,36 @@
     <link rel="icon" href="../frame/static/image/code.png">
 </head>
 <body class="body">
-
-<?php 
-    if (isset($_GET["data"])){
-        $json = $_GET["data"];
-        $row = json_decode($json, true);
-        $ctid = $row["ctid"];
-        $firstname = $row["firstname"];
-        $lastname = $row["lastname"];
-        $status = $row['ctstatus'];
-        $phone = $row['ctphone'];
-        $email = $row['ctemail'];
-        $notes = $row['notes'];
-    }
-?>
-
-<form class="layui-form" action="../edit-contact.php?id=<?php echo $ctid ?>" method="post">
+<form class="layui-form" action="../add-user.php" method="post">
     CONTACT DETAILS<hr />
     <div class="layui-form-item">
         <label class="layui-form-label"  style="width: 120px; padding: 10px;">First Name</label>
         <div class="layui-input-inline" style="margin-left: 15px;">
-        <input type="text" name="firstname" lay-verify="required" autocomplete="off" value="<?php echo $firstname; ?>" class="layui-input">
+            <input type="text" name="firstname" lay-verify="" autocomplete="off" placeholder="" class="layui-input">
         </div>
     </div>
 
     <div class="layui-form-item">
         <label class="layui-form-label"  style="width: 120px; padding: 10px;">Last Name</label>
         <div class="layui-input-inline" style="margin-left: 15px;">
-            <input type="text" name="lastname" lay-verify="required" autocomplete="off" value="<?php echo $lastname; ?>" class="layui-input">
+            <input type="text" name="lastname" lay-verify="" autocomplete="off" placeholder="" class="layui-input">
         </div>
     </div>
   
     <div class="layui-form-item">
-        <label class="layui-form-label" style="width: 120px; padding: 10px;">Status</label>
+        <label class="layui-form-label"  style="width: 120px; padding: 10px;">Account Name</label>
         <div class="layui-input-inline" style="margin-left: 15px;">
-            <select name="status" lay-filter="aihao">
-                     <?php       
-                        $arr = array('<option value="0"', '>Not Started</option>',
-                                        '<option value="1"', '>In Progress</option>',
-                                    ' <option value="2"', '>Finished</option>');
-                        if ($status == "Not Started") $id = 0;
-                        else if ($status == "In Progress") $id = 2;
-                        else if ($status == "Finished") $id = 4;
-        
-                        $arr[$id] = $arr[$id] . ' selected=""';
-                        for ($i=0; $i < count($arr); $i=$i+1){
-                            echo $arr[$i];
-                        }
-                    
-                    ?>
-            </select>
+            <input type="text" name="accountname" lay-verify="required" autocomplete="off" placeholder="" class="layui-input">
         </div>
     </div>
 
-    <div class="layui-form-item" style="display:block;">
-        <label class="layui-form-label"  style="width: 120px; padding: 10px;">Phone</label>
-        <div class="layui-input-inline" style="margin-left: 15px;">
-            <input type="text" name="phone" lay-verify="phone" autocomplete="off" value="<?php echo $phone; ?>" class="layui-input">
-        </div>
-    </div>;
     <div class="layui-form-item">
-        <label class="layui-form-label"  style="width: 120px; padding: 10px;">E-mail</label>
+        <label class="layui-form-label"  style="width: 120px; padding: 10px;">Password</label>
         <div class="layui-input-inline" style="margin-left: 15px;">
-            <input type="text" name="email" lay-verify="email" autocomplete="off" value="<?php echo $email; ?>" class="layui-input">
+            <input type="text" name="password" lay-verify="required" autocomplete="off" placeholder="" class="layui-input">
         </div>
     </div>
 
-   Notes<hr/>
-
-    <div class="layui-form-item layui-form-text">
-        <div class="layui-input-block" style="margin: 0px 30px;">
-            <textarea value="<?php echo $notes; ?>" class="layui-textarea layui-hide" name="note" lay-verify="content" id="LAY_demo_editor"></textarea>
-        </div>
-    </div>
-
- 
     <div class="layui-form-item">
         <div class="layui-input-block" style="margin-left: 255px;">
             <button class="layui-btn" lay-submit="" lay-filter="demo1">Save</button>
@@ -120,9 +75,11 @@
         form.verify({
             title: function(value){
                 if(value.length < 5){
-                    return 'Project name must be filled';
+                    return 'Contact name must be filled';
                 }
             }
+            ,auphone: [/^\d{10}$/, 'Please input correct phone number']
+            ,auemail:[/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/,"Invalid email address."]
             ,pass: [/(.+){6,12}$/, '密码必须6到12位']
             ,content: function(value){
                 layedit.sync(editIndex);
