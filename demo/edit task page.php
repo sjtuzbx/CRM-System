@@ -48,7 +48,7 @@
                     <option value="">Please Choose</option>
                     <option value="1">Email</option>
                     <option value="2">Follow Up</option>
-                    <option value="3">Get Started</option>
+                    <option value="3">Waiting</option>
                     <option value="4">Meeting</option>
                     <option value="5">Phone Call</option>
                     <option value="6">TO Do</option>
