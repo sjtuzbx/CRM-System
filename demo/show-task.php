@@ -29,7 +29,7 @@
         $permission = $row["permission"];
 
         $permission_map = array("Public Task", "Private Task");
-        $permission_name = $permission_map[$catogery];
+        $permission_name = $permission_map[$permission];
 		
 		$relatedto = $row["relatedto"];
 		$sql = "SELECT pname FROM projects WHERE id='$relatedto'";

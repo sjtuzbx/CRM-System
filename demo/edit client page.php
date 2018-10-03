@@ -22,6 +22,7 @@
         $siteaddress = $row['siteaddress'];
         $postaladdress = $row['postaladdress'];
         $phone = $row['cphone'];
+        $clienttype = $row['clienttype'];
     }
 ?>
 <body class="body">
@@ -41,11 +42,9 @@
              <?php 
 
              	if ($status == "Lapsed"){
-//           		echo "Lapsed";
              		echo '<option value="0" selected="">Lapsed</option> </br>
              <option value="1">Active</option>';
              	}else {
-//           		echo "$status";
              		echo '<option value="0">Lapsed</option> </br>
              <option value="1" selected="">Active</option>';
              	}
@@ -80,9 +79,18 @@
     <label class="layui-form-label" style="width: 120px; padding: 10px;">Client Type</label>
     <div class="layui-input-inline" style="margin-left: 15px;">
         <select name="type" lay-verify="required" lay-search="">
-            <option value="">Please Choose</option>
-            <option value="0">Individual</option>
-            <option value="1">Organisation</option>
+            <?php       
+                $arr = array('<option value="0"', '>Individual</option>',
+                            ' <option value="1"', '>Organisation</option>');
+                if ($clienttype == "Individual") $id = 0;
+                else if ($clienttype == "Organisation") $id = 2;      
+
+                $arr[$id] = $arr[$id] . ' selected=""';
+                echo '<option value="">Please Choose</option>';
+                for ($i=0; $i < count($arr); $i=$i+1){
+                    echo $arr[$i];
+                }
+            ?>  
         </select>
     </div>
 </div>

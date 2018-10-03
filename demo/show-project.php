@@ -21,7 +21,7 @@
         $status = $row["status"];
         
         $catogery = $row['catogery'];
-        $catogery_map = array("Category1", "Category2", "Category3");
+        $catogery_map = array("", "Category1", "Category2", "Category3");
         $catogery_name = $catogery_map[$catogery];
         //echo $catogery, "<br>", $catogery_name, $catogery_map[$catogery];
 
@@ -46,7 +46,7 @@
         $responsive_name = $project_row['username'];
 
         $tags = $row["tags"];
-        $tags_map = array("aa", "cc", "dd");
+        $tags_map = array("" , "aa", "cc", "dd");
         $tags_name = $tags_map[$tags];
 
         $description = $row["description"];

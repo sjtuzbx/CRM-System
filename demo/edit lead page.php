@@ -33,46 +33,61 @@
         <div class="layui-form-item">
             <label class="layui-form-label"  style="width: 120px; padding: 10px;">Lead Name</label>
             <div class="layui-input-block" style="margin-left: 155px;">
-                <input type="text" name="title" lay-verify="required" autocomplete="off" placeholder="<?php echo $lname; ?>" class="layui-input">
+                <input type="text" name="title" lay-verify="required" autocomplete="off" value="<?php echo $lname; ?>" class="layui-input">
             </div>
         </div>
     <div class="layui-form-item">
         <label class="layui-form-label" style="width: 120px; padding: 10px;">Lead Status</label>
         <div class="layui-input-inline" style="margin-left: 15px;">
             <select name="status" lay-filter="aihao">
-             <!--  <option value=""></option> -->
-             <option value="0">Lapsed</option>
-             <option value="1" selected="">Active</option>
+                <?php       
+                        $arr = array('<option value="0"', '>Lapsed</option>',
+                                        '<option value="1"', '>Active</option>');
+                        if ($status == "Lapsed") $id = 0;
+                        else if ($status == "Active") $id = 2;
+                        $arr[$id] = $arr[$id] . ' selected=""';
+                        for ($i=0; $i < count($arr); $i=$i+1){
+                            echo $arr[$i];
+                        }
+                    ?>
             </select>            
         </div>
     </div>
  <div class="layui-form-item">
     <label class="layui-form-label"  style="width: 120px; padding: 10px;">Address</label>
     <div class="layui-input-block" style="margin-left: 155px;">
-        <input type="text" name="address" lay-verify="title" autocomplete="off" placeholder="<?php echo $address; ?>" class="layui-input">
+        <input type="text" name="address" lay-verify="title" autocomplete="off" value="<?php echo $address; ?>" class="layui-input">
     </div>
 </div>
 
 <div class="layui-form-item" style="display:block;">
     <label class="layui-form-label"  style="width: 120px; padding: 10px;">Phone</label>
     <div class="layui-input-inline" style="margin-left: 15px;">
-        <input type="text" name="phone" lay-verify="phone" autocomplete="off" placeholder="<?php echo $phonenumber; ?>" class="layui-input">
+        <input type="text" name="phone" lay-verify="phone" autocomplete="off" value="<?php echo $phonenumber; ?>" class="layui-input">
     </div>
 </div>
 <div class="layui-form-item">
     <label class="layui-form-label"  style="width: 120px; padding: 10px;">E-mail</label>
     <div class="layui-input-inline" style="margin-left: 15px;">
-        <input type="text" name="email" lay-verify="email" autocomplete="off" placeholder="<?php echo $email; ?>" class="layui-input">
+        <input type="text" name="email" lay-verify="email" autocomplete="off" value="<?php echo $email; ?>" class="layui-input">
     </div>
 </div>
 <div class="layui-form-item">
     <label class="layui-form-label" style="width: 120px; padding: 10px;">Permission</label>
     <div class="layui-input-inline" style="margin-left: 15px;">
         <select name="permission" lay-verify="required" lay-search="">
-            <option value="">Please Choose</option>
-            <option value="1">Everyone</option>
-            <option value="2">Administrator</option>
-            <option value="3">Individual People</option>
+                <?php       
+                        $arr = array('<option value="1"', '>Everyone</option>',
+                                    ' <option value="2"', '>Administrator</option>',
+                                '<option value="3"', '>Individual People</option>');
+                        $id =2* ($permission - 1);
+        
+                        $arr[$id] = $arr[$id] . ' selected=""';
+                        echo '<option value="">Please Choose</option>';
+                        for ($i=0; $i < count($arr); $i=$i+1){
+                            echo $arr[$i];
+                        }
+                    ?>  
         </select>
                   
     </div>

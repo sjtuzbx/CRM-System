@@ -24,7 +24,7 @@
         $status = $row['lstatus'];
         $datecreated = $row['ldatecreated'];
         $address = $row['laddress'];
-        $permission_map = array("Everyone", "Administrator", "Individual People");
+        $permission_map = array("", "Everyone", "Administrator", "Individual People");
         $permission = $permission_map[$row["lpermission"]];
     }
 ?>

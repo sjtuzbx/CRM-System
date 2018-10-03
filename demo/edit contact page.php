@@ -46,9 +46,20 @@
         <label class="layui-form-label" style="width: 120px; padding: 10px;">Status</label>
         <div class="layui-input-inline" style="margin-left: 15px;">
             <select name="status" lay-filter="aihao">
-                <option value="0">Not Started</option>
-                <option value="1" selected="">In Progress</option>
-                <option value="2">Finished</option>
+                     <?php       
+                        $arr = array('<option value="0"', '>Not Started</option>',
+                                        '<option value="1"', '>In Progress</option>',
+                                    ' <option value="2"', '>Finished</option>');
+                        if ($status == "Not Started") $id = 0;
+                        else if ($status == "In Progress") $id = 2;
+                        else if ($status == "Finished") $id = 4;
+        
+                        $arr[$id] = $arr[$id] . ' selected=""';
+                        for ($i=0; $i < count($arr); $i=$i+1){
+                            echo $arr[$i];
+                        }
+                    
+                    ?>
             </select>
         </div>
     </div>

@@ -18,6 +18,7 @@
         $row = json_decode($json, true);
         $tid = $row["tid"];
         $tname = $row["tname"];
+        $tcatogery = $row["tcatogery"];
         $startdate = $row["startdate"];
         $duedate = $row['duedate'];
         $status = $row["status"];
@@ -26,6 +27,7 @@
         $priority = $row['priority'];
         $description = $row["description"];
         $permission = $row["permission"];
+		$relatedto = $row["relatedto"];
 
         $permission_map = array("Public Task", "Private Task");
         $permission_name = $permission_map[$catogery];
@@ -45,13 +47,26 @@
             <label class="layui-form-label" style="width: 120px; padding: 10px;">Category</label>
             <div class="layui-input-inline" style="margin-left: 15px;"> 
                 <select name="catogery" lay-verify="" lay-search="">
-                    <option value="">Please Choose</option>
-                    <option value="1">Email</option>
-                    <option value="2">Follow Up</option>
-                    <option value="3">Get Started</option>
-                    <option value="4">Meeting</option>
-                    <option value="5">Phone Call</option>
-                    <option value="6">TO Do</option>
+                    <?php       
+                        $arr = array('<option value="1"', '>Email</option>',
+                                    ' <option value="2"', '>Follow Up</option>',
+                                '<option value="3"', '>Get Started</option>',
+                            ' <option value="4"', '>Meeting</option>',
+                            ' <option value="5"', '>Phone Call</option>',
+                            ' <option value="6"', '>TO Do</option>',);
+                        if ($tcatogery == "Email") $id = 0;
+                        else if ($tcatogery == "Follow Up") $id = 2;
+                        else if ($tcatogery == "Get Started") $id = 4;
+                        else if ($tcatogery == "Meeting") $id = 6;
+                        else if ($tcatogery == "Phone Call") $id = 8;
+                        else if ($tcatogery == "TO Do") $id = 10;
+        
+                        $arr[$id] = $arr[$id] . ' selected=""';
+                        for ($i=0; $i < count($arr); $i=$i+1){
+                            echo $arr[$i];
+                        }
+                    
+                    ?>
                 </select>
             </div>
         </div>
@@ -91,11 +106,23 @@
             <label class="layui-form-label" style="width: 120px; padding: 10px;">Status</label>
             <div class="layui-input-inline" style="margin-left: 15px;">
                 <select name="status" lay-filter="aihao">
-                    <option value="0">Not Started</option>
-                    <option value="1" selected="">In Progress</option>
-                    <option value="2">Completed</option>
-                    <option value="3">Deferred</option>
-                    <option value="4">Cancelled</option>
+                     <?php       
+                        $arr = array('<option value="0"', '>Not Started</option>',
+                                        '<option value="1"', '>In Progress</option>',
+                                    ' <option value="2"', '>Completed</option>',
+                                '<option value="3"', '>Deferred</option>',
+                            ' <option value="4"', '>Cancelled</option>');
+                        if ($status == "Not Started") $id = 0;
+                        else if ($status == "In Progress") $id = 2;
+                        else if ($status == "Completed") $id = 4;
+                        else if ($status == "Deferred") $id = 6;
+                        else if ($status == "Cancelled") $id = 8;
+        
+                        $arr[$id] = $arr[$id] . ' selected=""';
+                        for ($i=0; $i < count($arr); $i=$i+1){
+                            echo $arr[$i];
+                        }
+                    ?>
                 </select>
             </div>
         </div>
@@ -104,10 +131,18 @@
             <label class="layui-form-label" style="width: 120px; padding: 10px;">Priority</label>
             <div class="layui-input-inline" style="margin-left: 15px;">
                 <select name="priority" lay-filter="aihao">
-                    <!--  <option value=""></option> -->
-                    <option value="0">Medium</option>
-                    <option value="1" selected="">Low</option>
-                    <option value="2">High</option>
+                    <?php       
+                        $arr = array('<option value="0"', '>Medium</option>',
+                                        '<option value="1"', '>Low</option>',
+                                    ' <option value="2"', '>High</option>');
+                        if ($status == "Medium") $id = 0;
+                        else if ($status == "Low") $id = 2;
+                        else if ($status == "High") $id = 4;
+                        $arr[$id] = $arr[$id] . ' selected=""';
+                        for ($i=0; $i < count($arr); $i=$i+1){
+                            echo $arr[$i];
+                        }
+                    ?>
                 </select>
             </div>
         </div>
@@ -117,9 +152,27 @@
         <div class="layui-form-item">
             <label class="layui-form-label" style="width: 120px; padding: 10px;">Related To</label>
             <div class="layui-input-inline" style="margin-left: 15px;">
-                <select name="modules" id="project" lay-verify="required">
-                    <option value="0">Project 1</option>
-                    <option value="1" selected="">Project 2</option>
+                <select name="projectid" id="project" lay-verify="required">
+                    <?php       
+                            $json_string = file_get_contents('../json/projects.json');   
+                            $pid = json_decode($json_string, true);  
+                            $data = $pid['data'];
+                            $arr = array();
+                            foreach($data as $x) {
+                                $id = $x["id"];
+                                $name = $x['pname'];
+                                //echo $name;
+                                if ($id == $relatedto)
+                                    array_push($arr, "<option value=$id selected=''");
+                                else
+                                    array_push($arr, "<option value=$id");
+                                array_push($arr, ">$name</option>");
+                            }
+                            echo "<option value=''> Please Choose </option>";
+                            for ($i=0; $i < count($arr); $i=$i+1){
+                                echo $arr[$i];
+                            }
+                    ?>
                 </select>
             </div>
         </div>
@@ -143,9 +196,15 @@
             <label class="layui-form-label" style="width: 120px; padding: 10px;">Task Visibility</label>
             <div class="layui-input-inline" style="margin-left: 15px;">
                 <select name="permission" lay-filter="aihao">
-                    <!--  <option value=""></option> -->
-                    <option value="0">Public Task</option>
-                    <option value="1" selected="">Private Task</option>
+                    <?php       
+                        $arr = array('<option value="0"', '>Public Task</option>',
+                                        '<option value="1"', '>Private Task</option>');
+                        $id = $permission * 2;
+                        $arr[$id] = $arr[$id] . ' selected=""';
+                        for ($i=0; $i < count($arr); $i=$i+1){
+                            echo $arr[$i];
+                        }
+                    ?>
                 </select>
             </div>
         </div>
