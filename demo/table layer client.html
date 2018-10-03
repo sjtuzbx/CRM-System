@@ -35,7 +35,6 @@
     <div class="my-btn-box">
         <span class="fl">
             <a class="layui-btn layui-btn-danger radius btn-delect" id="btn-delete-all">Bulk Delete</a>
-            <a class="layui-btn btn-add btn-default" id="btn-add" disabled>Add New Client</a>
             <!-- client需要直接由lead转换 -->
             <a class="layui-btn btn-add btn-default" id="btn-refresh"><i class="layui-icon">&#x1002;</i></a>
         </span>
@@ -165,20 +164,6 @@
                 jsondata = data.data
             })
 
-
-            $("#btn-add").on('click', function () {
-                layer.open({
-                    type: 2,
-                    title: " New Client",
-                    area: ['700px', '550px'],
-                    shadeClose: true, //点击遮罩关闭
-                    content: 'table form new client.html',
-                    cancel: function (index, layero) {
-                        tableIns.reload();
-                    },
-                })
-            });
-
             //  $("#cancle").on("click",function(){
 
             // 暂停和中止按钮功能
@@ -192,6 +177,7 @@
                 var data = obj.data;
                 if (obj.event === 'detail') {
                     // layer.msg('ID：'+ data.id + ' 的查看操作');
+                    //layer.alert('edit：<br>' + JSON.stringify(data));
                     layer.open({
                         type: 2,
                         title: "Client",
