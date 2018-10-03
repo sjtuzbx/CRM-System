@@ -10,77 +10,76 @@
     <link rel="stylesheet" href="../frame/static/css/style.css">
     <link rel="icon" href="../frame/static/image/code.png">
 </head>
-<body class="body">
-    
+
 <?php 
     if (isset($_GET["data"])){
         $json = $_GET["data"];
         $row = json_decode($json, true);
 
-        $lid = $row['lid'];
-        $lname = $row["lname"];
-        $phonenumber = $row['phonenumber'];
-        $email = $row['email'];
-        $status = $row['lstatus'];
-        $datecreated = $row['ldatecreated'];
-        $address = $row['laddress'];
-        $permission_map = array("Everyone", "Administrator", "Individual People");
-        $permission = $permission_map[$row["lpermission"]];
+        $cid = $row['cid'];
+        $name = $row['cname'];
+        $status_map = array("Lapsed", "Active");
+        $status = $status_map[$row['status']]; 
+
+        $siteaddress = $row['siteaddress'];
+        $postaladdress = $row['postaladdress'];
+        $phone = $row['cphone'];
     }
 ?>
 
-    <form class="layui-form" action="">
-        LEAD DETAILS<hr />
+<body class="body">
+    <form class="layui-form">
+        CLIENT DETAILS<hr />
         <div class="layui-form-item">
-            <label class="layui-form-label"  style="width: 120px; padding: 10px;">Lead Name</label>
-            <div class="layui-input-block" style="margin-left: 155px;">
-                <label class="layui-input"> <?php echo $lname ?> </label>
-                <!-- <input type="text" name="title" lay-verify="required" autocomplete="off" placeholder="" class="layui-input"> -->
+            <label class="layui-form-label"  style="width: 120px; padding: 10px;">Client Name</label>
+            <div class="layui-input-inline" style="margin-left: 15px;">
+                <label class="layui-input"> <?php echo $name ?> </label>
             </div>
         </div>
     <div class="layui-form-item">
-        <label class="layui-form-label" style="width: 120px; padding: 10px;">Lead Status</label>
+        <label class="layui-form-label" style="width: 120px; padding: 10px;">Client Status</label>
         <div class="layui-input-inline" style="margin-left: 15px;">
-            <label class="layui-input"> <?php echo $status ?> </label>            
-        </div>
-    </div>
+            <select name="status" lay-filter="aihao">
+             <!--  <option value=""></option> -->
+             <option value="0">Lapsed</option>
+             <option value="1" selected="">Active</option>
+         </select>
+     </div>
+ </div>
  <div class="layui-form-item">
-    <label class="layui-form-label"  style="width: 120px; padding: 10px;">Address</label>
+    <label class="layui-form-label"  style="width: 120px; padding: 10px;">Site Address</label>
     <div class="layui-input-block" style="margin-left: 155px;">
-        <label class="layui-input"> <?php echo $address ?> </label>            
-        <!-- <input type="text" name="address" lay-verify="title" autocomplete="off" placeholder="" class="layui-input"> -->
+        <label class="layui-input"> <?php echo $siteaddress ?> </label>
+    </div>
+</div>
+
+<div class="layui-form-item">
+    <label class="layui-form-label"  style="width: 120px; padding: 10px;">Postal Address</label>
+    <div class="layui-input-block" style="margin-left: 155px;">
+        <label class="layui-input"> <?php echo $postaladdress ?> </label>
     </div>
 </div>
 
 <div class="layui-form-item" style="display:block;">
     <label class="layui-form-label"  style="width: 120px; padding: 10px;">Phone</label>
     <div class="layui-input-inline" style="margin-left: 15px;">
-        <label class="layui-input"> <?php echo $phonenumber ?> </label>            
-        <!-- <input type="text" name="phone" lay-verify="phone" autocomplete="off" placeholder="" class="layui-input"> -->
+        <label class="layui-input"> <?php echo $phone ?> </label>
     </div>
 </div>
+
 <div class="layui-form-item">
-    <label class="layui-form-label"  style="width: 120px; padding: 10px;">E-mail</label>
+    <label class="layui-form-label" style="width: 120px; padding: 10px;">Client Type</label>
     <div class="layui-input-inline" style="margin-left: 15px;">
-        <label class="layui-input"> <?php echo $email ?> </label>            
-        <!-- <input type="text" name="email" lay-verify="email" autocomplete="off" placeholder="" class="layui-input"> -->
-    </div>
-</div>
-<div class="layui-form-item">
-    <label class="layui-form-label" style="width: 120px; padding: 10px;">Permission</label>
-    <div class="layui-input-inline" style="margin-left: 15px;">
-        <!-- <select name="permission" lay-verify="required" lay-search="">
+        <select name="type" lay-verify="required" lay-search="">
             <option value="">Please Choose</option>
-            <option value="1">Everyone</option>
-            <option value="2">Administrator</option>
-            <option value="3">Individual People</option>
-        </select> -->
-        <label class="layui-input"> <?php echo $permission ?> </label>            
+            <option value="0" selected="">Individual</option>
+            <option value="1">Organisation</option>
+        </select>
     </div>
 </div>
     <div class="layui-form-item">
         <div class="layui-input-block" style="margin-left: 255px;">
-        <button class="layui-btn" lay-submit="" lay-filter="demo1">Confirm</button>
+            <button class="layui-btn" lay-submit="" lay-filter="demo1">Confirm</button>
         </div>
     </div>
 </form>
@@ -90,9 +89,9 @@
 <script>
     layui.use(['form', 'layedit', 'laydate'], function(){
         var form = layui.form
-        ,layer = layui.layer
-        ,layedit = layui.layedit
-        ,laydate = layui.laydate;
+                ,layer = layui.layer
+                ,layedit = layui.layedit
+                ,laydate = layui.laydate;
 
         //日期
         laydate.render({
@@ -133,7 +132,7 @@
             // layer.alert(JSON.stringify(data.field), {
             //     title: '最终的提交信息'
             // });
-            return false;
+             return false;
         });
 
 
