@@ -117,20 +117,6 @@
                 tableIns = table.render(tablerender);
             });
             
-            $("#btn-add").on('click', function () {
-                layer.open({
-                    type: 2,
-                    title: " New Task",
-                    area: ['50%', '80%'],
-                    shadeClose: true, //点击遮罩关闭
-                    content: 'table form new task.html',
-                   
-                    cancel: function (index, layero) {
-                        tableIns.reload();
-                    }
-                    
-                })
-            });
 
 			//搜索
             $("#btn-s").on('click', function () {
@@ -185,8 +171,6 @@
             });
       
 
-<<<<<<< HEAD
-=======
             $("#btn-add").on('click', function () {
                 layer.open({
                     type: 2,
@@ -202,7 +186,6 @@
                 tableIns = table.render(tablerender);
             });
             var table = layui.table;
->>>>>>> 49b0c7372be672a3c7a41595838238f0517a29bd
             table.on('checkbox(demo)', function (obj) {
                 console.log(obj)
             });
@@ -254,7 +237,7 @@
                             tableIns = table.render(tablerender);
                         }
                     });
-
+					tableIns = table.render(tablerender);
                 }
             });
 

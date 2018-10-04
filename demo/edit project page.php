@@ -193,6 +193,14 @@
             //     title: '最终的提交信息'
             // });
             //return false;
+			layer.confirm('Confirm to Edit ?', {
+                title: 'Edit Project',
+                btn: ['Comfirm', 'Cancel']
+            }, function (index) {
+                //layer.alert('view'+ JSON.stringify(data));
+                var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                parent.layer.close(index); //再执行关闭  
+            });
         });
 
 
