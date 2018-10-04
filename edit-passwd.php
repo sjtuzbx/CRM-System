@@ -28,7 +28,15 @@
     //echo $sql;
     $res = mysqli_query($conn, $sql);
 	if ($res){
-        echo "successfully update admin's information";
+		echo "successfully update admin's information";
+		$sql_user = "select * from user";
+		$user_res = mysqli_query($conn, $sql_user);
+		$arr = array();
+		while ($user_row = mysqli_fetch_assoc($user_res)){
+			array_push($arr, $user_row);
+		}
+		$data=array("code"=>0,"msg"=>"","count"=>count($arr), "data"=>$arr);
+		file_put_contents('json/user.json', json_encode($data));
         //header("location:");
 	} else {
 		echo "failed";

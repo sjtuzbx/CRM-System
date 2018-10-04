@@ -193,6 +193,7 @@
             //     title: '最终的提交信息'
             // });
             //return false;
+<<<<<<< HEAD
 			layer.confirm('Confirm to Edit ?', {
                 title: 'Edit Project',
                 btn: ['Comfirm', 'Cancel']
@@ -201,6 +202,12 @@
                 var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
                 parent.layer.close(index); //再执行关闭  
             });
+=======
+            if(confirm('Confirm to Edit ?')){ //只有当点击confirm框的确定时，该层才会关闭
+                var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                parent.layer.close(index); //再执行关闭  
+            }
+>>>>>>> 19eaf272c70e57964434890780cb9e82762947a6
         });
 
 
