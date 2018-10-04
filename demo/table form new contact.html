@@ -31,10 +31,8 @@
         <label class="layui-form-label" style="width: 120px; padding: 10px;">Status</label>
         <div class="layui-input-inline" style="margin-left: 15px;">
             <select name="status" lay-filter="aihao">
-               <!--  <option value=""></option> -->
-                <option value="0">Not Started</option>
-                <option value="1" selected="">In Progress</option>
-                <option value="2">Finished</option>
+                <option value="0">Lapsed</option>
+                <option value="1" selected="">Active</option>
             </select>
         </div>
     </div>
@@ -121,6 +119,14 @@
             //     title: '最终的提交信息'
             // });
             // return false;
+            layer.confirm('Confirm to Add ?', {
+                title: 'Add Contact',
+                btn: ['Comfirm', 'Cancel']
+            }, function (index) {
+                //layer.alert('view'+ JSON.stringify(data));
+                var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                parent.layer.close(index); //再执行关闭  
+            });   
         });
 
 

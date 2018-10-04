@@ -185,6 +185,24 @@
             });
       
 
+<<<<<<< HEAD
+=======
+            $("#btn-add").on('click', function () {
+                layer.open({
+                    type: 2,
+                    title: " New Task",
+                    area: ['700px', '550px'],
+                    shadeClose: true, //点击遮罩关闭
+                    content: '../demo/table form new task.html',
+                    cancel: function (index, layero) {
+                        //layer.close(index);
+                        tableIns = table.render(tablerender);
+                    }
+                });
+                tableIns = table.render(tablerender);
+            });
+            var table = layui.table;
+>>>>>>> 49b0c7372be672a3c7a41595838238f0517a29bd
             table.on('checkbox(demo)', function (obj) {
                 console.log(obj)
             });
@@ -233,7 +251,7 @@
                         shadeClose: true, //点击遮罩关闭
                         content: 'edit task page.php?data=' + escape(JSON.stringify(data)),
                         cancel: function (index, layero) {
-                            tableIns.reload();
+                            tableIns = table.render(tablerender);
                         }
                     });
 
@@ -255,7 +273,7 @@
     <!-- 表格操作按钮集 -->
     <script type="text/html" id="barOption">
 
-    <a class="layui-btn layui-btn-mini" lay-event="detail">View</a>
+    <!-- <a class="layui-btn layui-btn-mini" lay-event="detail">View</a> -->
     <a class="layui-btn layui-btn-mini layui-btn-normal" lay-event="edit">Edit</a>
     <a class="layui-btn layui-btn-mini layui-btn-danger" lay-event="del">Delete</a>
 </script>

@@ -91,10 +91,17 @@
         <div class="layui-form-item" style="display:block;">
             <label class="layui-form-label" style="width: 120px; padding: 10px;">Reminder</label>
             <div class="layui-input-inline" style="margin-left: 15px;">
-            <input type="text" name="reminddate" id="date" lay-verify="date" value="<?php echo $reminddate ?>" autocomplete="off"
-                    class="layui-input"><br /><input type="time" class="layui-input" id="test4" placeholder="HH:mm:ss">            </div>
+                <input type="text" name="reminddate" id="date" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off"
+                    class="layui-input">
+            </div>
         </div>
 
+        <div class="layui-form-item" style="display:block;">
+            <label class="layui-form-label" style="width: 120px; padding: 10px;">Time</label>
+            <div class="layui-input-inline" style="margin-left: 15px;">
+                <input type="time" class="layui-input" id="test4" placeholder="HH:mm:ss">
+            </div>
+        </div>
 
         <div class="layui-form-item" style="margin-bottom: 8px;">
             <label class="layui-form-label" style="width: 120px; padding: 10px;">Progress</label>
@@ -185,7 +192,7 @@
         <div class="layui-form-item layui-form-text">
             <label class="layui-form-label" style="width: 120px; padding: 10px;">Description</label>
             <div class="layui-input-block" style="margin-left: 155px;">
-                <textarea name="description" value="<?php echo $description ?>" class="layui-textarea"></textarea>
+                <textarea name="description" class="layui-textarea"> <?php echo $description ?> </textarea>
             </div>
         </div>
 

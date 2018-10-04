@@ -21,11 +21,10 @@
 
     session_start();
     //echo $_SESSION["admin"];
-    $email = $_POST["title"];
     $passwd = $_POST["password"];
     $username = $_SESSION["admin"];
 
-    $sql = "UPDATE `user` SET uemail='$email', password='$passwd' WHERE `user`.`username`='$username'";
+    $sql = "UPDATE `user` SET password='$passwd' WHERE `user`.`username`='$username'";
     //echo $sql;
     $res = mysqli_query($conn, $sql);
 	if ($res){

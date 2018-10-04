@@ -22,7 +22,7 @@
         $status = $row['ctstatus'];
         $phone = $row['ctphone'];
         $email = $row['ctemail'];
-        $notes = $row['notes'];
+        $note = $row['notes'];
     }
 ?>
 
@@ -47,12 +47,10 @@
         <div class="layui-input-inline" style="margin-left: 15px;">
             <select name="status" lay-filter="aihao">
                      <?php       
-                        $arr = array('<option value="0"', '>Not Started</option>',
-                                        '<option value="1"', '>In Progress</option>',
-                                    ' <option value="2"', '>Finished</option>');
-                        if ($status == "Not Started") $id = 0;
-                        else if ($status == "In Progress") $id = 2;
-                        else if ($status == "Finished") $id = 4;
+                        $arr = array('<option value="0"', '>Lapsed</option>',
+                                        '<option value="1"', '>Active</option>');
+                        if ($status == "Lapsed") $id = 0;
+                        else if ($status == "Active") $id = 2;
         
                         $arr[$id] = $arr[$id] . ' selected=""';
                         for ($i=0; $i < count($arr); $i=$i+1){
@@ -81,7 +79,7 @@
 
     <div class="layui-form-item layui-form-text">
         <div class="layui-input-block" style="margin: 0px 30px;">
-            <textarea value="<?php echo $notes; ?>" class="layui-textarea layui-hide" name="note" lay-verify="content" id="LAY_demo_editor"></textarea>
+            <textarea class="layui-textarea layui-hide" name="note" lay-verify="content" id="LAY_demo_editor"> <?php echo $note; ?> </textarea>
         </div>
     </div>
 
