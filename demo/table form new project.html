@@ -144,14 +144,18 @@
             //     title: '最终的提交信息'
             // });
             //return false;
-            layer.confirm('Confirm to Add ?', {
-                title: 'Add Project',
-                btn: ['Comfirm', 'Cancel']
-            }, function (index) {
-                //layer.alert('view'+ JSON.stringify(data));
+            // layer.confirm('Confirm to Add ?', {
+            //     title: 'Add Project',
+            //     btn: ['Comfirm', 'Cancel']
+            // }, function (index) {
+            //     //layer.alert('view'+ JSON.stringify(data));
+            //     var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+            //     parent.layer.close(index); //再执行关闭  
+            // });    
+            if(confirm('Confirm to add new project ?')){ //只有当点击confirm框的确定时，该层才会关闭
                 var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
                 parent.layer.close(index); //再执行关闭  
-            });       
+            }   
         });
 
         $.getJSON("../json/user.json", function (data) {
