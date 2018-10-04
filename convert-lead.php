@@ -33,6 +33,7 @@
         $id = $pid['cnt'];
 
         $sql = "INSERT INTO `client` (`cid`, `cname`, `clienttype`, `siteaddress`, `postaladdress`, `cstatus`, `cphone`, `cdatecreated`) VALUES ('$id', '$lname', 'Individual', '', '', '$status', '$phonenumber', '$datecreated');";
+        echo $sql;
         $res = mysqli_query($conn, $sql);
         if ($res){
             // update json
@@ -53,6 +54,35 @@
         } else {
             echo "failed";
            ///header(location:'demo/table form new prop.html');
+        }
+
+        // also convert a lead to a contact
+        $json_string = file_get_contents('json/contact-id.json');   
+        $pid = json_decode($json_string, true);  
+        $id = $pid['cnt'];
+
+        $sql = "INSERT INTO `contact` (`ctid`, `firstname`, `lastname`, `ctphone`, `ctemail`, `organisation`, `ctdatecreated`, `ctstatus`, `notes`) 
+                VALUES ('$id', '$lname', '', '$phonenumber', '$email', '0', '$datecreated', '$status', '');";
+        $res = mysqli_query($conn, $sql);
+        if ($res){
+            // update json
+            $sql_contact = "select * from contact";
+            $contact_res = mysqli_query($conn, $sql_contact);
+            $arr = array();
+            while ($contact_row = mysqli_fetch_assoc($contact_res)){
+                array_push($arr, $contact_row);
+            }
+            $data=array("code"=>0,"msg"=>"","count"=>count($arr), "data"=>$arr);
+            file_put_contents('json/contact.json', json_encode($data));
+
+            $pid['cnt'] = $pid['cnt'] + 1;
+            file_put_contents('json/contact-id.json', json_encode($pid));
+
+            echo "successfully added new contact";
+            //header(location:index.html);
+        } else {
+            echo "failed";
+            //header(location:'demo/table form new prop.html');
         }
     }
 ?> 

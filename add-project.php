@@ -63,11 +63,12 @@
 		file_put_contents('json/projects-id.json', json_encode($pid));
 
 		echo "successfully added new project";
-		//header(location:index.html);
+		//header("location:index.php");
 	} else {
 		echo "failed";
 		//header(location:'demo/table form new prop.html');
 	}		
+	// echo "<script type='text/javascript'>document.onload = window.close();</script>";
 ?> 
 
 </body> 

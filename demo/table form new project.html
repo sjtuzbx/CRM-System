@@ -35,12 +35,13 @@
        <div class="layui-form-item">
         <label class="layui-form-label" style="width: 120px; padding: 10px;">Category</label>
         <div class="layui-input-inline" style="margin-left: 15px;">
-            <select name="catogery" lay-verify="essential" lay-search="">
+            <input type="text" name="catogery" autocomplete="off" placeholder="" class="layui-input"> 
+            <!-- <select name="catogery" lay-verify="essential" lay-search="">
                 <option value="">Please Choose</option>
                 <option value="1">Category1</option>
                 <option value="2">Category2</option>
                 <option value="3">Category3</option>
-            </select>
+            </select> -->
         </div>
     </div>
 
@@ -61,12 +62,13 @@
     <div class="layui-form-item">
         <label class="layui-form-label" style="width: 120px; padding: 10px;">Tags</label>
         <div class="layui-input-inline" style="margin-left: 15px;">
-            <select name="tags" lay-verify="essential" lay-search="">
+            <input type="text" name="tags" placeholder="tags" autocomplete="off" class="layui-input">
+            <!-- <select name="tags" lay-verify="essential" lay-search="">
                 <option value="">Please Choose</option>
                 <option value="1">aa</option>
                 <option value="2">cc</option>
                 <option value="3">dd</option>
-            </select>
+            </select> -->
         </div>
     </div>
     <div class="layui-form-item layui-form-text">
@@ -142,6 +144,14 @@
             //     title: '最终的提交信息'
             // });
             //return false;
+            layer.confirm('Confirm to Add ?', {
+                title: 'Add Project',
+                btn: ['Comfirm', 'Cancel']
+            }, function (index) {
+                //layer.alert('view'+ JSON.stringify(data));
+                var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                parent.layer.close(index); //再执行关闭  
+            });       
         });
 
         $.getJSON("../json/user.json", function (data) {

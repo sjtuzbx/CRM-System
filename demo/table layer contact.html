@@ -170,9 +170,10 @@
                     shadeClose: true, //点击遮罩关闭
                     content: 'table form new contact.html',
                     cancel: function (index, layero) {
-                        tableIns.reload();
+                        tableIns = table.render(tablerender);
                     },
                 })
+                tableIns = table.render(tablerender);
             });
 
             // 暂停和中止按钮功能
@@ -227,9 +228,10 @@
                         shadeClose: true, //点击遮罩关闭
                         content: 'edit contact page.php?data=' + escape(JSON.stringify(data)),
                         cancel: function (index, layero) {
-                            tableIns.reload();
+                            tableIns = table.render(tablerender);
                         }
-                    });                
+                    });        
+                    tableIns = table.render(tablerender);        
                 }
             });
 
@@ -270,7 +272,7 @@
     </script>
     <!-- 表格操作按钮集 -->
     <script type="text/html" id="barOption">
-    <a class="layui-btn layui-btn-mini" lay-event="detail">View</a>
+    <!-- <a class="layui-btn layui-btn-mini" lay-event="detail">View</a> -->
     <a class="layui-btn layui-btn-mini layui-btn-normal" lay-event="edit">Edit</a>
     <a class="layui-btn layui-btn-mini layui-btn-danger" lay-event="del">Delete</a>
 </script>

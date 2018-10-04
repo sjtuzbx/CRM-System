@@ -24,12 +24,12 @@
 	$firstname = $_POST['firstname'];
 	$lastname = $_POST['lastname'];
 
-	$status_map = array("Not Started", "In Progress", "Finished");
+	$status_map = array("Lapsed", "Active");
 	$status = $status_map[$_POST['status']]; 
 	$phone = $_POST['phone'];
 	$email = $_POST['email'];
 
-	$note = $_POST['notes'];
+	$note = $_POST['note'];
 	$datecreated = date("Y-m-d");
 
 	$sql = "INSERT INTO `contact` (`ctid`, `firstname`, `lastname`, `ctphone`, `ctemail`, `organisation`, `ctdatecreated`, `ctstatus`, `notes`) VALUES ('$id', '$firstname', '$lastname', '$phone', '$email', '0', '$datecreated', '$status', '$note');";

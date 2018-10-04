@@ -46,8 +46,7 @@
         $responsive_name = $project_row['username'];
 
         $tags = $row["tags"];
-        $tags_map = array("" , "aa", "cc", "dd");
-        $tags_name = $tags_map[$tags];
+        $tags_name = $tags;
 
         $description = $row["description"];
         $customized = $row["customized"];
@@ -106,7 +105,7 @@
     <div class="layui-form-item layui-form-text">
         <!-- <label class="layui-form-label" style="width: 120px; padding: 10px;">Customized Information</label> -->
         <div class="layui-input-block" style="margin: 0px 30px;">
-            <label class="layui-textarea layui-hide" name="customized"> <?php echo $customized ?>  </label>
+            <label class="layui-textarea" name="customized"> <?php echo $customized ?>  </label>
         </div>
     </div>
 </form>

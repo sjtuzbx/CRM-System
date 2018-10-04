@@ -76,18 +76,7 @@
        <div class="layui-form-item">
         <label class="layui-form-label" style="width: 120px; padding: 10px;">Category</label>
         <div class="layui-input-inline" style="margin-left: 15px;">
-            <select name="catogery" lay-verify="essential" lay-search="">
-                <?php       
-                        $arr = array('<option value="1"', '>Category1</option>',
-                                        '<option value="2"', '>Category2</option>',
-                                    ' <option value="3"', '>Category3</option>');
-        
-                        $arr[2*($catogery-1)] = $arr[2*($catogery-1)] . ' selected=""';
-                        for ($i=0; $i < count($arr); $i=$i+1){
-                            echo $arr[$i];
-                        }
-                 ?>
-            </select>
+            <input type="text" name="catogery" autocomplete="off" value="<?php echo $catogery ?>" class="layui-input"> 
         </div>
     </div>
 
@@ -126,24 +115,13 @@
     <div class="layui-form-item">
         <label class="layui-form-label" style="width: 120px; padding: 10px;">Tags</label>
         <div class="layui-input-inline" style="margin-left: 15px;">
-            <select name="tags" lay-verify="essential" lay-search="">
-                <?php       
-                        $arr = array('<option value="1"', '>aa</option>',
-                                        '<option value="2"', '>cc</option>',
-                                    ' <option value="3"', '>dd</option>');
-        
-                        $arr[2*($catogery-1)] = $arr[2*($catogery-1)] . ' selected=""';
-                        for ($i=0; $i < count($arr); $i=$i+1){
-                            echo $arr[$i];
-                        }
-                 ?>
-            </select>
+            <input type="text" name="tags" value="<?php echo $tags ?>" autocomplete="off" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item layui-form-text">
         <label class="layui-form-label" style="width: 120px; padding: 10px;">Description</label>
         <div class="layui-input-block" style="margin-left: 155px;">
-            <textarea name="description" placeholder="<?php echo $description ?>" class="layui-textarea"></textarea>
+            <textarea name="description" class="layui-textarea"><?php echo $description ?></textarea>
         </div>
     </div>
 
@@ -153,7 +131,7 @@
     <div class="layui-form-item layui-form-text">
         <!-- <label class="layui-form-label" style="width: 120px; padding: 10px;">Customized Information</label> -->
         <div class="layui-input-block" style="margin: 0px 30px;">
-            <textarea class="layui-textarea layui-hide" placeholder="<?php echo $customized ?>" name="customized" lay-verify="content" id="LAY_demo_editor"></textarea>
+            <textarea class="layui-textarea layui-hide" name="customized" lay-verify="content" id="LAY_demo_editor"><?php echo $customized ?></textarea>
         </div>
     </div>
 
