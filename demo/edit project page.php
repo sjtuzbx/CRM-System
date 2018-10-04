@@ -133,7 +133,7 @@
                                         '<option value="2"', '>cc</option>',
                                     ' <option value="3"', '>dd</option>');
         
-                        $arr[2*($catogery-1)] = $arr[2*($catogery-1)] . ' selected=""';
+                        $arr[2*($tags-1)] = $arr[2*($tags-1)] . ' selected=""';
                         for ($i=0; $i < count($arr); $i=$i+1){
                             echo $arr[$i];
                         }
