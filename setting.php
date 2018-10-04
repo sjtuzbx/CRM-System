@@ -82,12 +82,9 @@
                         <a href="javascript:;"><i class="layui-icon">&#xe620;</i>System Settings</a>
                         <dl class="layui-nav-child">
                             <dd class="icon"><a href="javascript:;"></a></dd>
-                            <dd><a href="javascript:;" href-url="User Details.html"><i class="layui-icon">&#xe621;</i>User
-                                    Details</a></dd>
-                            <dd><a href="javascript:;" href-url="demo/table layer user.html"><i class="layui-icon">&#xe621;</i>Manage Accounts</a></dd>
-                            <dd><a href="javascript:;" href-url="email account.html"><i class="layui-icon">&#xe621;</i>Email
-                                    Account</a></dd>
-                            <dd><a href="javascript:;" href-url=""><i class="layui-icon">&#xe621;</i>Time Line</a></dd>
+                            <dd><a href="javascript:;" href-url=""><i class="layui-icon">&#xe621;</i>Permissions</a></dd>
+                            <dd><a href="javascript:;" href-url=""><i class="layui-icon">&#xe621;</i>Task Sets</a></dd>
+                            <dd><a href="javascript:;" href-url=""><i class="layui-icon">&#xe621;</i>Custom setting</a></dd>
                         </dl>
                     </li>
                 </ul>
