@@ -82,17 +82,10 @@
                 <dl class="layui-nav-child">
                     <dd><a href="javascript:;" href-url="demo/table layer project.html"><i class="layui-icon">&#xe621;</i>All Projects</a></dd>
                     <dd><a href="javascript:;" href-url="demo/table layer project.html"><i class="layui-icon">&#xe621;</i>Recent Projects</a></dd>
-                    <dd><a href="javascript:;" href-url="demo/table.html"><i class="layui-icon">&#xe621;</i>My Projects</a></dd>
+                    <dd><a href="javascript:;" href-url="demo/table layer project.html"><i class="layui-icon">&#xe621;</i>My Projects</a></dd>
                     
                 </dl>
             </li>
-            <li class="layui-nav-item">
-                <a href="javascript:;"><i class="layui-icon">&#xe628;</i>More</a>
-                <dl class="layui-nav-child">
-                    <dd><a href="javascript:;" href-url="demo/login.php"><i class="layui-icon">&#xe621;</i>Lisa</a></dd>                 
-                </dl>
-            </li>
-
             </ul>
         </div>
     </div>

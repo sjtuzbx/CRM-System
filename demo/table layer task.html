@@ -172,17 +172,20 @@
             $("#btn-add").on('click', function () {
                 layer.open({
                     type: 2,
-                    title: " New Task",
+                    title: "New Task",
                     area: ['700px', '550px'],
                     shadeClose: true, //点击遮罩关闭
                     content: '../demo/table form new task.html',
                     cancel: function (index, layero) {
-                        //layer.close(index);
+                        tableIns = table.render(tablerender);
+                    },
+                    end: function(){
                         tableIns = table.render(tablerender);
                     }
                 });
                 tableIns = table.render(tablerender);
             });
+
             var table = layui.table;
             table.on('checkbox(demo)', function (obj) {
                 console.log(obj)
@@ -217,7 +220,6 @@
                                 alert("Connection error");
                             },
                             success: function (data) {
-                                alert("Success");
                                 obj.del();
                                 layer.close(index);
                                 tableIns = table.render(tablerender);
@@ -225,6 +227,7 @@
                         });
                     });
                 } else if (obj.event === 'edit') {
+                    //layer.alert('view'+ JSON.stringify(data));
                     layer.open({
                         type: 2,
                         title: "Task",
@@ -232,6 +235,9 @@
                         shadeClose: true, //点击遮罩关闭
                         content: 'edit task page.php?data=' + escape(JSON.stringify(data)),
                         cancel: function (index, layero) {
+                            tableIns = table.render(tablerender);
+                        }, 
+                        end: function(){
                             tableIns = table.render(tablerender);
                         }
                     });

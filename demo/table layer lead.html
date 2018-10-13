@@ -160,6 +160,9 @@
                     cancel: function (index, layero) {
                         tableIns = table.render(tablerender);
                     },
+                    end: function(){
+                        tableIns = table.render(tablerender);
+                    }
                 });
                 tableIns = table.render(tablerender);
             });
@@ -218,6 +221,9 @@
                         content: 'edit lead page.php?data=' + escape(JSON.stringify(data)),
                         cancel: function (index, layero) {
                             tableIns = table.render(tablerender);
+                        },
+                        end: function(){
+                            tableIns = table.render(tablerender);
                         }
                     });
                     tableIns = table.render(tablerender);
@@ -235,8 +241,8 @@
                                     alert("Connection error");
                                 },
                                 success: function (data) {
-                                    alert("Success");
                                     layer.close(index);
+                                    obj.del()
                                 }
                             });
                         });
