@@ -47,7 +47,7 @@
 				</form>
 			</div>
 			<!-- 忘记密码 -->
-			<span class="forgot">Forgot your password?  <a href="#" class="forgot_pwd">Click Here</a></span>
+			<span class="forgot">Forgot your password?  <a href="forgot password.html" class="forgot_pwd">Click Here</a></span>
 		</div>
 	</div>	
 </body>

@@ -48,18 +48,18 @@
                             Leads</span></a></li>
                 <li class="layui-nav-item"><a href="client.html"><span style="font-family: 'imooc-icon';"></span><span>
                             Clients</span></a></li>
-                <li class="layui-nav-item"><a href="e-mail.html"><span style="font-family: 'imooc-icon';"></span><span>
-                            E-mails</span></a></li>
+               <!--  <li class="layui-nav-item"><a href="e-mail.html"><span style="font-family: 'imooc-icon';"></span><span>
+                            E-mails</span></a></li> -->
                 <li class="layui-nav-item"><a href="contact.html"><span style="font-family: 'imooc-icon';"></span><span>
                             Contacts</span></a></li>
 
-                <li class="layui-nav-item">
+        <!--         <li class="layui-nav-item">
                     <a href="javascript:;">More</a>
                     <dl class="layui-nav-child">
                         <dd><a href="">Recent Activity</a></dd>
                         <dd><a href="wrap_calendar.html">Calendar</a></dd>
                     </dl>
-                </li>
+                </li> -->
             </ul>
             <ul class="layui-nav layui-layout-right">
                 <li class="layui-nav-item ">

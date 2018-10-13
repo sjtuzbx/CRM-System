@@ -22,7 +22,8 @@
         font-weight: normal;
         font-style: normal;
     } 
-  </style>  
+  </style> 
+   
 </head>
 <body>
     <?php 
@@ -48,18 +49,17 @@
         <li class="layui-nav-item"><a href="task.html"><span style="font-family: 'imooc-icon';"></span><span> Tasks</span></a></li>
         <li class="layui-nav-item"><a href="lead.html"><span style="font-family: 'imooc-icon';"></span><span> Leads</span></a></li>
         <li class="layui-nav-item"><a href="client.html"><span style="font-family: 'imooc-icon';"></span><span> Clients</span></a></li>
-        <li class="layui-nav-item"><a href="e-mail.html"><span style="font-family: 'imooc-icon';"></span><span> E-mails</span></a></li>
+       <!--  <li class="layui-nav-item"><a href="e-mail.html"><span style="font-family: 'imooc-icon';"></span><span> E-mails</span></a></li> -->
         <li class="layui-nav-item"><a href="contact.html"><span style="font-family: 'imooc-icon';"></span><span> Contacts</span></a></li>
       
 
-        <li class="layui-nav-item">
-          <a href="javascript:;">More</a>
-          <dl class="layui-nav-child">
-		  <!--Need implement-->
-            <dd><a href="">Recent Activity</a></dd>
-            <dd><a href="wrap_calendar.html">Calendar</a></dd>
-          </dl>
-        </li>
+   <!--  <li class="layui-nav-item">
+                <a href="javascript:;">More</a>
+                <dl class="layui-nav-child">
+                  <dd><a href="">Recent Activity</a></dd>
+                  <dd><a href="wrap_calendar.html">Calendar</a></dd>
+              </dl>
+          </li> -->
       </ul>
       <ul class="layui-nav layui-layout-right" >
           <li class="layui-nav-item ">
@@ -134,7 +134,7 @@
                  <option value="2">Leads</option>
                  <option value="3" selected="">Tasks</option>
                  <option value="4">Contacts</option>
-                 <option value="5">E-mails</option>
+                 
               </select>
             </div>
             <table id="dateTable4" class="layui-hide" lay-filter="demo4"></table>
@@ -148,13 +148,13 @@
                  <option value="2">Leads</option>
                  <option value="3">Tasks</option>
                  <option value="4" selected="">Contacts</option>
-                 <option value="5">E-mails</option>
+                 
               </select>
             </div>
             <table id="dateTable5" class="layui-hide" lay-filter="demo5"></table>
         </div>
 
-        <div id="client" class="item">
+       <div id="client" class="item">
             <div style="height: 25px;width: 100%;"> 
               <select name="dashboard6" lay-filter="dashboard6" style="width: 100%; color: #004476;">
                  <option value="0">Projects</option>
@@ -162,11 +162,11 @@
                  <option value="2">Leads</option>
                  <option value="3">Tasks</option>
                  <option value="4">Contacts</option>
-                 <option value="5" selected="">E-mails</option>
+                 
               </select>
             </div>
             <table id="dateTable6" class="layui-hide" lay-filter="demo6"></table>
-        </div>
+        </div>  
     </div>
   </div>
 </div>
@@ -266,7 +266,7 @@
                 , {field: 'tname', title: 'Task Name' ,width: cwidth/4}
                 , {field: 'duedate', title: 'Date Due', width: cwidth/4}
                 , {field: 'tresponsiveid', title: 'Responsible User', width: cwidth/4}
-                , {field: 'username', title: 'Task Owner', width: cwidth/4}
+                , {field: 'status', title: 'Status', width: cwidth/4}
             ]]
             , id: 'dataCheck'
             , url: './json/task.json'

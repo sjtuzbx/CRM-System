@@ -57,21 +57,21 @@
  <div class="layui-form-item">
     <label class="layui-form-label"  style="width: 120px; padding: 10px;">Site Address</label>
     <div class="layui-input-block" style="margin-left: 155px;">
-        <input type="text" name="siteaddress" lay-verify="title" autocomplete="off" value="<?php echo $siteaddress; ?>" class="layui-input">
+        <input type="text" name="siteaddress"  autocomplete="off" value="<?php echo $siteaddress; ?>" class="layui-input">
     </div>
 </div>
 
 <div class="layui-form-item">
     <label class="layui-form-label"  style="width: 120px; padding: 10px;">Postal Address</label>
     <div class="layui-input-block" style="margin-left: 155px;">
-        <input type="text" name="postaladdress" lay-verify="title" autocomplete="off" value="<?php echo $postaladdress; ?>" class="layui-input">
+        <input type="text" name="postaladdress"  autocomplete="off" value="<?php echo $postaladdress; ?>" class="layui-input">
     </div>
 </div>
 
 <div class="layui-form-item" style="display:block;">
     <label class="layui-form-label"  style="width: 120px; padding: 10px;">Phone</label>
     <div class="layui-input-inline" style="margin-left: 15px;">
-        <input type="text" name="phone" lay-verify="phone" autocomplete="off" value="<?php echo $phone; ?>" class="layui-input">
+        <input type="text" name="phone"  autocomplete="off" value="<?php echo $phone; ?>" class="layui-input">
     </div>
 </div>
 
@@ -152,7 +152,7 @@
             //     title: '最终的提交信息'
             // });
             //return false;
-            if(confirm('Confirm to Edit ?')){ //只有当点击confirm框的确定时，该层才会关闭
+            if(true){ //只有当点击confirm框的确定时，该层才会关闭
                 var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
                 parent.layer.close(index); //再执行关闭  
             }

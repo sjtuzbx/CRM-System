@@ -45,6 +45,7 @@
                     name="id">
             </div>
             <button class="layui-btn mgl-20" id="btn-s" data-type="reload" lay-submit="">Searching</button>
+              <button class="layui-btn btn-add btn-default" id="btn-hidden"><i class="layui-icon">&#xe648;</i></button>
         </span>
     </div>
 
@@ -68,21 +69,23 @@
                 , $ = layui.jquery;
 
             // 表格渲染
+             console.log(document.getElementsByClassName('body')[0].offsetWidth)
+      var wwidth = (document.getElementsByClassName('body')[0].offsetWidth - 78) / 7
             var tablerender = {
                 elem: '#dateTable'                  //指定原始表格元素选择器（推荐id选择器）
                 , height: vipTable.getFullHeight()    //容器高度
                 , cols: [[                  //标题栏
                     { checkbox: true, sort: true, fixed: true, space: true }
-                    , { field: 'firstname', title: 'First Name', width: 130 }
-                    , { field: 'lastname', title: ' Last Name', width: 130 }
-                    , { field: 'ctphone', title: 'Contact Number(Phone)', width: 210 }
-                    , { field: 'ctemail', title: 'Email Address', width: 180 }
-                    , { field: 'organisation', title: 'Organisation', width: 180 }
-                    , { field: 'ctdatecreated', title: 'Date Created', width: 180 }
+                    , { field: 'firstname', title: 'First Name', width: wwidth,event: 'setPn',sort:true }
+                    , { field: 'lastname', title: ' Last Name', width: wwidth ,sort:true }
+                    , { field: 'ctphone', title: 'Contact Number(Phone)', width: wwidth ,sort:true }
+                    , { field: 'ctemail', title: 'Email Address', width: wwidth ,sort:true }
+                    , { field: 'organisation', title: 'Organisation', width: wwidth ,sort:true }
+                    , { field: 'ctdatecreated', title: 'Date Created', width: wwidth ,sort:true }
                     // , {field: 'status', title: 'Date Due', width: 70}
-                    , { fixed: 'right', title: 'Function', width: 180, align: 'center', toolbar: '#barOption' } //这里的toolbar值是模板元素的选择器
+                    , { field:'function_bar',fixed: 'right', title: 'Function', width: wwidth, align: 'center', toolbar: '#barOption' } //这里的toolbar值是模板元素的选择器
                 ]]
-                , id: 'dataCheck'
+                , id: 'dataCheck,function_bar'
                 , url: '../json/contact.json'
                 , method: 'get'
                 , page: true
@@ -162,11 +165,22 @@
                 jsondata = data.data
             })
 
+            ////////////////hide function_bar
+        $("#btn-hidden").on('click',function(){
+                var a= $("[data-field='function_bar']").css("display")
+                if(a=="none")
+                 $("[data-field='function_bar']").css("display","block");
+             else{
+                 $("[data-field='function_bar']").css("display","none");
+             }
+
+            });
+
             $("#btn-add").on('click', function () {
                 layer.open({
                     type: 2,
                     title: "New Contact",
-                    area: ['700px', '550px'],
+                    area: ['60%', '80%'],
                     shadeClose: true, //点击遮罩关闭
                     content: 'table form new contact.html',
                     cancel: function (index, layero) {
@@ -176,7 +190,7 @@
                 tableIns = table.render(tablerender);
             });
 
-            // 暂停和中止按钮功能
+            //暂停和中止按钮功能
             var table = layui.table;
             //监听表格复选框选择
             table.on('checkbox(demo)', function (obj) {
@@ -190,7 +204,7 @@
                     layer.open({
                         type: 2,
                         title: "Contact",
-                        area: ['700px', '550px'],
+                        area: ['60%', '80%'],
                         shadeClose: true, //点击遮罩关闭
                         content: 'show-contact.php?data=' + escape(JSON.stringify(data)),
                         btn: ['Confirm'],
@@ -213,7 +227,7 @@
                                     alert("Connection error");
                                 },
                                 success: function (data) {
-                                    alert("Success");
+                                    
                                     obj.del();
                                     layer.close(index);
                                     tableIns = table.render(tablerender);
@@ -224,7 +238,7 @@
                     layer.open({
                         type: 2,
                         title: "Contact",
-                        area: ['700px', '550px'],
+                        area: ['60%', '80%'],
                         shadeClose: true, //点击遮罩关闭
                         content: 'edit contact page.php?data=' + escape(JSON.stringify(data)),
                         cancel: function (index, layero) {
@@ -232,10 +246,17 @@
                         }
                     });        
                     tableIns = table.render(tablerender);        
-                }
+                }else if(obj.event==="setPn"){
+                 layer.open({
+                        type: 2,
+                         title: "Contact",
+                        area: ['60%', '80%'],
+                        shadeClose: true, //点击遮罩关闭
+                        content: 'edit contact page.php?data=' + escape(JSON.stringify(data)),
             });
-
-
+                tableIns = table.render(tablerender);
+                }//加在监听工具条部分 
+            });
         });
   // var $ = layui.$, active = {
   //   reload: function(){

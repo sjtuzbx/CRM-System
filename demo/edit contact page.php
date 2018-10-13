@@ -79,7 +79,7 @@
 
     <div class="layui-form-item layui-form-text">
         <div class="layui-input-block" style="margin: 0px 30px;">
-            <textarea class="layui-textarea layui-hide" name="note" lay-verify="content" id="LAY_demo_editor"> <?php echo $note; ?> </textarea>
+            <textarea name="customized" placeholder="Please Input Content" class="layui-textarea"><?php echo $note; ?> </textarea>
         </div>
     </div>
 
@@ -141,7 +141,7 @@
             //     title: '最终的提交信息'
             // });
             // return false;
-            if(confirm('Confirm to Edit ?')){ //只有当点击confirm框的确定时，该层才会关闭
+            if(true){ //只有当点击confirm框的确定时，该层才会关闭
                 var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
                 parent.layer.close(index); //再执行关闭  
             }
