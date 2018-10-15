@@ -47,6 +47,7 @@
             <label class="layui-form-label" style="width: 120px; padding: 10px;">Category</label>
             <div class="layui-input-inline" style="margin-left: 15px;"> 
                 <select name="catogery" lay-verify="" lay-search="">
+
                     <?php       
                         $arr = array('<option value="1"', '>Email</option>',
                                     ' <option value="2"', '>Follow Up</option>',
@@ -73,14 +74,14 @@
         <div class="layui-form-item" style="display:block;">
             <label class="layui-form-label" style="width: 120px; padding: 10px;">Date Started</label>
             <div class="layui-input-inline" style="margin-left: 15px;">
-            <input type="text" name="startdate" id="date" lay-verify="date" value="<?php echo $startdate ?>" autocomplete="off"
+            <input type="text" name="startdate" id="startdate" lay-verify="date" value="<?php echo $startdate ?>" autocomplete="off"
                     class="layui-input">
             </div>
         </div>
         <div class="layui-form-item" style="display:block;">
             <label class="layui-form-label" style="width: 120px; padding: 10px;">Date Due</label>
             <div class="layui-input-inline" style="margin-left: 15px;">
-            <input type="text" name="duedate" id="date" lay-verify="date" value="<?php echo $duedate ?>" autocomplete="off"
+            <input type="text" name="duedate" id="duedate" lay-verify="date" value="<?php echo $duedate ?>" autocomplete="off"
                     class="layui-input">
             </div>
         </div>
@@ -242,7 +243,10 @@
             </div>
         </div>
     </form>
-
+<script>
+    
+    
+    </script>
 <script src="../frame/layui/layui.js" charset="utf-8"></script>
 <script>
     layui.use(['form', 'layedit', 'laydate'], function(){
@@ -253,9 +257,34 @@
 
         //日期
         laydate.render({
-            elem: '#date'
+            elem: '#reminderdate'
             ,lang:'en'
         });
+        var nowTime = new Date().valueOf();
+            //日期
+            var startTime=laydate.render({
+                elem: '#startdate'
+                , lang: 'en'
+                ,min:nowTime
+                ,done:function(value,dates){
+                   endTime.config.min ={  
+                         year:dates.year,   
+                         month:dates.month-1, //关键  
+                         date: dates.date,   
+                };
+                }              
+            });
+          var endTime=  laydate.render({
+                elem: '#duedate'
+                , lang: 'en'              
+                ,done:function(value,datdatese){
+                 startTime.config.max={  
+                    year:dates.year,   
+                    month:dates.month-1,//关键   
+                    date: dates.date,              
+            }
+                }
+            });
 
         //创建一个编辑器
         var editIndex = layedit.build('LAY_demo_editor');
@@ -318,6 +347,8 @@
         //         }
         //     }
     });
+	
+	
 </script>
 </body>
 </html>

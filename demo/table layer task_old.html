@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<meta name=”viewport” content=”width=device-width, initial-scale=1″ />
+
 <head>
     <meta charset="UTF-8">
     <meta name="renderer" content="webkit">
@@ -46,7 +46,6 @@
                     name="id">
             </div>
             <button class="layui-btn mgl-20" id="btn-s" data-type="reload" lay-submit="">Searching</button>
-            <button class="layui-btn btn-add btn-default" id="btn-hidden"><i class="layui-icon">&#xe648;</i></button>
         </span>
     </div>
 
@@ -69,21 +68,20 @@
                 , vipTable = layui.vip_table
                 , $ = layui.jquery;
 
-            console.log(document.getElementsByClassName('body')[0].offsetWidth)
-            var wwidth = (document.getElementsByClassName('body')[0].offsetWidth - 78) / 7
-            var tablerender = {
+            // 表格渲染
+            var tableIns = table.render({
                 elem: '#dateTable'                  //指定原始表格元素选择器（推荐id选择器）
                 , height: vipTable.getFullHeight()    //容器高度
                 , cols: [[                  //标题栏
                     { checkbox: true, sort: true, fixed: true, space: true }
-                    , { field: 'tname', title: 'Task Name', width: wwidth,event: 'setPn',sort:true }
-                    , { field: 'startdate', title: 'Start Date', width: wwidth ,sort:true }
-                    , { field: 'duedate', title: 'Date Due',width: wwidth ,sort:true }
-                    , { field: 'tresponsiveid', title: 'Responsible User',width: wwidth ,sort:true }
-                    , { field: 'username', title: 'Task Owner', width: wwidth ,sort:true }
-                    , { field: 'status', title: 'Status', width: wwidth ,sort:true }
-                    , { field: 'progress', title: 'Progress',width: wwidth ,sort:true }
-                    , { field:'function_bar', title: 'Function', width: 200, align: 'center', toolbar: '#barOption' } //这里的toolbar值是模板元素的选择器
+                    , { field: 'tname', title: 'Task Name', width: 120 }
+                    , { field: 'startdate', title: 'Start Date', width: 120 }
+                    , { field: 'duedate', title: 'Date Due', width: 100 }
+                    , { field: 'tresponsiveid', title: 'Responsible User', width: 160 }
+                    , { field: 'username', title: 'Task Owner', width: 120 }
+                    , { field: 'status', title: 'Status', width: 160 }
+                    , { field: 'progress', title: 'Percent Complete Indicator', width: 140 }
+                    , { fixed: 'right', title: 'Function', width: 160, align: 'center', toolbar: '#barOption' } //这里的toolbar值是模板元素的选择器
                 ]]
                 , id: 'dataCheck'
                 , url: '../json/task.json'
@@ -103,9 +101,7 @@
                     //得到数据总量
                     console.log(count);
                 }
-            }
-            // 表格渲染
-            var tableIns = table.render(tablerender);
+            });
 
             // 获取选中行
             table.on('checkbox(dataCheck)', function (obj) {
@@ -117,58 +113,32 @@
 
             // 刷新
             $('#btn-refresh').on('click', function () {
-                tableIns = table.render(tablerender);
-            });
-            
-
-			//搜索
-            $("#btn-s").on('click', function () {
-                console.log('search')
-                var inputText = document.getElementById("search_bar").value
-                if(inputText){
-                	jsondata2 = jsondata.filter(function (item) {
-	                    return item.tname == inputText
-	                })
-	                var temp = deepClone(tablerender)
-	                tablerender.data = jsondata2
-	                tablerender.url = ''
-	                tableIns = table.render(tablerender);
-	                tablerender = deepClone(temp)
-                }
-               
-            })
-
-            function deepClone(obj) {
-                let _obj = JSON.stringify(obj),
-                    objClone = JSON.parse(_obj);
-                return objClone
-            }
-
-            var jsondata = new Object()
-            $.getJSON("../json/task.json", function (data) {
-                jsondata = data.data
-            })
-
-            ////////////////hide function_bar
-        $("#btn-hidden").on('click',function(){
-                var a= $("[data-field='function_bar']").css("display")
-                if(a=="none")
-                 $("[data-field='function_bar']").css("display","block");
-             else{
-                 $("[data-field='function_bar']").css("display","none");
-             }
-
+                tableIns.reload();
             });
 
+
+
+            $("#btn-add").on('click', function () {
+                layer.open({
+                    type: 2,
+                    title: " New Task",
+                    area: ['700px', '550px'],
+                    shadeClose: true, //点击遮罩关闭
+                    content: 'table form new task.html',
+                    cancel: function (index, layero) {
+                        tableIns.reload();
+                    }
+                })
+            });
             // 暂停和中止按钮功能
             var table = layui.table;
 
-            $.getJSON('../json/permission.json', function (data) {
-                console.log("task permission is " + data.data[0]["task_permission"])
-                if (data.data[0]["task_permission"] == 0) {
-                    tablerender.url = '';
-                    tableIns = table.render(tablerender);
-                }
+            // 获取选中行
+            table.on('checkbox(dataCheck)', function (obj) {
+                layer.msg('123');
+                console.log(obj.checked); //当前是否选中状态
+                console.log(obj.data); //选中行的相关数据
+                console.log(obj.type); //如果触发的是全选，则为：all，如果触发的是单选，则为：one
             });
 
             $('#btn-delete-all').on('click', function () {
@@ -185,30 +155,13 @@
                         },
                         success: function (data) {
                             //alert("Success");
-                            tableIns = table.render(tablerender);
-                            //layer.close($i);
+                            tableIns.reload();
+                            layer.close($i);
                         }
                     });
                 }
             });
-      
 
-            $("#btn-add").on('click', function () {
-                layer.open({
-                    type: 2,
-                    title: " New Task",
-                    area: ['60%', '80%'],
-                    shadeClose: true, //点击遮罩关闭
-                    content: '../demo/table form new task.html',
-                    cancel: function (index, layero) {
-                        tableIns = table.render(tablerender);
-                    },
-                    end: function(){
-                        tableIns = table.render(tablerender);
-                    }
-                });
-                tableIns = table.render(tablerender);
-            });
 
             var table = layui.table;
             table.on('checkbox(demo)', function (obj) {
@@ -222,14 +175,9 @@
                     layer.open({
                         type: 2,
                         title: "Task",
-                        area: ['60%', '80%'],
+                        area: ['700px', '550px'],
                         shadeClose: true, //点击遮罩关闭
                         content: 'show-task.php?data=' + escape(JSON.stringify(data)),
-                        btn: ['Confirm'],
-                        btnAlign: 'c',
-                        yes: function(index, layero){
-                            layer.close(index)
-                        }
                     })
                 } else if (obj.event === 'del') {
                     layer.confirm('Confirm to delete ?', {
@@ -244,59 +192,33 @@
                                 alert("Connection error");
                             },
                             success: function (data) {
+                                alert("Success");
                                 obj.del();
                                 layer.close(index);
-                                tableIns = table.render(tablerender);
                             }
                         });
                     });
                 } else if (obj.event === 'edit') {
-                    //layer.alert('view'+ JSON.stringify(data));
                     layer.open({
                         type: 2,
                         title: "Task",
-                        area: ['60%', '80%'],
+                        area: ['700px', '550px'],
                         shadeClose: true, //点击遮罩关闭
                         content: 'edit task page.php?data=' + escape(JSON.stringify(data)),
                         cancel: function (index, layero) {
-                            tableIns = table.render(tablerender);
-                        }, 
-                        end: function(){
-                            tableIns = table.render(tablerender);
+                            tableIns.reload();
                         }
                     });
-					tableIns = table.render(tablerender);
-                }else if(obj.event==="setPn"){
-                 layer.open({
-                        type: 2,
-                        title: "Task",
-                        area: ['60%', '80%'],
-                        shadeClose: true, //点击遮罩关闭
-                        content: 'edit task page.php?data=' + escape(JSON.stringify(data)),
-            });
-                   tableIns = table.render(tablerender);
-                }//加在监听工具条部分 
-      });
 
-
-
-
-            var twidth = document.getElementsByClassName('layui-table-view')[0].offsetWidth - 58
-            tablerender.cols[0].forEach(function (n, i) {
-                if (n.width) {
-                    if (i == 7) { n.width = twidth / 8 * 0.8 }
-                    else if (i == 8) { n.width = twidth / 8 * 1.2 }
-                    else { n.width = twidth / 8 }
                 }
-            })
-            tableIns = table.render(tablerender);
+            });
         });
 
     </script>
     <!-- 表格操作按钮集 -->
     <script type="text/html" id="barOption">
 
-     <!-- <a class="layui-btn layui-btn-mini" lay-event="detail">View</a> -->
+    <a class="layui-btn layui-btn-mini" lay-event="detail">View</a>
     <a class="layui-btn layui-btn-mini layui-btn-normal" lay-event="edit">Edit</a>
     <a class="layui-btn layui-btn-mini layui-btn-danger" lay-event="del">Delete</a>
 </script>

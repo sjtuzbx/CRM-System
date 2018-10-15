@@ -16,35 +16,30 @@
 	    die("Connection failed: " . mysqli_connect_error());
 	}
 
+	// 1 - Everyone  0 - Administrator
 	foreach($_POST as $x=>$x_value) {
 		$name_list = explode('-',$x); 	
 		$table_name = $name_list[0];
+		$table_name = $table_name . "_permission";
 		$permission = $name_list[1];
-			
+		if ($permission == "everyone")
+			$permission_id = 1;
+		else
+			$permission_id = 0;
+		$sql = "UPDATE `permission` set `$table_name`='$permission_id' WHERE permission_id='0'";
+		$res = mysqli_query($conn, $sql);
+	}	
+	if ($res){
+		$sql = "select * from permission";
+		$res = mysqli_query($conn, $sql);
+		$arr = array();
+		while ($row = mysqli_fetch_assoc($res)){
+			array_push($arr,$row);
+		}
+		$data=array("data"=>$arr);
+		file_put_contents('json/permission.json', json_encode($data));
+		echo "successfully updated setting";
 	}
-
-	// $sql = "UPDATE `client` set `cname`='$name', `clienttype`='$type', `siteaddress`='$siteaddress', `postaladdress`='$postaladdress', `cstatus`='$status', `cphone`='$phone' WHERE client.cid='$id'";
-	// $res = mysqli_query($conn, $sql);
-	// if ($res){
-	// 	// update json
-	// 	$sql_client = "select * from client";
-	// 	$client_res = mysqli_query($conn, $sql_client);
-	// 	$arr = array();
-	// 	while ($client_row = mysqli_fetch_assoc($client_res)){
-	// 		array_push($arr, $client_row);
-	// 	}
-	// 	$data=array("code"=>0,"msg"=>"","count"=>count($arr), "data"=>$arr);
-	// 	file_put_contents('json/client.json', json_encode($data));
-
-	// 	$pid['cnt'] = $pid['cnt'] + 1;
-	// 	file_put_contents('json/client-id.json', json_encode($pid));
-
-	// 	echo "successfully edited new client";
-	// 	//header(location:index.html);
-	// } else {
-	// 	echo "failed";
-	// 	//header(location:'demo/table form new prop.html');
-	// }		
 ?> 
 
 </body> 

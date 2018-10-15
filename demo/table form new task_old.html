@@ -27,26 +27,26 @@
             <div class="layui-input-inline" style="margin-left: 15px;">
                 <select name="catogery" lay-verify="required" lay-search="">
                     <option value="">Please Choose</option>
-                    <option value="Email">Email</option>
-                    <option value="Follow Up">Follow Up</option>
-                    <!-- <option value="Get Started">Get Started</option>*/ -->
-                    <option value="Meeting">Meeting</option>
-                    <option value="Phone Call">Phone Call</option>
-                    <option value="TO Do">TO Do</option>
+                    <option value="1">Email</option>
+                    <option value="2">Follow Up</option>
+                    <option value="3">Get Started</option>
+                    <option value="4">Meeting</option>
+                    <option value="5">Phone Call</option>
+                    <option value="6">TO Do</option>
                 </select>
             </div>
         </div>
         <div class="layui-form-item" style="display:block;">
             <label class="layui-form-label" style="width: 120px; padding: 10px;">Date Started</label>
             <div class="layui-input-inline" style="margin-left: 15px;">
-                <input type="text" name="startdate" id="start" lay-verify="valid_date" placeholder="yyyy-MM-dd" autocomplete="off"
+                <input type="text" name="startdate" id="date" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off"
                     class="layui-input">
             </div>
         </div>
         <div class="layui-form-item" style="display:block;">
             <label class="layui-form-label" style="width: 120px; padding: 10px;">Date Due</label>
             <div class="layui-input-inline" style="margin-left: 15px;">
-                <input type="text" name="duedate" id="end" lay-verify="valid_date" placeholder="yyyy-MM-dd" autocomplete="off"
+                <input type="text" name="duedate" id="date" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off"
                     class="layui-input">
             </div>
         </div>
@@ -56,15 +56,8 @@
         <div class="layui-form-item" style="display:block;">
             <label class="layui-form-label" style="width: 120px; padding: 10px;">Reminder</label>
             <div class="layui-input-inline" style="margin-left: 15px;">
-                <input type="text" name="reminddate" id="date" lay-verify="valid_date" placeholder="yyyy-MM-dd" autocomplete="off"
-                    class="layui-input">
-            </div>
-        </div>
-
-        <div class="layui-form-item" style="display:block;">
-            <label class="layui-form-label" style="width: 120px; padding: 10px;">Time</label>
-            <div class="layui-input-inline" style="margin-left: 15px;">
-                <input type="time" class="layui-input" id="test4" placeholder="HH:mm:ss">
+                <input type="text" name="reminddate" id="date" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off"
+                    class="layui-input"><br /><input type="time" class="layui-input" id="test4" placeholder="HH:mm:ss">
             </div>
         </div>
 
@@ -81,8 +74,8 @@
             <div class="layui-input-inline" style="margin-left: 15px;">
                 <select name="status" lay-filter="aihao">
                     <!--  <option value=""></option> -->
-                    <option value="0">Not Started</option>
-                    <option value="1" selected="">In Progress</option>
+                    <option value="0" selected="">Not Started</option>
+                    <option value="1" >In Progress</option>
                     <option value="2">Completed</option>
                     <option value="3">Deferred</option>
                     <option value="4">Cancelled</option>
@@ -107,8 +100,9 @@
         <div class="layui-form-item">
             <label class="layui-form-label" style="width: 120px; padding: 10px;">Related To</label>
             <div class="layui-input-inline" style="margin-left: 15px;">
-                <select name="projectid" id="project" >
-                    <option value="" selected="">choose a project</option>
+                <select name="modules" id="project" lay-verify="required">
+                    <option value="0">Project 1</option>
+                    <option value="1" selected="">Project 2</option>
                 </select>
             </div>
         </div>
@@ -138,7 +132,7 @@
                 </select>
             </div>
         </div>
-        
+
         <div class="layui-form-item">
             <div class="layui-input-block" style="margin-left: 255px;">
                 <button class="layui-btn" lay-submit="" lay-filter="demo1">Save</button>
@@ -152,53 +146,31 @@
         layui.use('element', function () {
             var element = layui.element
                 , $ = layui.jquery;
-            
+
             //触发事件
             $(document).on('click', '#set-progress', function () {
                 progress("progress", "50")
             });
         });
-        layui.use(['form', 'layedit', 'laydate','jquery'], function () {
+        layui.use(['form', 'layedit', 'laydate'], function () {
             var form = layui.form
                 , layer = layui.layer
                 , layedit = layui.layedit
-                , laydate = layui.laydate
-                ,$ = layui.jquery;
-             var laydate = layui.laydate;
-            var nowTime = new Date().valueOf();
+                , laydate = layui.laydate;
+
             //日期
-            var startTime=laydate.render({
-                elem: '#start'
-                , lang: 'en'
-                ,min:nowTime
-                ,done:function(value,dates){
-                   endTime.config.min ={  
-                         year:dates.year,   
-                         month:dates.month-1, //关键  
-                         date: dates.date,   
-                };
-                }              
-            });
-          var endTime=  laydate.render({
-                elem: '#end'
-                , lang: 'en'              
-                ,done:function(value,datdatese){
-                 startTime.config.max={  
-                    year:dates.year,   
-                    month:dates.month-1,//关键   
-                    date: dates.date,              
-            }
-                }
-            });
             laydate.render({
                 elem: '#date'
                 , lang: 'en'
-                ,min:nowTime
+            });
+            laydate.render({
+                elem: '#date1'
+                , lang: 'en'
             });
 
             //创建一个编辑器
             var editIndex = layedit.build('LAY_demo_editor');
-           
+
             //自定义验证规则
             form.verify({
                 title: function (value) {
@@ -221,21 +193,16 @@
             });
 
             form.on('submit(demo1)', function (data) {
-                if (confirm('Confirm to add new task ?')) { //只有当点击confirm框的确定时，该层才会关闭
-                    var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
-                    parent.layer.close(index); //再执行关闭  
-                }
+                // layer.alert(JSON.stringify(data.field), {
+                //     title: '最终的提交信息'
+                // });
             });
 
-            $.getJSON("../json/projects.json", function (data) {
-                data.data.forEach(function (n) {
-                    $("#project").append("<option value='" + n.id + "'>" + n.pname + "</option>");
-                })
-                form.render('select')
-            })
-        });
-    </script>
-   
 
+
+        });
+
+    </script>
 </body>
+
 </html>

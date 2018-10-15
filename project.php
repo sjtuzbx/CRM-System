@@ -48,17 +48,17 @@
               <li class="layui-nav-item"><a href="task.html"><span style="font-family: 'imooc-icon';"></span><span> Tasks</span></a></li>
               <li class="layui-nav-item"><a href="lead.html"><span style="font-family: 'imooc-icon';"></span><span> Leads</span></a></li>
               <li class="layui-nav-item"><a href="client.html"><span style="font-family: 'imooc-icon';"></span><span> Clients</span></a></li>
-              <li class="layui-nav-item"><a href="e-mail.html"><span style="font-family: 'imooc-icon';"></span><span> E-mails</span></a></li>
+             <!--  <li class="layui-nav-item"><a href="e-mail.html"><span style="font-family: 'imooc-icon';"></span><span> E-mails</span></a></li> -->
               <li class="layui-nav-item"><a href="contact.html"><span style="font-family: 'imooc-icon';"></span><span> Contacts</span></a></li>
               
-
+<!-- 
               <li class="layui-nav-item">
                 <a href="javascript:;">More</a>
                 <dl class="layui-nav-child">
                   <dd><a href="">Recent Activity</a></dd>
                   <dd><a href="wrap_calendar.html">Calendar</a></dd>
               </dl>
-          </li>
+          </li> -->
       </ul>
       <ul class="layui-nav layui-layout-right" >
         <li class="layui-nav-item ">
@@ -78,7 +78,7 @@
             <!-- 左侧主菜单添加选项卡监听 -->
             <ul class="layui-nav layui-nav-tree" lay-filter="side-main">
                <li class="layui-nav-item  layui-nav-itemed">
-                <a href="javascript:;"><i class="layui-icon">&#xe620;</i>Projects</a>
+                <a href="javascript:;"><i class="layui-icon" >&#xe620;</i>Projects</a>
                 <dl class="layui-nav-child">
                     <dd><a href="javascript:;" href-url="demo/table layer project.html"><i class="layui-icon">&#xe621;</i>All Projects</a></dd>
                     <dd><a href="javascript:;" href-url="demo/table layer project.html"><i class="layui-icon">&#xe621;</i>Recent Projects</a></dd>
@@ -86,6 +86,7 @@
                     
                 </dl>
             </li>
+
             </ul>
         </div>
     </div>
@@ -107,6 +108,25 @@
 
 <script type="text/javascript" src="frame/layui/layui.js"></script>
 <script type="text/javascript" src="./frame/static/js/vip_comm.js"></script>
+<script src="js/jquery-3.3.1.min.js"></script>
+<script>
+  /*   $("#more_project").unbind('click').bind("click",function(a){});
+      var a=$.ajax({
+                            url:'json/user.json',
+                            method:"POST",
+                            data:'',
+                            success:function(data){
+                                var json = JSON.parse(data);//将json数据变成数组
+                                console.log(json);
+                                  $.each(json.data,function(i1,e1){
+                                    $("#more_index").append(' <dd><a href="javascript:;" href-url="demo/table layer project.html"><i class="layui-icon">&#xe621;</i>'+e1.username+'</a></dd>') 
+                                
+                                  })  
+                            }
 
+                                         
+        })             */
+    
+    </script>
 </body>
 </html>

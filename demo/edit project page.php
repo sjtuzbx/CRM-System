@@ -130,8 +130,8 @@
 
     <div class="layui-form-item layui-form-text">
         <!-- <label class="layui-form-label" style="width: 120px; padding: 10px;">Customized Information</label> -->
-        <div class="layui-input-block" style="margin: 0px 30px;">
-            <textarea class="layui-textarea layui-hide" name="customized" lay-verify="content" id="LAY_demo_editor"><?php echo $customized ?></textarea>
+        <div class="layui-input-block" style="margin: 0px ;">
+             <textarea name="desc" placeholder="" class="layui-textarea"><?php echo $customized ?></textarea>
         </div>
     </div>
 
@@ -168,11 +168,10 @@
         form.verify({
             title: function(value){
                 if(value.length < 5){
-                    return 'Project name should be greater than 4 characters.';
+                    return ' Should be greater than 4 characters.';
                 }
             }
             ,essential: [/[\S]+/, "This one should not be empty."]
-            ,valid_date: [/^(\d{4})[-\/](\d{1}|0\d{1}|1[0-2])([-\/](\d{1}|0\d{1}|[1-2][0-9]|3[0-1]))*$/, "Invalid date format"]
             ,pass: [/(.+){6,12}$/, 'the length of password should be between 6 to 12 characters.']
             ,content: function(value){
                 layedit.sync(editIndex);
@@ -193,7 +192,7 @@
             //     title: '最终的提交信息'
             // });
             //return false;
-            if(confirm('Confirm to Edit ?')){ //只有当点击confirm框的确定时，该层才会关闭
+            if(true){ //只有当点击confirm框的确定时，该层才会关闭
                 var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
                 parent.layer.close(index); //再执行关闭  
             }

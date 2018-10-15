@@ -45,6 +45,7 @@
           name="id">
       </div>
       <button class="layui-btn mgl-20" id="btn-s" data-type="reload" lay-submit="">Searching</button>
+      <button class="layui-btn btn-add btn-default" id="btn-hidden"><i class="layui-icon">&#xe648;</i></button>
     </span>
   </div>
 
@@ -76,13 +77,13 @@
         , cols: [[                  //标题栏
           { checkbox: true, sort: true, fixed: true, space: true }
           // , {field: 'id', title: '', width: 80}
-          , { field: 'pname', title: 'Name', width: wwidth }
-          , { field: 'status', title: 'Status', width: wwidth }
-          , { field: 'username', title: 'Responsible User', width: wwidth }
-          , { field: 'cname', title: 'Client', width: wwidth }
-          , { field: 'datecreated', title: 'Date Created', width: wwidth }
-          , { field: 'duedate', title: 'Date Due', width: wwidth }
-          , { fixed: 'right', title: 'Function', width: wwidth, align: 'center', toolbar: '#barOption' } //这里的toolbar值是模板元素的选择器
+          , { field: 'pname', title: 'Name', width: wwidth, event: 'setPn', sort: true }
+          , { field: 'status', title: 'Status', width: wwidth, sort: true }
+          , { field: 'username', title: 'Responsible User', width: wwidth, sort: true }
+          , { field: 'cname', title: 'Client', width: wwidth, sort: true }
+          , { field: 'datecreated', title: 'Date Created', width: wwidth, sort: true }
+          , { field: 'duedate', title: 'Date Due', width: wwidth, sort: true }
+          , { field: 'function_bar', title: 'Function', width: wwidth, align: 'center', toolbar: '#barOption' } //这里的toolbar值是模板元素的选择器
         ]]
         , id: 'dataCheck'
         , url: '../json/projects.json'
@@ -95,16 +96,22 @@
           //如果是异步请求数据方式，res即为你接口返回的信息。
           //如果是直接赋值的方式，res即为：{data: [], count: 99} data为当前页数据、count为数据总长度
           console.log(res);
-
           //得到当前页码
           console.log(curr);
-
           //得到数据总量
           console.log(count);
         }
       }
 
       var tableIns = table.render(tablerender);
+
+      $.getJSON('../json/permission.json', function (data) {
+          console.log("project permission is " + data.data[0]["project_permission"])
+          if (data.data[0]["project_permission"] == 0){
+            tablerender.url = '';
+            tableIns = table.render(tablerender);
+          }
+      });
 
       // 获取选中行
       table.on('checkbox(dataCheck)', function (obj) {
@@ -146,23 +153,24 @@
         layer.open({
           type: 2,
           title: " New Project",
-          area: ['700px', '550px'],
+          area: ['60%', '80%'],
           shadeClose: true, //点击遮罩关闭
           content: '../demo/table form new project.html',
           cancel: function (index, layero) {
             tableIns = table.render(tablerender);
           },
-          end: function(){
+          end: function () {
             tableIns = table.render(tablerender);
           }
         });
-        tableIns = table.render(tablerender);
+        tableIns.reload();
       });
 
       //搜索
       $("#btn-s").on('click', function () {
         console.log('search')
-        var inputText = document.getElementById("search_bar").value
+        var inputText =
+          document.getElementById("search_bar").value
         jsondata2 = jsondata.filter(function (item) {
           return item.pname == inputText
         })
@@ -184,14 +192,24 @@
         jsondata = data.data
       })
 
+      ////////////////hide function_bar
+      $("#btn-hidden").on('click', function () {
+        var a = $("[data-field='function_bar']").css("display")
+        if (a == "none")
+          $("[data-field='function_bar']").css("display", "block");
+        else {
+          $("[data-field='function_bar']").css("display", "none");
+        }
 
-      // 暂停和中止按钮功能
+      });
+
+      ////////// // 暂停和中止按钮功能
       var table = layui.table;
       //监听表格复选框选择
       table.on('checkbox(demo)', function (obj) {
         console.log(obj)
       });
-      //监听工具条
+      //////////////监听工具条
       table.on('tool(demo)', function (obj) {
         var data = obj.data;
         if (obj.event === 'detail') {
@@ -199,8 +217,8 @@
           layer.open({
             type: 2,
             title: "Project",
-            area: ['700px', '550px'],
-            shadeClose: true, //点击遮罩关闭
+            area: ['60%', '80%'],
+            shadeClose: true, //close shadow
             content: 'show-project.php?data=' + escape(JSON.stringify(data)),
             btn: ['Confirm'],
             btnAlign: 'c',
@@ -222,10 +240,10 @@
                 alert("Connection error");
               },
               success: function (data) {
-                //alert("Success");
                 obj.del();
                 layer.close(index);
                 tableIns = table.render(tablerender);
+                //                  tableIns.reload();
               }
             });
           });
@@ -233,13 +251,23 @@
           layer.open({
             type: 2,
             title: "Project",
-            area: ['700px', '550px'],
+            area: ['60%', '80%'],
             shadeClose: true, //点击遮罩关闭
             content: 'edit project page.php?data=' + escape(JSON.stringify(data)),
             // btn:["Save""Cancle"],
           });
           tableIns = table.render(tablerender);
-        }
+        } else if (obj.event === "setPn") {
+          layer.open({
+            type: 2,
+            title: "Project",
+            area: ['60%', '80%'],
+            shadeClose: true, //点击遮罩关闭
+            content: 'edit project page.php?data=' + escape(JSON.stringify(data)),
+            // btn:["Save""Cancle"],
+          });
+          tableIns = table.render(tablerender);
+        }//加在监听工具条部分 
       });
 
     });

@@ -152,7 +152,7 @@ layui.use(['layer', 'element', 'util'], function () {
         if ($(this).index() > 0) {
             element.tabDelete('card', $(this).attr('lay-id'));
         } else {
-            layer.msg('This page could not be deleted')
+            layer.msg('Can not close welcome page')
         }
     });
 
