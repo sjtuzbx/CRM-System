@@ -175,6 +175,9 @@
                     cancel: function (index, layero) {
                         tableIns = table.render(tablerender);
                     },
+                    end: function(){
+                        tableIns = table.render(tablerender);
+                    }
                 });
                 tableIns = table.render(tablerender);
             });
@@ -233,6 +236,9 @@
                         content: 'edit lead page.php?data=' + escape(JSON.stringify(data)),
                         cancel: function (index, layero) {
                             tableIns = table.render(tablerender);
+                        },
+                        end: function(){
+                            tableIns = table.render(tablerender);
                         }
                     });
                     tableIns = table.render(tablerender);        
@@ -250,7 +256,7 @@
 
                 } else if (obj.event === 'convert') {
                     layer.confirm('Confirm to Convert ?', {
-                        title: 'Convert Lead to a client',
+                        title: 'Convert Lead to a Client',
                         btn: ['Comfirm', 'Cancel']
                     }
                         , function (index) {
@@ -265,6 +271,7 @@
                                     //alert("Success");
 									obj.del();
                                     layer.close(index);
+                                    obj.del()
                                 }
                             });
                         });

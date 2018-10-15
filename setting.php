@@ -81,7 +81,7 @@
                     <li class="layui-nav-item  layui-nav-itemed">
                         <a href="javascript:;"><i class="layui-icon">&#xe620;</i>System Settings</a>
                         <dl class="layui-nav-child">
-                            <dd class="icon"><a href="javascript:;"></a></dd>
+                            <!-- <dd class="icon"><a href="javascript:;"></a></dd> -->
                             <dd><a href="javascript:;" href-url=""><i class="layui-icon">&#xe621;</i>Permissions</a></dd>
                             <dd><a href="javascript:;" href-url=""><i class="layui-icon">&#xe621;</i>Task Sets</a></dd>
                             <dd><a href="javascript:;" href-url=""><i class="layui-icon">&#xe621;</i>Custom setting</a></dd>

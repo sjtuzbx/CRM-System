@@ -153,6 +153,9 @@
           cancel: function (index, layero) {
             tableIns = table.render(tablerender);
           },
+          end: function(){
+            tableIns = table.render(tablerender);
+          }
         });
         tableIns.reload();
       });
@@ -231,7 +234,6 @@
                 alert("Connection error");
               },
               success: function (data) {
-               
                 obj.del();
                 layer.close(index);
                 tableIns = table.render(tablerender);

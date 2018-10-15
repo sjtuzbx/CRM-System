@@ -141,7 +141,7 @@
                 tableIns = table.render(tablerender);
             });
 
-             $("#btn-s").on('click', function () {
+            $("#btn-s").on('click', function () {
                 console.log('search')
                 var inputText = document.getElementById("search_bar").value
                 jsondata2 = jsondata.filter(function (item) {
@@ -186,6 +186,9 @@
                     cancel: function (index, layero) {
                         tableIns = table.render(tablerender);
                     },
+                    end: function () {
+                        tableIns = table.render(tablerender);
+                    }
                 })
                 tableIns = table.render(tablerender);
             });
@@ -209,7 +212,7 @@
                         content: 'show-contact.php?data=' + escape(JSON.stringify(data)),
                         btn: ['Confirm'],
                         btnAlign: 'c',
-                        yes: function(index, layero){
+                        yes: function (index, layero) {
                             layer.close(index)
                         }
                     })
@@ -243,6 +246,8 @@
                         content: 'edit contact page.php?data=' + escape(JSON.stringify(data)),
                         cancel: function (index, layero) {
                             tableIns = table.render(tablerender);
+                        }, end: function () {
+                            tableIns = table.render(tablerender);
                         }
                     });        
                     tableIns = table.render(tablerender);        
@@ -253,7 +258,10 @@
                         area: ['60%', '80%'],
                         shadeClose: true, //点击遮罩关闭
                         content: 'edit contact page.php?data=' + escape(JSON.stringify(data)),
-            });
+						end: function () {
+                            tableIns = table.render(tablerender);
+                        }
+				});
                 tableIns = table.render(tablerender);
                 }//加在监听工具条部分 
             });

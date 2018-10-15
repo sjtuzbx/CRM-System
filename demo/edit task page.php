@@ -91,7 +91,7 @@
         <div class="layui-form-item" style="display:block;">
             <label class="layui-form-label" style="width: 120px; padding: 10px;">Reminder</label>
             <div class="layui-input-inline" style="margin-left: 15px;">
-                <input type="text" name="reminddate" id="reminderdate" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off"
+                <input type="text" name="reminddate" id="date" lay-verify="date" value="<?php echo $reminddate ?>" autocomplete="off"
                     class="layui-input">
             </div>
         </div>
@@ -217,6 +217,25 @@
             </div>
         </div>
 
+        <!-- <button class="layui-btn layui-btn-primary layui-icon-add-1" id='add_new_area' lay-filter="demo2"><span>Project
+                Information</span></button>
+        <table class="layui-table" id="link_project" style="display: none;">
+            <colgroup>
+                <col width="150">
+                <col width="200">
+                <col>
+            </colgroup>
+            <thead>
+                <tr>
+                    <th>Project</th>
+                    <th>Start Date</th>
+                    <th>Statues</th>
+                </tr>
+            </thead>
+            <tbody class="project_table" id='project_table'>
+            </tbody>
+        </table> -->
+
         <div class="layui-form-item">
             <div class="layui-input-block" style="margin-left: 255px;">
                 <button class="layui-btn" lay-submit="" lay-filter="demo1">Save</button>
@@ -295,17 +314,38 @@
 
         //监听提交
         form.on('submit(demo1)', function(data){
-            // layer.alert(JSON.stringify(data.field), {
-            //     title: '最终的提交信息'
-            // });
-            //return false;
             if(confirm('Confirm to Edit ?')){ //只有当点击confirm框的确定时，该层才会关闭
                 var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
                 parent.layer.close(index); //再执行关闭  
             }
         });
 
+        //  $("#add_new_area").off().on("click", function () {
+        //         var b = $("#link_project").css("display");//获取当前表格是否显示
+        //         if (b == "none") {//如果不显示则执行显示事件并向服务器获取数据
+        //             $("#link_project").show("300", function () {
+        //                 $.ajax({
+        //                     url: '../json/projects.json',
+        //                     method: "POST",
+        //                     data: {},
+        //                     success: function (data) {
+        //                         var json = JSON.parse(data);//将json数据变成数组
+        //                         $.each(json.data, function (i2, e2) {//遍历e2
+        //                             console.log(e2);//查看e2内容
+        //                             //e2.[object]用于调取指定key,value值
+        //                             $("#project_table").append('<tr><td>' + e2.pname + '</td><td>' + e2.datecreated + '</td><td>' + e2.status + '</td></tr>');
 
+        //                             $('html,body').animate({ scrollTop: $('#project_table').offset().top }, 1000);
+        //                         });
+        //                     }
+        //                 });
+        //             });
+        //         } else {
+        //             $("#link_project").hide("300", function () {
+        //                 // $("#link_project tr:not(:first)").empty("");//隐藏并清空表格防止反复提交ajax
+        //             })
+        //         }
+        //     }
     });
 	
 	

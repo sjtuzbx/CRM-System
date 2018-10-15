@@ -86,13 +86,6 @@
                     
                 </dl>
             </li>
-            <li class="layui-nav-item" >
-                <a href="javascript:;" id="more_project"><i class="layui-icon" >&#xe628;</i>More</a>
-
-                <dl class="layui-nav-child" id="more_index">                 
-                </dl>
-
-            </li>
 
             </ul>
         </div>

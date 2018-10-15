@@ -138,7 +138,7 @@
                 </select>
             </div>
         </div>
-
+        
         <div class="layui-form-item">
             <div class="layui-input-block" style="margin-left: 255px;">
                 <button class="layui-btn" lay-submit="" lay-filter="demo1">Save</button>
@@ -147,7 +147,6 @@
         </div>
     </form>
 
-    <script type="text/javascript" src="../frame/layui/layui.all.js"></script>
     <script type="text/javascript" src="../frame/layui/layui.js"></script>
     <script type="text/javascript">
         layui.use('element', function () {
@@ -222,21 +221,10 @@
             });
 
             form.on('submit(demo1)', function (data) {
-                // layer.alert(JSON.stringify(data.field), {
-                //     title: '最终的提交信息'
-                // });
-                // layer.confirm('Confirm to Add ?', {
-                //     title: 'Add Task',
-                //     btn: ['Comfirm', 'Cancel']
-                // }, function (index) {
-                //     //layer.alert('view'+ JSON.stringify(data));
-                //     var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
-                //     parent.layer.close(index); //再执行关闭  
-                // });
-                if(true){ //只有当点击confirm框的确定时，该层才会关闭
-                var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
-                parent.layer.close(index); //再执行关闭  
-            } 
+                if (confirm('Confirm to add new task ?')) { //只有当点击confirm框的确定时，该层才会关闭
+                    var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                    parent.layer.close(index); //再执行关闭  
+                }
             });
 
             $.getJSON("../json/projects.json", function (data) {
@@ -245,14 +233,9 @@
                 })
                 form.render('select')
             })
-
-
-
         });
-
     </script>
    
 
 </body>
-
 </html>
