@@ -134,7 +134,15 @@
                     cancel: function (index, layero) {
                         tableIns.reload();
                     },
+<<<<<<< HEAD
                 })
+=======
+                    end: function(){
+                        tableIns = table.render(tablerender);
+                    }
+                });
+                tableIns = table.render(tablerender);
+>>>>>>> 0a98e0e4e3ec2f4823ce43b9fdba7f0543c015f9
             });
 
             // 暂停和中止按钮功能
@@ -184,7 +192,10 @@
                         shadeClose: true, //点击遮罩关闭
                         content: 'edit lead page.php?data=' + escape(JSON.stringify(data)),
                         cancel: function (index, layero) {
-                            tableIns.reload();
+                            tableIns = table.render(tablerender);
+                        },
+                        end: function(){
+                            tableIns = table.render(tablerender);
                         }
                     });
                 } else if (obj.event === 'convert') {
@@ -201,8 +212,8 @@
                                     alert("Connection error");
                                 },
                                 success: function (data) {
-                                    alert("Success");
                                     layer.close(index);
+                                    obj.del()
                                 }
                             });
                         });

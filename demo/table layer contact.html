@@ -138,7 +138,7 @@
                 tableIns = table.render(tablerender);
             });
 
-             $("#btn-s").on('click', function () {
+            $("#btn-s").on('click', function () {
                 console.log('search')
                 var inputText = document.getElementById("search_bar").value
                 jsondata2 = jsondata.filter(function (item) {
@@ -172,6 +172,9 @@
                     cancel: function (index, layero) {
                         tableIns = table.render(tablerender);
                     },
+                    end: function () {
+                        tableIns = table.render(tablerender);
+                    }
                 })
                 tableIns = table.render(tablerender);
             });
@@ -195,7 +198,7 @@
                         content: 'show-contact.php?data=' + escape(JSON.stringify(data)),
                         btn: ['Confirm'],
                         btnAlign: 'c',
-                        yes: function(index, layero){
+                        yes: function (index, layero) {
                             layer.close(index)
                         }
                     })
@@ -229,9 +232,11 @@
                         content: 'edit contact page.php?data=' + escape(JSON.stringify(data)),
                         cancel: function (index, layero) {
                             tableIns = table.render(tablerender);
+                        }, end: function () {
+                            tableIns = table.render(tablerender);
                         }
-                    });        
-                    tableIns = table.render(tablerender);        
+                    });
+                    tableIns = table.render(tablerender);
                 }
             });
 

@@ -186,7 +186,7 @@
                         content: 'show-client.php?data=' + escape(JSON.stringify(data)),
                         btn: ['Confirm'],
                         btnAlign: 'c',
-                        yes: function(index, layero){
+                        yes: function (index, layero) {
                             layer.close(index)
                         }
                     });
@@ -207,7 +207,7 @@
                                     alert("Success");
                                     obj.del();
                                     layer.close(index);
-                                    tableIns = table.render(tablerender);                                    
+                                    tableIns = table.render(tablerender);
                                 }
                             });
                         });
@@ -220,6 +220,9 @@
                         shadeClose: true, //点击遮罩关闭
                         content: 'edit client page.php?data=' + escape(JSON.stringify(data)),
                         cancel: function (index, layero) {
+                            tableIns = table.render(tablerender);
+                        },
+                        end: function () {
                             tableIns = table.render(tablerender);
                         }
                     });
