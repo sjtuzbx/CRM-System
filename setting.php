@@ -83,7 +83,7 @@
                         <dl class="layui-nav-child">
                             <dd class="icon"><a href="javascript:;"></a></dd>
                             <dd><a href="javascript:;" href-url="permissions setting.html"><i class="layui-icon">&#xe621;</i>Permissions</a></dd>
-                            <dd><a href="javascript:;" href-url=""><i class="layui-icon">&#xe621;</i>Task Sets</a></dd>
+                            <dd><a href="javascript:;" href-url="task set.html"><i class="layui-icon">&#xe621;</i>Task Sets</a></dd>
                             <dd><a href="javascript:;" href-url=""><i class="layui-icon">&#xe621;</i>Custom setting</a></dd>
                         </dl>
                     </li>
