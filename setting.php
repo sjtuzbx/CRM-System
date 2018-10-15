@@ -82,7 +82,7 @@
                         <a href="javascript:;"><i class="layui-icon">&#xe620;</i>System Settings</a>
                         <dl class="layui-nav-child">
                             <dd class="icon"><a href="javascript:;"></a></dd>
-                            <dd><a href="javascript:;" href-url=""><i class="layui-icon">&#xe621;</i>Permissions</a></dd>
+                            <dd><a href="javascript:;" href-url="permissions setting.html"><i class="layui-icon">&#xe621;</i>Permissions</a></dd>
                             <dd><a href="javascript:;" href-url=""><i class="layui-icon">&#xe621;</i>Task Sets</a></dd>
                             <dd><a href="javascript:;" href-url=""><i class="layui-icon">&#xe621;</i>Custom setting</a></dd>
                         </dl>
@@ -94,11 +94,11 @@
         <div class="layui-body my-body">
             <div class="layui-tab layui-tab-card my-tab" lay-filter="card" lay-allowClose="true">
                 <ul class="layui-tab-title">
-                    <li class="layui-this" lay-id="1"><span><i class="layui-icon">&#xe638;</i>User Details</span></li>
+                    <li class="layui-this" lay-id="1"><span><i class="layui-icon">&#xe638;</i>Permissions</span></li>
                 </ul>
                 <div class="layui-tab-content">
                     <div class="layui-tab-item layui-show">
-                        <iframe id="iframe" src="User Details.html" frameborder="0"></iframe>
+                        <iframe id="iframe" src="permissions setting.html" frameborder="0"></iframe>
                     </div>
                 </div>
             </div>
