@@ -65,7 +65,7 @@
                 , $ = layui.jquery;
 
             // 表格渲染
-            var tablerender = {
+            var tableIns = table.render({
                 elem: '#dateTable'                  //指定原始表格元素选择器（推荐id选择器）
                 , height: vipTable.getFullHeight()    //容器高度
                 , cols: [[                  //标题栏
@@ -86,9 +86,7 @@
                 , limits: [30, 60, 90, 150, 300]
                 , limit: 30 //默认采用30
                 , loading: false
-            };
-
-            var tableIns = table.render(tablerender);
+            });
 
             // 获取选中行
             table.on('checkbox(dataCheck)', function (obj) {
@@ -114,8 +112,8 @@
                         },
                         success: function (data) {
                             //alert("Success");
-                            tableIns = table.render(tablerender);
-
+                            tableIns.reload();
+                            layer.close($i);
                         }
                     });
                 }
@@ -123,32 +121,8 @@
 
             // 刷新
             $('#btn-refresh').on('click', function () {
-                tableIns = table.render(tablerender);
+                tableIns.reload();
             });
-
-            $("#btn-s").on('click', function () {
-                console.log('search')
-                var inputText = document.getElementById("search_bar").value
-                jsondata2 = jsondata.filter(function (item) {
-                    return item.lname == inputText
-                })
-                var temp = deepClone(tablerender)
-                tablerender.data = jsondata2
-                tablerender.url = ''
-                tableIns = table.render(tablerender);
-                tablerender = deepClone(temp)
-            })
-
-            function deepClone(obj) {
-                let _obj = JSON.stringify(obj),
-                    objClone = JSON.parse(_obj);
-                return objClone
-            }
-
-            var jsondata = new Object()
-            $.getJSON("../json/lead.json", function (data) {
-                jsondata = data.data
-            })
 
             $("#btn-add").on('click', function () {
                 layer.open({
@@ -158,10 +132,9 @@
                     shadeClose: true, //点击遮罩关闭
                     content: 'table form new lead.html',
                     cancel: function (index, layero) {
-                        tableIns = table.render(tablerender);
+                        tableIns.reload();
                     },
-                });
-                tableIns = table.render(tablerender);
+                })
             });
 
             // 暂停和中止按钮功能
@@ -181,11 +154,6 @@
                         area: ['700px', '550px'],
                         shadeClose: true, //点击遮罩关闭
                         content: 'show-lead.php?data=' + escape(JSON.stringify(data)),
-                        btn: ['Confirm'],
-                        btnAlign: 'c',
-                        yes: function(index, layero){
-                            layer.close(index)
-                        }
                     })
                 } else if (obj.event === 'del') {
                     layer.confirm('Confirm to delete ?', {
@@ -204,7 +172,6 @@
                                     alert("Success");
                                     obj.del();
                                     layer.close(index);
-                                    tableIns = table.render(tablerender);
                                 }
                             });
                         });
@@ -217,10 +184,9 @@
                         shadeClose: true, //点击遮罩关闭
                         content: 'edit lead page.php?data=' + escape(JSON.stringify(data)),
                         cancel: function (index, layero) {
-                            tableIns = table.render(tablerender);
+                            tableIns.reload();
                         }
                     });
-                    tableIns = table.render(tablerender);
                 } else if (obj.event === 'convert') {
                     layer.confirm('Confirm to convert ?', {
                         title: 'Convert Lead to a client',
@@ -248,11 +214,10 @@
     </script>
     <!-- 表格操作按钮集 -->
     <script type="text/html" id="barOption">
-    <!-- <a class="layui-btn layui-btn-mini" lay-event="detail">View</a> -->
+    <a class="layui-btn layui-btn-mini" lay-event="detail">View</a>
     <a class="layui-btn layui-btn-mini layui-btn-normal" lay-event="edit">Edit</a>
     <a class="layui-btn layui-btn-mini layui-btn-danger" lay-event="del">Delete</a>
     <a class="layui-btn layui-btn-mini layui-btn-danger" lay-event="convert">Convert</a>
 </script>
 </body>
-
 </html>
