@@ -29,7 +29,8 @@
 			$project_res = mysqli_query($conn, $sql_project);
 			$arr = array();
 			while ($project_row = mysqli_fetch_assoc($project_res)){
-				array_push($arr,$project_row);
+				if ($client_row['cid'] != 0)
+					array_push($arr, $project_row);
 			}
 			$data=array("code"=>0,"msg"=>"","count"=>count($arr), "data"=>$arr);
 			file_put_contents('json/client.json', json_encode($data));

@@ -49,7 +49,7 @@
 		$pid['cnt'] = $pid['cnt'] + 1;
 		file_put_contents('json/contact-id.json', json_encode($pid));
 
-		echo "successfully added new contact";
+		//echo "successfully added new contact";
 		//header(location:index.html);
 	} else {
 		echo "failed";

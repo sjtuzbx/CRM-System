@@ -255,6 +255,9 @@
             shadeClose: true, //点击遮罩关闭
             content: 'edit project page.php?data=' + escape(JSON.stringify(data)),
             // btn:["Save""Cancle"],
+			 end: function(){
+            tableIns = table.render(tablerender);
+                        }
           });
           tableIns = table.render(tablerender);
         } else if (obj.event === "setPn") {

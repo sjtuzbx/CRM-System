@@ -41,7 +41,8 @@
             $client_res = mysqli_query($conn, $sql_client);
             $arr = array();
             while ($client_row = mysqli_fetch_assoc($client_res)){
-                array_push($arr, $client_row);
+                if ($client_row['cid'] != 0)
+					array_push($arr, $client_row);
             }
             $data=array("code"=>0,"msg"=>"","count"=>count($arr), "data"=>$arr);
             file_put_contents('json/client.json', json_encode($data));
