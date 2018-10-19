@@ -80,7 +80,7 @@
                     , { field: 'lstatus', title: 'Status', width: wwidth, sort: true }
                     , { field: 'ldatecreated', title: 'Date Created', width: wwidth, sort: true }
                     // , {field: 'status', title: 'Date Due', width: 70}
-                    , { field: 'function_bar', title: 'Function', width: 200, align: 'center', toolbar: '#barOption' } //这里的toolbar值是模板元素的选择器
+                    , { field: 'function_bar', title: 'Function', width: 300, align: 'center', toolbar: '#barOption' } //这里的toolbar值是模板元素的选择器
                 ]]
                 , id: 'dataCheck,function_bar'
                 , url: '../json/lead.json'
@@ -282,7 +282,7 @@
                                 //alert("Success");
                                 obj.del();
                                 layer.close(index);
-                                obj.del()
+								  
                             }
                         });
                     });
@@ -294,7 +294,7 @@
     </script>
     <!-- 表格操作按钮集 -->
     <script type="text/html" id="barOption">
-    <a class="layui-btn layui-btn-mini" lay-event="detail">View</a>
+   // <a class="layui-btn layui-btn-mini" lay-event="detail">View</a>
     <a class="layui-btn layui-btn-mini layui-btn-normal" lay-event="edit">Edit</a>
     <a class="layui-btn layui-btn-mini layui-btn-danger" lay-event="del">Delete</a>
     <a class="layui-btn layui-btn-mini layui-btn-danger" lay-event="convert">Convert</a>
