@@ -15,12 +15,12 @@
 	if (!$conn) {
 	    die("Connection failed: " . mysqli_connect_error());
 	}
-	echo "连接成功";
-	if (isset($_POST["data"])){
-		$json = $_POST["data"];
+	echo "连接成功", "<br>";
+	//if (isset($_POST["data"])){
+		$json = $_POST['data'];
 		$row = json_decode($json, true);
 		$lid = $row['lid'];
-        $lname = $row["lname"];
+        $lname = $row['lname'];
         $phonenumber = $row['phonenumber'];
         $email = $row['email'];
         $status = $row['lstatus'];
@@ -33,7 +33,7 @@
         $id = $pid['cnt'];
 
         $sql = "INSERT INTO `client` (`cid`, `cname`, `clienttype`, `siteaddress`, `postaladdress`, `cstatus`, `cphone`, `cdatecreated`) VALUES ('$id', '$lname', 'Individual', '', '', '$status', '$phonenumber', '$datecreated');";
-        echo $sql;
+        echo $sql, "<br>";
         $res = mysqli_query($conn, $sql);
         if ($res){
             // update json
@@ -52,10 +52,10 @@
 
             
 
-            echo "successfully convert a lead to a new client";
+            echo "successfully convert a lead to a new client", "<br>";
             //header(location:index.html);
         } else {
-            echo "failed";
+            echo "failed", "<br>";
            ///header(location:'demo/table form new prop.html');
         }
 
@@ -87,7 +87,8 @@
             echo "failed";
             //header(location:'demo/table form new prop.html');
         }
-    }
+    //}
+	echo "lalala";
 ?> 
 
 </body> 

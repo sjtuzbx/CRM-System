@@ -274,7 +274,7 @@
                         $.ajax({
                             type: "POST",
                             url: "../convert-lead.php",
-                            data: { data: JSON.stringify(data) },
+                            data: { 'data': JSON.stringify(data) },
                             error: function (request) {
                                 alert("Connection error");
                             },
