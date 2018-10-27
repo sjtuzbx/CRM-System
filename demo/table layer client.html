@@ -108,6 +108,7 @@
             var tableIns = table.render(tablerender);
 
             $.getJSON('../json/permission.json', function (data) {
+				console.log(data)
                 console.log("client permission is " + data.data[0]["client_permission"])
                 if (data.data[0]["client_permission"] == 0) {
                     tablerender.url = '';
