@@ -20,7 +20,7 @@
   <fieldset class="layui-elem-field ">
     <legend>Task set</legend>
     <form class="layui-form" action="" method="post">
-      <div class="layui-field-box">
+      <div class="layui-field-box" id="task_set_columns">
         <div class="layui-row">
           <div class="layui-col-md2">
             Task Set Name
@@ -55,27 +55,27 @@
             <input type="checkbox" lay-filter="" name="" lay-skin="primary">
           </div>
         </div>
-        <div class="layui-row" style="margin: 15px;">
+        <div class="layui-row" style="margin: 15px;" id="input_task_set">
           <div class="layui-col-md2">
-            <input type="text" name="" autocomplete="off" placeholder="task set name" class="layui-input">
+            <input type="text" name="task_set_name" autocomplete="off" placeholder="task set name" class="layui-input">
           </div>
           <div class="layui-col-md2">
-            <input type="checkbox" lay-filter="" name="" lay-skin="primary">
+            <input type="checkbox" lay-filter="" name="contact" lay-skin="primary">
           </div>
           <div class="layui-col-md2">
-            <input type="checkbox" lay-filter="" name="" lay-skin="primary">
+            <input type="checkbox" lay-filter="" name="client" lay-skin="primary">
           </div>
           <div class="layui-col-md2">
-            <input type="checkbox" lay-filter="" name="" lay-skin="primary">
+            <input type="checkbox" lay-filter="" name="project" lay-skin="primary">
           </div>
           <div class="layui-col-md2">
-            <input type="checkbox" lay-filter="" name="" lay-skin="primary">
+            <input type="checkbox" lay-filter="" name="lead" lay-skin="primary">
           </div>
         </div>
       </div>
       <div class="layui-form-item">
         <div class="layui-input-block">
-          <button class="layui-btn" lay-submit lay-filter="formDemo">Save</button>
+          <button class="layui-btn" lay-submit lay-filter="formDemo">Add</button>
           <button type="reset" class="layui-btn layui-btn-primary">Reset</button>
         </div>
       </div>
@@ -87,14 +87,74 @@
   <script>
     //Demo
     layui.use('form', function () {
-      var form = layui.form;
+      var form = layui.form, $ = layui.$;
+      $.getJSON("json/taskset.json", function (data) {
+        $.each(data, function (infoIndex, info) {
+          var rt = document.getElementById("task_set_columns")
+          var elem = document.getElementById("input_task_set")
+          var newNode = document.createElement("div")
+          newNode.setAttribute("class", "layui-row")
+          newNode.style = "margin: 15px;"
 
+          var child1 = document.createElement("div")
+          child1.setAttribute("class", "layui-col-md2")
+          var child1text = document.createTextNode(info["name"])
+          child1.appendChild(child1text)
+          newNode.appendChild(child1)
+
+          set_names = ["contact", "client", "project", "lead"]
+          for (var i = 0; i < set_names.length; i++) {
+            var child1 = document.createElement("div")
+            child1.setAttribute("class", "layui-col-md2")
+            if (info[set_names[i]] == "on") {
+              var child1text = document.createTextNode("On")
+              child1.appendChild(child1text)
+              newNode.appendChild(child1)
+            } else {
+              var child1text = document.createTextNode("Off")
+              child1.appendChild(child1text)
+              newNode.appendChild(child1)
+            }
+          }
+
+          newNode.appendChild(child1)
+          console.log(newNode)
+          rt.insertBefore(newNode, elem)
+        })
+      })
       //监听提交
       form.on('submit(formDemo)', function (data) {
-        // if (confirm('Confirm to save permission ?')) { //只有当点击confirm框的确定时，该层才会关闭
-        //   var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
-        //   parent.layer.close(index); //再执行关闭  
-        // }
+        console.log(data.field)
+        var rt = document.getElementById("task_set_columns")
+        var elem = document.getElementById("input_task_set")
+        var newNode = document.createElement("div")
+        newNode.setAttribute("class", "layui-row")
+        newNode.style = "margin: 15px;"
+
+        var child1 = document.createElement("div")
+        child1.setAttribute("class", "layui-col-md2")
+        var child1text = document.createTextNode(data.field["task_set_name"])
+        child1.appendChild(child1text)
+        newNode.appendChild(child1)
+
+        set_names = ["contact", "client", "project", "lead"]
+        for (var i = 0; i < set_names.length; i++) {
+          var child1 = document.createElement("div")
+          child1.setAttribute("class", "layui-col-md2")
+          if (data.field[set_names[i]] == "on") {
+            var child1text = document.createTextNode("On")
+            child1.appendChild(child1text)
+            newNode.appendChild(child1)
+          } else {
+            var child1text = document.createTextNode("Off")
+            child1.appendChild(child1text)
+            newNode.appendChild(child1)
+          }
+        }
+
+        newNode.appendChild(child1)
+        console.log(newNode)
+        rt.insertBefore(newNode, elem)
         return false;
       });
     });

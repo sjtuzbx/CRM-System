@@ -15,12 +15,14 @@
 	if (!$conn) {
 	    die("Connection failed: " . mysqli_connect_error());
 	}
-	echo "连接成功";
-	if (isset($_POST["data"])){
-		$json = $_POST["data"];
+	echo "连接成功", "<br>";
+	//if (isset($_POST["data"])){
+        echo $_POST['data'], "<br>";
+		$json = $_POST['data'];
 		$row = json_decode($json, true);
-		$lid = $row['lid'];
-        $lname = $row["lname"];
+        $lid = $row['lid'];
+        echo $lid, "<br>";
+        $lname = $row['lname'];
         $phonenumber = $row['phonenumber'];
         $email = $row['email'];
         $status = $row['lstatus'];
@@ -31,9 +33,9 @@
         $json_string = file_get_contents('json/client-id.json');   
         $pid = json_decode($json_string, true);  
         $id = $pid['cnt'];
-
+        echo $id;
         $sql = "INSERT INTO `client` (`cid`, `cname`, `clienttype`, `siteaddress`, `postaladdress`, `cstatus`, `cphone`, `cdatecreated`) VALUES ('$id', '$lname', 'Individual', '', '', '$status', '$phonenumber', '$datecreated');";
-        echo $sql;
+        echo $sql, "<br>";
         $res = mysqli_query($conn, $sql);
         if ($res){
             // update json
@@ -52,10 +54,10 @@
 
             
 
-            echo "successfully convert a lead to a new client";
+            echo "successfully convert a lead to a new client", "<br>";
             //header(location:index.html);
         } else {
-            echo "failed";
+            echo "failed", "<br>";
            ///header(location:'demo/table form new prop.html');
         }
 
@@ -87,7 +89,41 @@
             echo "failed";
             //header(location:'demo/table form new prop.html');
         }
-    }
+
+        // detele lead
+        $sql_delete = "DELETE FROM lead WHERE lid = '$lid' ";
+		//echo $sql_delete;
+		$res = mysqli_query($conn, $sql_delete);
+		if ($res){
+			echo "Success delete lead";
+			$sql_project = "select * from lead";
+			$project_res = mysqli_query($conn, $sql_project);
+			$arr = array();
+			while ($project_row = mysqli_fetch_assoc($project_res)){
+				array_push($arr,$project_row);
+			}
+			$data=array("code"=>0,"msg"=>"","count"=>count($arr), "data"=>$arr);
+			file_put_contents('json/lead.json', json_encode($data));
+
+			
+			function test_lead_completed($var)
+			{
+				return($var["lstatus"]== "Active");
+			}
+			$data=array("code"=>0,"msg"=>"","count"=>count(array_filter($arr, test_lead_completed)), "data"=>array_filter($arr, test_lead_completed));
+			file_put_contents('json/active_lead.json', json_encode($data));
+
+			function test_lead_inprogress($var)
+			{
+				return($var["lstatus"]== "Lapsed");
+			}
+			$data=array("code"=>0,"msg"=>"","count"=>count(array_filter($arr, test_lead_inprogress)), "data"=>array_filter($arr, test_lead_inprogress));
+			file_put_contents('json/lapsed_lead.json', json_encode($data));
+		} else {
+			echo "Failed";
+		}
+    //}
+	echo "lalala";
 ?> 
 
 </body> 
