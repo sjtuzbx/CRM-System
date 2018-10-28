@@ -83,7 +83,7 @@
                     , { field: 'function_bar', title: 'Function', width: 300, align: 'center', toolbar: '#barOption' } //这里的toolbar值是模板元素的选择器
                 ]]
                 , id: 'dataCheck,function_bar'
-                , url: '../json/lead.json'
+                , url: '../json/lapsed_lead.json'
                 , method: 'get'
                 , page: true
                 , limits: [30, 60, 90, 150, 300]
@@ -266,8 +266,6 @@
                 tableIns = table.render(tablerender);
 
             } else if (obj.event === 'convert') {
-                //layer.alert('edit：<br>' + JSON.stringify(data))
-                
                 layer.confirm('Confirm to Convert ?', {
                     title: 'Convert Lead to a Client',
                     btn: ['Comfirm', 'Cancel']
@@ -276,19 +274,22 @@
                         $.ajax({
                             type: "POST",
                             url: "../convert-lead.php",
-                            data: { 'data': JSON.stringify(data) },
+                            data: { data: JSON.stringify(data) },
                             error: function (request) {
                                 alert("Connection error");
                             },
                             success: function (data) {
                                 //alert("Success");
                                 obj.del();
-                                layer.close(index);	  
+                                layer.close(index);
+								  
                             }
                         });
                     });
-                }
-            });
+            }
+        });
+
+
         });
     </script>
     <!-- 表格操作按钮集 -->

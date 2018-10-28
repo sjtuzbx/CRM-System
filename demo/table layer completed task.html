@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta name=”viewport” content=”width=device-width, initial-scale=1″ />
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Data-Table task</title>
+    <link rel="stylesheet" href="../frame/layui/css/layui.css">
+    <!--<link rel="stylesheet" href="http://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">-->
+    <link rel="stylesheet" href="../frame/static/css/style.css">
+    <link rel="icon" href="../frame/static/image/code.png">
+    <style>
+        .add_new{
+    		height: 100%;
+    	}
+      
+    @font-face{
+        font-family: "imooc-icon";
+        src: url("../icomoon/fonts/icomoon.eoteot?7kkyc2"); 
+        src: url("../icomoon /fonts/icomoon.eot?#iefix") format("embedded-opentype")
+             ,url("../icomoon /fonts/icomoon.woff") format("woff")
+             ,url("../icomoon/fonts/icomoon.ttf") format("truetype")
+             ,url("../icomoon/fonts/icomoon.svg") format("svg");
+        font-weight: normal;
+        font-style: normal;
+    } 
+    	
+    </style>
+</head>
+
+<body class="body">
+
+    <!-- 工具集 -->
+    <div class="my-btn-box">
+        <span class="fl">
+            <a class="layui-btn layui-btn-danger radius btn-delect" id="btn-delete-all">Bulk Delete</a>
+            <a class="layui-btn btn-add btn-default" id="btn-add">Add New Task</a>
+            <a class="layui-btn btn-add btn-default" id="btn-refresh"><i class="layui-icon">&#x1002;</i></a>
+        </span>
+        <span class="fr">
+            <span class="layui-form-label">Search For</span>
+            <div class="layui-input-inline">
+                <input type="text" autocomplete="off" placeholder="keywords: name...etc" class="layui-input" id="search_bar"
+                    name="id">
+            </div>
+            <button class="layui-btn mgl-20" id="btn-s" data-type="reload" lay-submit="">Searching</button>
+            <button class="layui-btn btn-add btn-default" id="btn-hidden"><i class="layui-icon">&#xe648;</i></button>
+        </span>
+    </div>
+
+    <!-- 表格 -->
+    <!-- <div id="dateTable"></div> -->
+    <table id="dateTable" class="layui-hide" lay-filter="demo"></table>
+    <script type="text/javascript" src="../frame/layui/layui.all.js"></script>
+    <script type="text/javascript" src="../frame/layui/layui.js"></script>
+    <script type="text/javascript" src="../js/index.js"></script>
+    <!-- <script src="../layui/layui.js"></script> -->
+    <script type="text/javascript">
+
+        // layui方法
+        layui.use(['table', 'form', 'layer', 'vip_table'], function () {
+            var table = layui.table;
+            // 操作对象
+            var form = layui.form
+                , table = layui.table
+                , layer = layui.layer
+                , vipTable = layui.vip_table
+                , $ = layui.jquery;
+
+            console.log(document.getElementsByClassName('body')[0].offsetWidth)
+            var wwidth = (document.getElementsByClassName('body')[0].offsetWidth - 78) / 7
+            var tablerender = {
+                elem: '#dateTable'                  //指定原始表格元素选择器（推荐id选择器）
+                , height: vipTable.getFullHeight()    //容器高度
+                , cols: [[                  //标题栏
+                    { checkbox: true, sort: true, fixed: true, space: true }
+                    , { field: 'tname', title: 'Task Name', width: wwidth,event: 'setPn',sort:true }
+                    , { field: 'startdate', title: 'Start Date', width: wwidth ,sort:true }
+                    , { field: 'duedate', title: 'Date Due',width: wwidth ,sort:true }
+                    , { field: 'tresponsiveid', title: 'Responsible User',width: wwidth ,sort:true }
+                    , { field: 'username', title: 'Task Owner', width: wwidth ,sort:true }
+                    , { field: 'status', title: 'Status', width: wwidth ,sort:true }
+                    , { field: 'progress', title: 'Progress',width: wwidth ,sort:true }
+                    , { field:'function_bar', title: 'Function', width: 200, align: 'center', toolbar: '#barOption' } //这里的toolbar值是模板元素的选择器
+                ]]
+                , id: 'dataCheck'
+                , url: '../json/task_filter.json'
+                , method: 'get'
+                , page: true
+                , limits: [30, 60, 90, 150, 300]
+                , limit: 30 //默认采用30
+                , loading: false
+                , done: function (res, curr, count) {
+                    //如果是异步请求数据方式，res即为你接口返回的信息。
+                    //如果是直接赋值的方式，res即为：{data: [], count: 99} data为当前页数据、count为数据总长度
+                    console.log(res);
+
+                    //得到当前页码
+                    console.log(curr);
+
+                    //得到数据总量
+                    console.log(count);
+                },parseData: function(res){ //将原始数据解析成 table 组件所规定的数据
+                    alter("parse data")
+                    console.log(res.data[0]["status"])
+
+                    // return {
+                    //     "code": 0, //解析接口状态
+                    //     "msg": res.msg, //解析提示文本
+                    //     "count": res.count, //解析数据长度
+                    //     "data": res.data.filter(function(x){
+                    //         return x["status"] == "Completed"
+                    //     }) //解析数据列表
+                    // };
+                }
+            }
+            // 表格渲染
+            var tableIns = table.render(tablerender);
+
+            // 获取选中行
+            table.on('checkbox(dataCheck)', function (obj) {
+                layer.msg('123');
+                console.log(obj.checked); //当前是否选中状态
+                console.log(obj.data); //选中行的相关数据
+                console.log(obj.type); //如果触发的是全选，则为：all，如果触发的是单选，则为：one
+            });
+
+            // 刷新
+            $('#btn-refresh').on('click', function () {
+                tableIns = table.render(tablerender);
+            });
+            
+
+			//搜索
+            $("#btn-s").on('click', function () {
+                console.log('search')
+                var inputText = document.getElementById("search_bar").value
+                if(inputText){
+                	jsondata2 = jsondata.filter(function (item) {
+	                    return item.tname == inputText
+	                })
+	                var temp = deepClone(tablerender)
+	                tablerender.data = jsondata2
+	                tablerender.url = ''
+	                tableIns = table.render(tablerender);
+	                tablerender = deepClone(temp)
+                }
+               
+            })
+
+            function deepClone(obj) {
+                let _obj = JSON.stringify(obj),
+                    objClone = JSON.parse(_obj);
+                return objClone
+            }
+
+            var jsondata = new Object()
+            $.getJSON("../json/task.json", function (data) {
+                jsondata = data.data
+            })
+
+            ////////////////hide function_bar
+        $("#btn-hidden").on('click',function(){
+                var a= $("[data-field='function_bar']").css("display")
+                if(a=="none")
+                 $("[data-field='function_bar']").css("display","block");
+             else{
+                 $("[data-field='function_bar']").css("display","none");
+             }
+
+            });
+
+            // 暂停和中止按钮功能
+            var table = layui.table;
+
+            $.getJSON('../json/permission.json', function (data) {
+                console.log("task permission is " + data.data[0]["task_permission"])
+                if (data.data[0]["task_permission"] == 0) {
+                    tablerender.url = '';
+                    tableIns = table.render(tablerender);
+                }
+            });
+
+            $('#btn-delete-all').on('click', function () {
+                var checkStatus = table.checkStatus('dataCheck');
+                for ($i = 0; $i < checkStatus.data.length; $i = $i + 1) {
+                    $row = checkStatus.data[$i];
+                    //console.log(JSON.stringify($row));
+                    $.ajax({
+                        type: "POST",
+                        url: "../delete-task.php",
+                        data: { data: JSON.stringify($row) },
+                        error: function (request) {
+                            alert("Connection error");
+                        },
+                        success: function (data) {
+                            //alert("Success");
+                            tableIns = table.render(tablerender);
+                            //layer.close($i);
+                        }
+                    });
+                }
+            });
+      
+
+            $("#btn-add").on('click', function () {
+                layer.open({
+                    type: 2,
+                    title: " New Task",
+                    area: ['60%', '80%'],
+                    shadeClose: true, //点击遮罩关闭
+                    content: '../demo/table form new task.html',
+                    cancel: function (index, layero) {
+                        tableIns = table.render(tablerender);
+                    },
+                    end: function(){
+                        tableIns = table.render(tablerender);
+                    }
+                });
+                tableIns = table.render(tablerender);
+            });
+
+            var table = layui.table;
+            table.on('checkbox(demo)', function (obj) {
+                console.log(obj)
+            });
+            //监听工具条
+            table.on('tool(demo)', function (obj) {
+                var data = obj.data;
+                if (obj.event === 'detail') {
+                    //layer.alert('view'+ JSON.stringify(data));
+                    layer.open({
+                        type: 2,
+                        title: "Task",
+                        area: ['60%', '80%'],
+                        shadeClose: true, //点击遮罩关闭
+                        content: 'show-task.php?data=' + escape(JSON.stringify(data)),
+                        btn: ['Confirm'],
+                        btnAlign: 'c',
+                        yes: function(index, layero){
+                            layer.close(index)
+                        }
+                    })
+                } else if (obj.event === 'del') {
+                    layer.confirm('Confirm to delete ?', {
+                        title: 'Delete Task',
+                        btn: ['Comfirm', 'Cancel']
+                    }, function (index) {
+                        $.ajax({
+                            type: "POST",
+                            url: "../delete-task.php",
+                            data: { data: JSON.stringify(data) },
+                            error: function (request) {
+                                alert("Connection error");
+                            },
+                            success: function (data) {
+                                obj.del();
+                                layer.close(index);
+                                tableIns = table.render(tablerender);
+                            }
+                        });
+                    });
+                } else if (obj.event === 'edit') {
+                    //layer.alert('view'+ JSON.stringify(data));
+                    layer.open({
+                        type: 2,
+                        title: "Task",
+                        area: ['60%', '80%'],
+                        shadeClose: true, //点击遮罩关闭
+                        content: 'edit task page.php?data=' + escape(JSON.stringify(data)),
+                        cancel: function (index, layero) {
+                            tableIns = table.render(tablerender);
+                        }, 
+                        end: function(){
+                            tableIns = table.render(tablerender);
+                        }
+                    });
+					tableIns = table.render(tablerender);
+                }else if(obj.event==="setPn"){
+                 layer.open({
+                        type: 2,
+                        title: "Task",
+                        area: ['60%', '80%'],
+                        shadeClose: true, //点击遮罩关闭
+                        content: 'edit task page.php?data=' + escape(JSON.stringify(data)),
+            });
+                   tableIns = table.render(tablerender);
+                }//加在监听工具条部分 
+      });
+
+
+
+
+            var twidth = document.getElementsByClassName('layui-table-view')[0].offsetWidth - 58
+            tablerender.cols[0].forEach(function (n, i) {
+                if (n.width) {
+                    if (i == 7) { n.width = twidth / 8 * 0.8 }
+                    else if (i == 8) { n.width = twidth / 8 * 1.2 }
+                    else { n.width = twidth / 8 }
+                }
+            })
+            tableIns = table.render(tablerender);
+        });
+
+    </script>
+    <!-- 表格操作按钮集 -->
+    <script type="text/html" id="barOption">
+
+     <!-- <a class="layui-btn layui-btn-mini" lay-event="detail">View</a> -->
+    <a class="layui-btn layui-btn-mini layui-btn-normal" lay-event="edit">Edit</a>
+    <a class="layui-btn layui-btn-mini layui-btn-danger" lay-event="del">Delete</a>
+</script>
+</body>
+
+</html>

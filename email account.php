@@ -17,15 +17,35 @@
 </head>
 
 <body>
+	<?php
+    //echo "Hello3", "<br>";
+    $servername = "localhost";
+	$sql_username = "root";
+	$sql_password = "123456";
+	$dbname = "mylogin";
+	 
+	// 创建连接
+	$conn = mysqli_connect($servername, $sql_username, $sql_password, $dbname);
+	 
+	// 检测连接
+	if (!$conn) {
+	    die("Connection failed: " . mysqli_connect_error());
+	}
+    session_start();
+	$name =$_SESSION["admin"];
+	$email = mysqli_fetch_assoc(mysqli_query($conn, "SELECT uemail FROM `user` WHERE username = '$name'"))["uemail"];
+	$emailpwd = mysqli_fetch_assoc(mysqli_query($conn, "SELECT uemailpwd FROM `user` WHERE username = '$name'"))["uemailpwd"];
+	
+?>
     <fieldset class="layui-elem-field ">
         <legend>Email Account</legend>
-        <form class="layui-form" action="" method="post">
+        <form class="layui-form" action="./add-email.php" method="post">
 
             <div class="layui-field-box">
                 <label class="layui-form-label" id="address_lable">Address:</label>
                 <div class="layui-input-block">
                     <input title='address' type="text" name="title" required lay-verify="required" placeholder="Address" autocomplete="off"
-                        class="layui-input" id="email_address" onblur="isEmail()">
+                        class="layui-input" id="email_address" onblur="isEmail()" value=<?php echo $email ?>>
                 </div>
             </div>
             <div class="layui-field-box">
@@ -33,7 +53,7 @@
                     <label class="layui-form-label" id="password_lable">Password:</label>
                     <div class="layui-input-inline">
                         <input title='password' type="password" name="password" required lay-verify="required" placeholder="Password"
-                            autocomplete="off" class="layui-input" id="email_password">
+                            autocomplete="off" class="layui-input" id="email_password" value=<?php echo $emailpwd ?>>
                     </div>
                     <div class="layui-form-mid layui-word-aux" id="emial_tips">辅助文字</div>
                 </div>
@@ -88,7 +108,7 @@
 
             //监听提交
             form.on('submit(formDemo)', function (data) {
-                //layer.msg(JSON.stringify(data.field));
+                layer.msg(JSON.stringify(data.field));
                 //return false;
             });
         });

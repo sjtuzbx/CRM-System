@@ -44,6 +44,21 @@
 		$data=array("code"=>0,"msg"=>"","count"=>count($arr), "data"=>$arr);
 		file_put_contents('json/lead.json', json_encode($data));
 
+		
+		function test_lead_completed($var)
+		{
+			return($var["lstatus"]== "Active");
+		}
+		$data=array("code"=>0,"msg"=>"","count"=>count(array_filter($arr, test_lead_completed)), "data"=>array_filter($arr, test_lead_completed));
+		file_put_contents('json/active_lead.json', json_encode($data));
+
+		function test_lead_inprogress($var)
+		{
+			return($var["lstatus"]== "Lapsed");
+		}
+		$data=array("code"=>0,"msg"=>"","count"=>count(array_filter($arr, test_lead_inprogress)), "data"=>array_filter($arr, test_lead_inprogress));
+		file_put_contents('json/lapsed_lead.json', json_encode($data));
+
 		echo "successfully edited lead";
 	} else {
 		echo "failed";

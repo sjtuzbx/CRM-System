@@ -65,6 +65,20 @@
 		$data=array("code"=>0,"msg"=>"","count"=>count($arr), "data"=>$arr);
 		file_put_contents('json/task.json', json_encode($data));
 
+		function test_completed($var)
+		{
+			return($var["status"]== "Completed");
+		}
+		$data=array("code"=>0,"msg"=>"","count"=>count(array_filter($arr, test_completed)), "data"=>array_filter($arr, test_completed));
+		file_put_contents('json/task_filter.json', json_encode($data));
+
+		function test_inprogress($var)
+		{
+			return($var["status"]== "In Progress");
+		}
+		$data=array("code"=>0,"msg"=>"","count"=>count(array_filter($arr, test_inprogress)), "data"=>array_filter($arr, test_inprogress));
+		file_put_contents('json/task_inprogress.json', json_encode($data));
+
 		$pid['cnt'] = $pid['cnt'] + 1;
 		file_put_contents('json/task-id.json', json_encode($pid));
 

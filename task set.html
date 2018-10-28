@@ -25,16 +25,16 @@
           <div class="layui-col-md2">
             Task Set Name
           </div>
-          <div class="layui-col-md1">
+          <div class="layui-col-md2">
             For contacts
           </div>
-          <div class="layui-col-md1">
+          <div class="layui-col-md2">
             For clients
           </div>
-          <div class="layui-col-md1">
+          <div class="layui-col-md2">
             For projects
           </div>
-          <div class="layui-col-md1">
+          <div class="layui-col-md2">
             For leads
           </div>
         </div>
@@ -42,16 +42,16 @@
           <div class="layui-col-md2">
             Small Grant
           </div>
-          <div class="layui-col-md1">
+          <div class="layui-col-md2">
             <input type="checkbox" lay-filter="" name="" lay-skin="primary">
           </div>
-          <div class="layui-col-md1">
+          <div class="layui-col-md2">
             <input type="checkbox" lay-filter="" name="" lay-skin="primary">
           </div>
-          <div class="layui-col-md1">
+          <div class="layui-col-md2">
             <input type="checkbox" lay-filter="" name="" lay-skin="primary">
           </div>
-          <div class="layui-col-md1">
+          <div class="layui-col-md2">
             <input type="checkbox" lay-filter="" name="" lay-skin="primary">
           </div>
         </div>
@@ -59,16 +59,16 @@
           <div class="layui-col-md2">
             <input type="text" name="task_set_name" autocomplete="off" placeholder="task set name" class="layui-input">
           </div>
-          <div class="layui-col-md1">
+          <div class="layui-col-md2">
             <input type="checkbox" lay-filter="" name="contact" lay-skin="primary">
           </div>
-          <div class="layui-col-md1">
+          <div class="layui-col-md2">
             <input type="checkbox" lay-filter="" name="client" lay-skin="primary">
           </div>
-          <div class="layui-col-md1">
+          <div class="layui-col-md2">
             <input type="checkbox" lay-filter="" name="project" lay-skin="primary">
           </div>
-          <div class="layui-col-md1">
+          <div class="layui-col-md2">
             <input type="checkbox" lay-filter="" name="lead" lay-skin="primary">
           </div>
         </div>
@@ -94,7 +94,7 @@
           var elem = document.getElementById("input_task_set")
           var newNode = document.createElement("div")
           newNode.setAttribute("class", "layui-row")
-          newNode.style="margin: 15px;"
+          newNode.style = "margin: 15px;"
 
           var child1 = document.createElement("div")
           child1.setAttribute("class", "layui-col-md2")
@@ -103,56 +103,58 @@
           newNode.appendChild(child1)
 
           set_names = ["contact", "client", "project", "lead"]
-          for (var i=0; i<set_names.length; i++){
+          for (var i = 0; i < set_names.length; i++) {
             var child1 = document.createElement("div")
-            child1.setAttribute("class", "layui-col-md1")
-            var child1text = document.createElement("input")
-            child1text.setAttribute("type", "checkbox")
-            if (info[set_names[i]] == "on"){
-              child1text.setAttribute("checked", "true")
+            child1.setAttribute("class", "layui-col-md2")
+            if (info[set_names[i]] == "on") {
+              var child1text = document.createTextNode("On")
+              child1.appendChild(child1text)
+              newNode.appendChild(child1)
+            } else {
+              var child1text = document.createTextNode("Off")
+              child1.appendChild(child1text)
+              newNode.appendChild(child1)
             }
-            //child1text.disabled = true
-            child1.appendChild(child1text)
-            newNode.appendChild(child1)
           }
 
           newNode.appendChild(child1)
           console.log(newNode)
           rt.insertBefore(newNode, elem)
-        //   <div class="layui-row" style="margin: 15px;">
-        //   <div class="layui-col-md2">
-        //     Small Grant
-        //   </div>
-        //   <div class="layui-col-md1">
-        //     <input type="checkbox" lay-filter="" name="" lay-skin="primary">
-        //   </div>
-        //   <div class="layui-col-md1">
-        //     <input type="checkbox" lay-filter="" name="" lay-skin="primary">
-        //   </div>
-        //   <div class="layui-col-md1">
-        //     <input type="checkbox" lay-filter="" name="" lay-skin="primary">
-        //   </div>
-        //   <div class="layui-col-md1">
-        //     <input type="checkbox" lay-filter="" name="" lay-skin="primary">
-        //   </div>
-        // </div>
         })
       })
       //监听提交
       form.on('submit(formDemo)', function (data) {
-        // if (confirm('Confirm to save permission ?')) { //只有当点击confirm框的确定时，该层才会关闭
-        //   var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
-        //   parent.layer.close(index); //再执行关闭  
-        // }
-        layer.msg(JSON.stringify(data.field));
-        var a = document.getElementById("task_set_columns")
-        var node = document.createElement("div")
-        node.class = "layui-row"
-        node.style = "margin: 15px;"
-        var text = document.createTextNode("Hello")
-        node.appendChild(text)
-        a.appendChild(node)
-        console.log(node)
+        console.log(data.field)
+        var rt = document.getElementById("task_set_columns")
+        var elem = document.getElementById("input_task_set")
+        var newNode = document.createElement("div")
+        newNode.setAttribute("class", "layui-row")
+        newNode.style = "margin: 15px;"
+
+        var child1 = document.createElement("div")
+        child1.setAttribute("class", "layui-col-md2")
+        var child1text = document.createTextNode(data.field["task_set_name"])
+        child1.appendChild(child1text)
+        newNode.appendChild(child1)
+
+        set_names = ["contact", "client", "project", "lead"]
+        for (var i = 0; i < set_names.length; i++) {
+          var child1 = document.createElement("div")
+          child1.setAttribute("class", "layui-col-md2")
+          if (data.field[set_names[i]] == "on") {
+            var child1text = document.createTextNode("On")
+            child1.appendChild(child1text)
+            newNode.appendChild(child1)
+          } else {
+            var child1text = document.createTextNode("Off")
+            child1.appendChild(child1text)
+            newNode.appendChild(child1)
+          }
+        }
+
+        newNode.appendChild(child1)
+        console.log(newNode)
+        rt.insertBefore(newNode, elem)
         return false;
       });
     });
