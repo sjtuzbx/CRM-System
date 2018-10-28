@@ -187,6 +187,8 @@
         , vipTable = layui.vip_table
         , $ = layui.jquery;
 
+
+
         var cwidth = window.innerWidth/3-30;
 		        
 		window.onresize=function(){  
@@ -356,6 +358,8 @@
             table.render(options[obj.value]);
         });
 
+        $()
+
         // 表格渲染
         for (var i=0;i<6;i++)
         {
@@ -366,6 +370,7 @@
         //var tableIns = table.render(option0);
 
         // 获取选中行
+
   
         table.on('checkbox(dataCheck)', function (obj) {
             layer.msg('123');
@@ -377,6 +382,7 @@
           table.on('checkbox(demo)', function(obj){
             console.log(obj)
           });
+
       });
   
     </script>
