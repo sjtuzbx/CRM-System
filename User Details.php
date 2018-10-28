@@ -69,8 +69,12 @@
 
             //监听提交
             form.on('submit(formDemo)', function (data) {
-                layer.msg(JSON.stringify(data.field));
+                //layer.msg(JSON.stringify(data.field));
                 //return false;
+				if(true){ //只有当点击confirm框的确定时，该层才会关闭 
+					var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+					parent.layer.close(index); //再执行关闭  
+				}   
             });
         });
     </script>
