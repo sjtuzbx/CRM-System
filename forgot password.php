@@ -59,7 +59,7 @@
 			</div>
 			<!-- 表单内容 -->
 			<div class="form_content">
-				<form id="login" action="login-check.php" method="post">
+				<form id="login" action="recover password.php" method="post">
 					<!-- 登录输入框 -->
 					<label for="login_username" class="login_label_username"></label>
 					<input type="text" name="username" class="username" autocomplete="on" placeholder="Enter Your Username">
@@ -69,9 +69,16 @@
 			
 						<div class='login_password'>
 							<input type="password" name="password" class="password" autocomplete="on" placeholder="Enter Your New Password">
-							<input type="email" name="password" class="password" autocomplete="on" placeholder="Enter Your Email Address">
-							<input type="password" name="password" class="password" autocomplete="on" placeholder="Enter Your Email Password">
+							<input type="email" name="email" class="password" autocomplete="on" placeholder="Enter Your Email Address">
+							<input type="password" name="email_password" class="password" autocomplete="on" placeholder="Enter Your Email Password">
 						</div>
+						<?php
+							echo "<div class='login_password'>";
+							if(isset($_GET['valid'])){
+								echo "<font color='red' class='login_label_pwd'>Incorrect email or email password. Please try again.</font>";
+							} 
+							echo "</div>";
+						?>
 					<!-- 登录按钮 -->
 					<div class="login_button">
 						<input type="submit" name="login_button" class="input_confirm_button" value="Confirm">
