@@ -167,17 +167,19 @@
                         });
                     });
                 }else if (obj.event === 'edit'){
-							layer.open({
-							type: 2,
-							title: "Edit User",
-							area: ['700px', '550px'],
-							shadeClose: true, //点击遮罩关闭
-							content: 'table form new user.html',
-							cancel: function (index, layero) {
-							tableIns.reload();
-                    }
-                })
-						}
+                    layer.open({
+                        type: 2,
+                        title: "Edit user",
+                        area: ['60%', '80%'],
+                        shadeClose: true, //点击遮罩关闭
+                        content: 'edit user.php?data=' + escape(JSON.stringify(data)),
+                        // btn:["Save""Cancle"],
+                        end: function(){
+                            tableIns = table.render(tablerender);
+                        }
+                    });
+                    tableIns = table.render(tablerender);
+			    }
             });
 
             var twidth = document.getElementsByClassName('layui-table-view')[0].offsetWidth - 58
