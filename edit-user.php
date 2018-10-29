@@ -25,7 +25,8 @@
     $accountname = $_POST['accountname'];
     $password = $_POST['password'];
     $sql = "UPDATE `user` SET `ufirstname`='$firstname', `ulastname`='$lastname', `username`='$accountname', `password`='$password' WHERE user.id='$id'";
-	$res = mysqli_query($conn, $sql);
+    echo $sql;
+    $res = mysqli_query($conn, $sql);
 	if ($res){
 		// update json
 		$sql_user = "select * from user";
