@@ -21,16 +21,16 @@
 	$address = $_POST['title'];
     $password = $_POST['password'];
 	
-	echo $name, "<br>";
-	echo $address, "<br>";
-	echo $password, "<br>";
+	//echo $name, "<br>";
+	//echo $address, "<br>";
+	//echo $password, "<br>";
 
     $sql = "SELECT * FROM `user`";
-	echo $sql, "<br>";
+	//echo $sql, "<br>";
 	$res = mysqli_query($conn, $sql);
 	if ($res){
 		// update json
-		echo "success";
+		//echo "success";
 		
 		$sql_email = "UPDATE user SET uemail='$address' WHERE username='$name';";
 		$sql_pwd = "UPDATE user SET uemailpwd='$password' WHERE username='$name';";

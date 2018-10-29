@@ -23,18 +23,18 @@
     $username = $_POST['Username'];
     $notes = $_POST['notes'];
 	
-	echo $name, "<br>";
-	echo $firstname, "<br>";
-	echo $lastname, "<br>";
-	echo $username, "<br>";
-	echo $notes, "<br>";
+	//echo $name, "<br>";
+	//echo $firstname, "<br>";
+	//echo $lastname, "<br>";
+	//echo $username, "<br>";
+	//echo $notes, "<br>";
 
     $sql = "SELECT * FROM `user`";
-	echo $sql, "<br>";
+	//echo $sql, "<br>";
 	$res = mysqli_query($conn, $sql);
 	if ($res){
 		// update json
-		echo "success";
+		//echo "success";
 		
         mysqli_query($conn, "UPDATE user SET ufirstname='$firstname' WHERE username='$name';");
         mysqli_query($conn, "UPDATE user SET ulastname='$lastname' WHERE username='$name';");
@@ -49,7 +49,7 @@
         $data=array("code"=>0,"msg"=>"","count"=>count($arr), "data"=>$arr);
         file_put_contents('json/user.json', json_encode($data));
 
-		echo "successfully changed email account";
+		echo "successfully changed";
 		//header(location:index.html);
 	} else {
 		echo "failed";

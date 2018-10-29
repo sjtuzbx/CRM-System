@@ -166,7 +166,18 @@
                             }
                         });
                     });
-                } 
+                }else if (obj.event === 'edit'){
+							layer.open({
+							type: 2,
+							title: "Edit User",
+							area: ['700px', '550px'],
+							shadeClose: true, //点击遮罩关闭
+							content: 'table form new user.html',
+							cancel: function (index, layero) {
+							tableIns.reload();
+                    }
+                })
+						}
             });
 
             var twidth = document.getElementsByClassName('layui-table-view')[0].offsetWidth - 58
@@ -183,8 +194,9 @@
     </script>
     <!-- 表格操作按钮集 -->
     <script type="text/html" id="barOption">
-
+	<a class="layui-btn layui-btn-mini layui-btn-normal" lay-event="edit">Edit</a>
     <a class="layui-btn layui-btn-mini layui-btn-danger" lay-event="del">Delete</a>
+	
 </script>
 </body>
 
