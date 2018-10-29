@@ -16,8 +16,8 @@
         $row = json_decode($json, true);
         $pid = $row["uid"];
         $username = $row["username"];
-        $firstname = $row["firstname"];
-        $lastname = $row["lastname"];
+        $firstname = $row["ufirstname"];
+        $lastname = $row["ulastname"];
         $password = $row["password"];
     }
 ?>
